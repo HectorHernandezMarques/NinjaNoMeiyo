@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+<<<<<<< HEAD
 #include <sstream>
 
 std::string Convert (float number){
@@ -7,6 +8,9 @@ std::string Convert (float number){
     buff<<number;
     return buff.str();
 }
+=======
+#include "\NinjaNoMeiyo\Classes\Node.h"
+>>>>>>> 564b9ccde71b24ccabb5ed8524a8b063a4c2f5b3
 
 USING_NS_CC;
 
@@ -79,7 +83,9 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+
+    NinjaM::Node shietNode = NinjaM::Node("DefaultTexture.png", Vec2(100, 100));
+    shietNode.spawn(this);
     return true;
 }
 
