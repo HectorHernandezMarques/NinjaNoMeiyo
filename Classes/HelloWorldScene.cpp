@@ -1,5 +1,12 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include <sstream>
+
+std::string Convert (float number){
+    std::ostringstream buff;
+    buff<<number;
+    return buff.str();
+}
 
 USING_NS_CC;
 
@@ -54,9 +61,9 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
+
+    auto label = Label::createWithTTF(Convert(Director::getInstance()->getOpenGLView()->getFrameSize().width) + "x" + Convert(Director::getInstance()->getOpenGLView()->getFrameSize().height), "fonts/Marker Felt.ttf", 124);
+
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
