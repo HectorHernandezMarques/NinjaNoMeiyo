@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "\NinjaNoMeiyo\Classes\Node.h"
 
 USING_NS_CC;
 
@@ -72,7 +73,9 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+
+    NinjaM::Node shietNode = NinjaM::Node("DefaultTexture.png", Vec2(100, 100));
+    shietNode.spawn(this);
     return true;
 }
 
