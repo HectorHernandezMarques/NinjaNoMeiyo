@@ -2,7 +2,17 @@
 /*/
 !/Classes/
 !/Resources/
+!/proj.android/
+/proj.android/*
+!/proj.android/jni/
+/proj.android/jni/*
 !/proj.android/jni/Android.mk
+!/proj.android-studio/
+/proj.android-studio/*
+!/proj.android-studio/app/
+/proj.android-studio/app/*
+!/proj.android-studio/app/jni/
+/proj.android-studio/app/jni/*
 !/proj.android-studio/app/jni/Android.mk
 !/.gitignore
 !/README.md

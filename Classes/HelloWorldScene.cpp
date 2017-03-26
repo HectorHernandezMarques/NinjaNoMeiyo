@@ -1,6 +1,5 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
-<<<<<<< HEAD
 #include <sstream>
 
 std::string Convert (float number){
@@ -8,9 +7,7 @@ std::string Convert (float number){
     buff<<number;
     return buff.str();
 }
-=======
 #include "\NinjaNoMeiyo\Classes\Node.h"
->>>>>>> 564b9ccde71b24ccabb5ed8524a8b063a4c2f5b3
 
 USING_NS_CC;
 
