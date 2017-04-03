@@ -7,7 +7,9 @@ std::string Convert (float number){
     buff<<number;
     return buff.str();
 }
-#include "\NinjaNoMeiyo\Classes\Node.h"
+#include ".\Node.h"
+#include ".\Character.h"
+#include ".\Ryunosuke.h"
 
 USING_NS_CC;
 
@@ -44,7 +46,9 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
+
+    /*
+	auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
@@ -56,6 +60,7 @@ bool HelloWorld::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
+	*/
 
     /////////////////////////////
     // 3. add your codes below...
@@ -63,26 +68,27 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF(Convert(Director::getInstance()->getOpenGLView()->getFrameSize().width) + "x" + Convert(Director::getInstance()->getOpenGLView()->getFrameSize().height), "fonts/Marker Felt.ttf", 124);
+    //auto label = Label::createWithTTF(Convert(Director::getInstance()->getOpenGLView()->getFrameSize().width) + "x" + Convert(Director::getInstance()->getOpenGLView()->getFrameSize().height), "fonts/Marker Felt.ttf", 124);
 
     // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+    //label->setPosition(Vec2(origin.x + visibleSize.width/2,
+    //                        origin.y + visibleSize.height - label->getContentSize().height));
 
     // add the label as a child to this layer
-    this->addChild(label, 1);
+    //this->addChild(label, 1);
 
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+    //auto sprite = Sprite::create("HelloWorld.png");
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    //sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    //this->addChild(sprite, 0);
 
-    NinjaM::Node shietNode = NinjaM::Node("DefaultTexture.png", Vec2(100, 100));
-    shietNode.spawn(this);
+    NinjaM::Node* ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "DefaultTexture.png", 0.0);
+    ryunosuke->spawn(this);
+	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher(this);
     return true;
 }
 
