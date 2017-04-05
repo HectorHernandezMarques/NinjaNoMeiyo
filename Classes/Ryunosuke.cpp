@@ -30,21 +30,28 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 void NinjaM::Ryunosuke::setEventDispatcher(cocos2d::Layer *layer)
 {
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [] (cocos2d::Touch* touch, cocos2d::Event* event) { return true; };
-	listener->onTouchMoved = [=] (cocos2d::Touch* touch, cocos2d::Event* event) {
-		auto touchPosition = touch->getLocation();
-		if (nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
-			nodeSprite->setPosition(touchPosition);
-		} };
-	listener->onTouchEnded = [=](cocos2d::Touch* touch, cocos2d::Event* event) {};
+	listener->onTouchBegan = CC_CALLBACK_2(NinjaM::Ryunosuke::getInitialTouchValues, this);
+	listener->onTouchMoved = CC_CALLBACK_2(NinjaM::Ryunosuke::movePlayer, this);
+	listener->onTouchEnded = CC_CALLBACK_2(NinjaM::Ryunosuke::endMovement, this);
 	layer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, layer);
 }
 
+bool NinjaM::Ryunosuke::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	this->initialTouchPosition = nodeSprite->getPosition();
+	this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
+	return true;
+}
 
 void NinjaM::Ryunosuke::movePlayer(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	auto touchPosition = touch->getLocation();
-	if (nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
-		nodeSprite->setPosition(touchPosition);
+	if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
+		this->nodeSprite->setPosition(cocos2d::Vec2(touchPosition.x - this->positionVariation.x, touchPosition.y - this->positionVariation.y));
 	}
+}
+
+void NinjaM::Ryunosuke::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	this->nodeSprite->setPosition(this->initialTouchPosition);
 }
