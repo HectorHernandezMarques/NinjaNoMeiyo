@@ -9,7 +9,7 @@ NinjaM::Character::Character()
 
 }
 
-NinjaM::Character::Character(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation) : Node(visibleSize, position, anchorPoint, texture, rotation)
+NinjaM::Character::Character(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation) : PhysicNode(visibleSize, position, anchorPoint, texture, rotation)
 {
 	CCLOG("Character builder");
 }

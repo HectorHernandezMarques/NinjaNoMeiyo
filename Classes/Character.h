@@ -7,11 +7,11 @@
 
 #include <string>
 #include "cocos2d.h"
-#include "./Node.h"
+#include "./PhysicNode.h"
 
 namespace NinjaM{
 
-    class Character : public NinjaM::Node
+    class Character : public NinjaM::PhysicNode
     {
     public:
         Character();

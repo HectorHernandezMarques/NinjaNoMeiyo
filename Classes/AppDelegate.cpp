@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "LevelOneScene.h"
 
 USING_NS_CC;
 #define COCOS2D_DEBUG 1
@@ -75,7 +75,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = LevelOneScene::createScene();
 
     // run
     director->runWithScene(scene);

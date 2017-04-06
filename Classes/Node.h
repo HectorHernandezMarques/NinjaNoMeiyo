@@ -36,7 +36,7 @@ namespace NinjaM{
         cocos2d::Vec2 anchorPoint;
         std::string texture;
         float rotation;
-		cocos2d::Sprite* nodeSprite;
+		cocos2d::Sprite *nodeSprite;
     };
 }
 

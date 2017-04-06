@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+#include "LevelOneScene.h"
 #include "SimpleAudioEngine.h"
 #include <sstream>
 
@@ -7,19 +7,18 @@ std::string Convert (float number){
     buff<<number;
     return buff.str();
 }
-#include ".\Node.h"
-#include ".\Character.h"
+
 #include ".\Ryunosuke.h"
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* LevelOneScene::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
+    auto layer = LevelOneScene::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -29,7 +28,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool LevelOneScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -51,7 +50,7 @@ bool HelloWorld::init()
 	auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(LevelOneScene::menuCloseCallback, this));
     
     closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -86,14 +85,14 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     //this->addChild(sprite, 0);
 
-    NinjaM::Node* ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "DefaultTexture.png", 0.0);
+    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "DefaultTexture.png", 0.0);
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher(this);
     return true;
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void LevelOneScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
