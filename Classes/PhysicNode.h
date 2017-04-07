@@ -22,6 +22,7 @@ namespace NinjaM{
 
     private:
 	protected:
+        cocos2d::PhysicsBody *nodeBody;
     };
 }
 

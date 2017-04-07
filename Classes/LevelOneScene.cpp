@@ -15,10 +15,12 @@ USING_NS_CC;
 Scene* LevelOneScene::createScene()
 {
     // 'scene' is an autorelease object
-    auto scene = Scene::create();
-    
+    auto scene = Scene::createWithPhysics();
+    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+
     // 'layer' is an autorelease object
     auto layer = LevelOneScene::create();
+    layer->sceneWorld = scene->getPhysicsWorld();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -88,6 +90,16 @@ bool LevelOneScene::init()
     NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "DefaultTexture.png", 0.0);
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher(this);
+
+    auto edgeBody = PhysicsBody::createEdgeBox( visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3 );
+
+    auto edgeNode = Node::create();
+    edgeNode->setPosition( Vec2( visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y ) );
+
+    edgeNode->setPhysicsBody( edgeBody );
+
+    this->addChild( edgeNode );
+
     return true;
 }
 

@@ -21,7 +21,5 @@ NinjaM::Character::~Character()
 
 void NinjaM::Character::spawn(cocos2d::Layer *layer)
 {
-    nodeSprite = cocos2d::Sprite::create(this->texture);
-    nodeSprite->setPosition(this->position);
-    layer->addChild(nodeSprite);
+    NinjaM::PhysicNode::spawn(layer);
 }

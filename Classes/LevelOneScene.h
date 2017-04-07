@@ -15,6 +15,10 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(LevelOneScene);
+
+private:
+
+    cocos2d::PhysicsWorld *sceneWorld;
 };
 
 #endif // __LEVELONE_SCENE_H__

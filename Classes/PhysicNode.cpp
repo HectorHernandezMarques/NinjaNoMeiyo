@@ -21,7 +21,7 @@ NinjaM::PhysicNode::~PhysicNode()
 
 void NinjaM::PhysicNode::spawn(cocos2d::Layer *layer)
 {
-    nodeSprite = cocos2d::Sprite::create(this->texture);
-    nodeSprite->setPosition(this->position);
-    layer->addChild(nodeSprite);
+    NinjaM::Node::spawn(layer);
+    this->nodeBody = cocos2d::PhysicsBody::createBox(this->nodeSprite->getContentSize());
+    this->nodeSprite->setPhysicsBody(nodeBody);
 }
