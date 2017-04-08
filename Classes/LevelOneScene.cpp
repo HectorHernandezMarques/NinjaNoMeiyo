@@ -1,13 +1,5 @@
 #include "LevelOneScene.h"
 #include "SimpleAudioEngine.h"
-#include <sstream>
-
-std::string Convert (float number){
-    std::ostringstream buff;
-    buff<<number;
-    return buff.str();
-}
-
 #include ".\Ryunosuke.h"
 
 USING_NS_CC;
@@ -21,6 +13,8 @@ Scene* LevelOneScene::createScene()
     // 'layer' is an autorelease object
     auto layer = LevelOneScene::create();
     layer->sceneWorld = scene->getPhysicsWorld();
+
+	layer->sceneWorld->setGravity(Vec2(1000.0, -9500.0));
 
     // add layer as a child to scene
     scene->addChild(layer);

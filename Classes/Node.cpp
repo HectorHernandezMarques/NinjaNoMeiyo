@@ -25,7 +25,9 @@ NinjaM::Node::~Node()
 
 void NinjaM::Node::spawn(cocos2d::Layer *layer)
 {
-    this->nodeSprite = cocos2d::Sprite::create(this->texture);
+	this->poligonInfo = cocos2d::AutoPolygon::generatePolygon(this->texture);
+	this->nodeSprite = cocos2d::Sprite::create(this->poligonInfo);
+    //this->nodeSprite = cocos2d::Sprite::create(this->texture);
     this->nodeSprite->setPosition(this->position);
-    layer->addChild(nodeSprite);
+    layer->addChild(nodeSprite);
 }

@@ -22,6 +22,9 @@ NinjaM::Ryunosuke::~Ryunosuke()
 void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 {
     NinjaM::Character::spawn(layer);
+	this->nodeBody = cocos2d::PhysicsBody::createCircle(this->nodeSprite->getContentSize().height / 2);
+	this->nodeBody->setDynamic(true);
+	this->nodeSprite->setPhysicsBody(nodeBody);
 }
 
 
@@ -38,6 +41,7 @@ bool NinjaM::Ryunosuke::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Ev
 {
 	auto touchPosition = touch->getLocation();
 	if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
+		this->nodeBody->setDynamic(false);
 	    this->initialTouchPosition = nodeSprite->getPosition();
 	    this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
 	    return true;
@@ -59,4 +63,5 @@ void NinjaM::Ryunosuke::movePlayer(cocos2d::Touch* touch, cocos2d::Event* event)
 void NinjaM::Ryunosuke::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	//this->nodeSprite->setPosition(this->initialTouchPosition);
+	this->nodeBody->setDynamic(true);
 }
