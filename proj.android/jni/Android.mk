@@ -15,6 +15,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/LevelOneScene.cpp\
                    ../../Classes/Node.cpp\
+                   ../../Classes/Touch.cpp\
+                   ../../Classes/MovementTouch.cpp\
                    ../../Classes/PhysicNode.cpp\
                    ../../Classes/Terrain.cpp\
                    ../../Classes/Character.cpp\

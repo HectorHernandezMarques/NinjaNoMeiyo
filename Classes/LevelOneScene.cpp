@@ -1,6 +1,7 @@
 #include "LevelOneScene.h"
 #include "SimpleAudioEngine.h"
 #include ".\Ryunosuke.h"
+#include ".\MovementTouch.h"
 
 USING_NS_CC;
 
@@ -14,7 +15,7 @@ Scene* LevelOneScene::createScene()
     auto layer = LevelOneScene::create();
     layer->sceneWorld = scene->getPhysicsWorld();
 
-	layer->sceneWorld->setGravity(Vec2(1000.0, -9500.0));
+	layer->sceneWorld->setGravity(Vec2(0.0, -9800.0));
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -81,7 +82,7 @@ bool LevelOneScene::init()
     // add the sprite as a child to this layer
     //this->addChild(sprite, 0);
 
-    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "DefaultTexture.png", 0.0);
+    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ninja1.png", 0.0);
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher(this);
 
@@ -93,6 +94,16 @@ bool LevelOneScene::init()
     edgeNode->setPhysicsBody( edgeBody );
 
     this->addChild( edgeNode );
+
+    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, "Ninja1.png", 0.0, 1, ryunosuke);
+    rightMovementTouch->spawn(this);
+    ((MovementTouch*)rightMovementTouch)->setEventDispatcher(this);
+
+    NinjaM::Node *leftMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2::ZERO, Vec2::ZERO, "Ninja1.png", 0.0, -1, ryunosuke);
+    leftMovementTouch->spawn(this);
+    ((MovementTouch*)leftMovementTouch)->setEventDispatcher(this);
+
+
 
     return true;
 }

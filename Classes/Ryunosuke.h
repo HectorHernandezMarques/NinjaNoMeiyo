@@ -22,13 +22,6 @@ namespace NinjaM{
 		void setEventDispatcher(cocos2d::Layer *layer);
 
     private:
-		//EventListenerTouchOneByOne::cocos2d* listener;
-		cocos2d::Vec2 positionVariation;
-		cocos2d::Vec2 initialTouchPosition;
-
-		bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
-		void movePlayer(cocos2d::Touch* touch, cocos2d::Event* event);
-		void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
 	protected:
     };
 }

@@ -23,6 +23,7 @@ namespace NinjaM{
         cocos2d::Vec2 getAnchorPoint() {return anchorPoint;}
         std::string getTexture() {return texture;}
         float getRotation() {return rotation;}
+        cocos2d::Sprite* getNodeSprite() {return this->nodeSprite;}
 
         void setPosition(cocos2d::Vec2 position) {this->position = position;}
         void setAnchorPoint(cocos2d::Vec2 anchorPoint) {this->anchorPoint = anchorPoint;}
