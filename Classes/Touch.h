@@ -15,7 +15,7 @@ namespace NinjaM{
     {
     public:
         Touch();
-		Touch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation);
+		Touch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, float rotation);
         virtual ~Touch();
 
         virtual void spawn(cocos2d::Layer *layer);

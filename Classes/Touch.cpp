@@ -9,7 +9,7 @@ NinjaM::Touch::Touch()
 
 }
 
-NinjaM::Touch::Touch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, int sense, NinjaM::Ryunosuke* ryunosuke) : Node(visibleSize, position, anchorPoint, texture, rotation)
+NinjaM::Touch::Touch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, float rotation) : Node(visibleSize, position, anchorPoint, "", rotation)
 {
 	CCLOG("Touch builder");
 }
@@ -21,7 +21,11 @@ NinjaM::Touch::~Touch()
 
 void NinjaM::Touch::spawn(cocos2d::Layer *layer)
 {
-    NinjaM::Node::spawn(layer);
+	this->nodeSprite = cocos2d::Sprite::create();
+	this->nodeSprite->setPosition(this->position);
+	this->nodeSprite->setAnchorPoint(this->anchorPoint);
+	this->nodeSprite->setOpacity(0);
+	layer->addChild(nodeSprite);
 }
 
 void NinjaM::Touch::setEventDispatcher(cocos2d::Layer *layer)
@@ -38,7 +42,6 @@ bool NinjaM::Touch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event*
 {
 	auto touchPosition = touch->getLocation();
 	if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
-		this->nodeBody->setDynamic(false);
 	    this->initialTouchPosition = nodeSprite->getPosition();
 	    this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
 	    return true;
@@ -60,5 +63,4 @@ void NinjaM::Touch::movePlayer(cocos2d::Touch* touch, cocos2d::Event* event)
 void NinjaM::Touch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	//this->nodeSprite->setPosition(this->initialTouchPosition);
-	this->nodeBody->setDynamic(true);
 }

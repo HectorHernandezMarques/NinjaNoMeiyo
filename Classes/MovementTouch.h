@@ -7,15 +7,16 @@
 
 #include <string>
 #include "cocos2d.h"
-#include "./Node.h"
+#include "./Touch.h"
+#include "./Ryunosuke.h"
 
 namespace NinjaM{
 
-    class MovementTouch : public NinjaM::Node
+    class MovementTouch : public NinjaM::Touch
     {
     public:
         MovementTouch();
-		MovementTouch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, int sense, NinjaM::Ryunosuke* ryunosuke);
+		MovementTouch(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, float rotation, int sense, NinjaM::Ryunosuke* ryunosuke);
         virtual ~MovementTouch();
 
         virtual void spawn(cocos2d::Layer *layer);

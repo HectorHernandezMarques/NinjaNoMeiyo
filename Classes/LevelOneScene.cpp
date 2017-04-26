@@ -84,7 +84,6 @@ bool LevelOneScene::init()
 
     NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ninja1.png", 0.0);
     ryunosuke->spawn(this);
-	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher(this);
 
     auto edgeBody = PhysicsBody::createEdgeBox( visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3 );
 
@@ -95,13 +94,13 @@ bool LevelOneScene::init()
 
     this->addChild( edgeNode );
 
-    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, "Ninja1.png", 0.0, 1, ryunosuke);
+    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, 10, ((NinjaM::Ryunosuke*)ryunosuke));
     rightMovementTouch->spawn(this);
-    ((MovementTouch*)rightMovementTouch)->setEventDispatcher(this);
+    ((NinjaM::MovementTouch*)rightMovementTouch)->setEventDispatcher(this);
 
-    NinjaM::Node *leftMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2::ZERO, Vec2::ZERO, "Ninja1.png", 0.0, -1, ryunosuke);
+    NinjaM::Node *leftMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2::ZERO, Vec2::ZERO, 0.0, -10, ((NinjaM::Ryunosuke*)ryunosuke));
     leftMovementTouch->spawn(this);
-    ((MovementTouch*)leftMovementTouch)->setEventDispatcher(this);
+    ((NinjaM::MovementTouch*)leftMovementTouch)->setEventDispatcher(this);
 
 
 
