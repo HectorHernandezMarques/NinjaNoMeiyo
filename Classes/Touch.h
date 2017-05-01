@@ -19,7 +19,7 @@ namespace NinjaM{
         virtual ~Touch();
 
         virtual void spawn(cocos2d::Layer *layer);
-		void setEventDispatcher(cocos2d::Layer *layer);
+		void setEventDispatcher();
 
     private:
 	protected:
@@ -28,7 +28,7 @@ namespace NinjaM{
 		cocos2d::Vec2 initialTouchPosition;
 
 		virtual bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
-		virtual void movePlayer(cocos2d::Touch* touch, cocos2d::Event* event);
+		virtual void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);
 		virtual void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
     };
 }

@@ -19,10 +19,21 @@ namespace NinjaM{
         virtual ~Ryunosuke();
 
         virtual void spawn(cocos2d::Layer *layer);
-		void setEventDispatcher(cocos2d::Layer *layer);
+		void toMove(float velocity);
+		void toStop(float velocity);
+		void toJump(float velocity);
+
+		void setEventDispatcher();
 
     private:
+		bool rightMovement = false;
+		bool leftMovement = false;
+		float lastXVelocity = 0.0;
+		bool onTheFloor = false;
+		bool onTheWall = false;
 	protected:
+		bool onContactBegin(cocos2d::PhysicsContact &contact);
+		bool onContactSeparate(cocos2d::PhysicsContact &contact);
     };
 }
 

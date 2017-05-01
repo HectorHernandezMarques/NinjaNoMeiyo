@@ -15,7 +15,7 @@ Scene* LevelOneScene::createScene()
     auto layer = LevelOneScene::create();
     layer->sceneWorld = scene->getPhysicsWorld();
 
-	layer->sceneWorld->setGravity(Vec2(0.0, -9800.0));
+	layer->sceneWorld->setGravity(Vec2(0.0, -2300.0));
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -84,23 +84,67 @@ bool LevelOneScene::init()
 
     NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ninja1.png", 0.0);
     ryunosuke->spawn(this);
+	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher();
+	
+	//top edge
+    auto topEdgeBody = PhysicsBody::createBox( cocos2d::Size(visibleSize.width, 2), PHYSICSBODY_MATERIAL_DEFAULT);
+	topEdgeBody->setDynamic(false);
+	topEdgeBody->setCollisionBitmask(0x000002);
+	topEdgeBody->setContactTestBitmask(true);
 
-    auto edgeBody = PhysicsBody::createEdgeBox( visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3 );
+    auto topEdgeNode = Node::create();
+    topEdgeNode->setPosition( Vec2(visibleSize.width/2 + origin.x, visibleSize.height + origin.y) );
 
-    auto edgeNode = Node::create();
-    edgeNode->setPosition( Vec2( visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y ) );
+    topEdgeNode->setPhysicsBody( topEdgeBody );
 
-    edgeNode->setPhysicsBody( edgeBody );
+    this->addChild( topEdgeNode );
 
-    this->addChild( edgeNode );
+	//bottom edge
+	auto bottomEdgeBody = PhysicsBody::createBox(cocos2d::Size(visibleSize.width, 1), PHYSICSBODY_MATERIAL_DEFAULT);
+	bottomEdgeBody->setDynamic(false);
+	bottomEdgeBody->setCollisionBitmask(0x000002);
+	bottomEdgeBody->setContactTestBitmask(true);
 
-    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, 10, ((NinjaM::Ryunosuke*)ryunosuke));
+	auto bottomEdgeNode = Node::create();
+	bottomEdgeNode->setPosition(Vec2(visibleSize.width/2 + origin.x, origin.y));
+
+	bottomEdgeNode->setPhysicsBody(bottomEdgeBody);
+
+	this->addChild(bottomEdgeNode);
+
+	//left edge
+	auto leftEdgeBody = PhysicsBody::createBox(cocos2d::Size(1, visibleSize.height), PHYSICSBODY_MATERIAL_DEFAULT);
+	leftEdgeBody->setDynamic(false);
+	leftEdgeBody->setCollisionBitmask(0x000003);
+	leftEdgeBody->setContactTestBitmask(true);
+
+	auto leftEdgeNode = Node::create();
+	leftEdgeNode->setPosition(Vec2(origin.x, visibleSize.height/2 + origin.y));
+
+	leftEdgeNode->setPhysicsBody(leftEdgeBody);
+
+	this->addChild(leftEdgeNode);
+
+	//right edge
+	auto rightEdgeBody = PhysicsBody::createBox(cocos2d::Size(1, visibleSize.height), PHYSICSBODY_MATERIAL_DEFAULT);
+	rightEdgeBody->setDynamic(false);
+	rightEdgeBody->setCollisionBitmask(0x000003);
+	rightEdgeBody->setContactTestBitmask(true);
+
+	auto rightEdgeNode = Node::create();
+	rightEdgeNode->setPosition(Vec2(visibleSize.width + origin.x, visibleSize.height/2 + origin.y));
+
+	rightEdgeNode->setPhysicsBody(rightEdgeBody);
+
+	this->addChild(rightEdgeNode);
+
+    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, 1000, ((NinjaM::Ryunosuke*)ryunosuke));
     rightMovementTouch->spawn(this);
-    ((NinjaM::MovementTouch*)rightMovementTouch)->setEventDispatcher(this);
+    ((NinjaM::MovementTouch*)rightMovementTouch)->setEventDispatcher();
 
-    NinjaM::Node *leftMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2::ZERO, Vec2::ZERO, 0.0, -10, ((NinjaM::Ryunosuke*)ryunosuke));
+    NinjaM::Node *leftMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2::ZERO, Vec2::ZERO, 0.0, -1000, ((NinjaM::Ryunosuke*)ryunosuke));
     leftMovementTouch->spawn(this);
-    ((NinjaM::MovementTouch*)leftMovementTouch)->setEventDispatcher(this);
+    ((NinjaM::MovementTouch*)leftMovementTouch)->setEventDispatcher();
 
 
 

@@ -20,14 +20,17 @@ namespace NinjaM{
         virtual ~MovementTouch();
 
         virtual void spawn(cocos2d::Layer *layer);
-		void setEventDispatcher(cocos2d::Layer *layer);
+		void setEventDispatcher();
 
     private:
+		std::mutex m;
+
         NinjaM::Ryunosuke *ryunosuke;
         int sense;
+		cocos2d::Vec2 initialVelocity;
 	protected:
 		bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
-		void movePlayer(cocos2d::Touch* touch, cocos2d::Event* event);
+		void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);
 		void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
     };
 }

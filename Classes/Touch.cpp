@@ -24,17 +24,17 @@ void NinjaM::Touch::spawn(cocos2d::Layer *layer)
 	this->nodeSprite = cocos2d::Sprite::create();
 	this->nodeSprite->setPosition(this->position);
 	this->nodeSprite->setAnchorPoint(this->anchorPoint);
-	this->nodeSprite->setOpacity(0);
+	this->nodeSprite->setOpacity(50);
 	layer->addChild(nodeSprite);
 }
 
-void NinjaM::Touch::setEventDispatcher(cocos2d::Layer *layer)
+void NinjaM::Touch::setEventDispatcher()
 {
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(NinjaM::Touch::getInitialTouchValues, this);
-	listener->onTouchMoved = CC_CALLBACK_2(NinjaM::Touch::movePlayer, this);
+	listener->onTouchMoved = CC_CALLBACK_2(NinjaM::Touch::moveTouch, this);
 	listener->onTouchEnded = CC_CALLBACK_2(NinjaM::Touch::endMovement, this);
-	layer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, layer);
+	this->nodeSprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this->nodeSprite);
 }
 
 
@@ -52,15 +52,13 @@ bool NinjaM::Touch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event*
     }
 }
 
-void NinjaM::Touch::movePlayer(cocos2d::Touch* touch, cocos2d::Event* event)
+void NinjaM::Touch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	auto touchPosition = touch->getLocation();
-	//if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
-		this->nodeSprite->setPosition(cocos2d::Vec2(touchPosition.x - this->positionVariation.x, touchPosition.y - this->positionVariation.y));
-	//}
+	this->nodeSprite->setPosition(cocos2d::Vec2(touchPosition.x - this->positionVariation.x, touchPosition.y - this->positionVariation.y));
 }
 
 void NinjaM::Touch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	//this->nodeSprite->setPosition(this->initialTouchPosition);
+
 }
