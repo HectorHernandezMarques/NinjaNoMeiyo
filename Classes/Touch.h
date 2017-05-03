@@ -26,6 +26,7 @@ namespace NinjaM{
 		//EventListenerTouchOneByOne::cocos2d* listener;
 		cocos2d::Vec2 positionVariation;
 		cocos2d::Vec2 initialTouchPosition;
+        cocos2d::EventListenerTouchOneByOne* listener;
 
 		virtual bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
 		virtual void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);

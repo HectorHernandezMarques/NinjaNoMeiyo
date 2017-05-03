@@ -30,11 +30,11 @@ void NinjaM::Touch::spawn(cocos2d::Layer *layer)
 
 void NinjaM::Touch::setEventDispatcher()
 {
-	auto listener = cocos2d::EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = CC_CALLBACK_2(NinjaM::Touch::getInitialTouchValues, this);
-	listener->onTouchMoved = CC_CALLBACK_2(NinjaM::Touch::moveTouch, this);
-	listener->onTouchEnded = CC_CALLBACK_2(NinjaM::Touch::endMovement, this);
-	this->nodeSprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this->nodeSprite);
+	this->listener = cocos2d::EventListenerTouchOneByOne::create();
+	this->listener->onTouchBegan = CC_CALLBACK_2(NinjaM::Touch::getInitialTouchValues, this);
+	this->listener->onTouchMoved = CC_CALLBACK_2(NinjaM::Touch::moveTouch, this);
+	this->listener->onTouchEnded = CC_CALLBACK_2(NinjaM::Touch::endMovement, this);
+	this->nodeSprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(this->listener, this->nodeSprite);
 }
 
 

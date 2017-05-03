@@ -23,7 +23,7 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
-		std::mutex m;
+		std::mutex mDoubleTouch, mDoubleJump;
 
         NinjaM::Ryunosuke *ryunosuke;
         int sense;

@@ -88,6 +88,10 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 		this->onTheWall = false;
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity*0.75, 900));
 	}
+	else if (!this->nextJump)
+	{
+	    nextJump = velocity;
+	}
 }
 
 void NinjaM::Ryunosuke::setEventDispatcher()
@@ -108,12 +112,16 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		this->onTheFloor = true;
 		if (!this->rightMovement && !this->leftMovement)
 		{
-			CCLOG("XDDD");
-			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if(this->nextJump)
+			{
+			    this->toJump(nextJump);
+			    this->nextJump = 0.0;
+			}
 		}
 		else
 		{
-			CCLOG("MECOMELOSPUTOSHUEVOSELCOCOS2DXD");
+			this->nodeBody->setVelocity(cocos2d::Vec2(this->nodeBody->getVelocity().x, 0.0));
 		}
 	}
 	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003))
@@ -121,7 +129,12 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		this->onTheWall = true;
 		if (!this->rightMovement && !this->leftMovement)
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if(this->nextJump)
+			{
+			    this->toJump(nextJump);
+			    this->nextJump = 0.0;
+			}
 		}
 		else
 		{

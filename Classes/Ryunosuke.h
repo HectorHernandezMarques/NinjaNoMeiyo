@@ -31,6 +31,7 @@ namespace NinjaM{
 		float lastXVelocity = 0.0;
 		bool onTheFloor = false;
 		bool onTheWall = false;
+		float nextJump = 0.0;
 	protected:
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);
