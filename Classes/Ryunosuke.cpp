@@ -104,7 +104,6 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	else
 	{
 	    if (this->mNextJump.try_lock()){
-	        CCLOG("DOBLESALTO");
 	        this->nextJump = velocity;
 	        //std::thread tJumpCleaner = std::thread(NinjaM::Ryunosuke::jumpCleaner, 500, this->jumpCounter);
 	        //auto sJumpCleaner = cocos2d::Director::getInstance()->getScheduler();
@@ -167,7 +166,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
             }
 		}
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003))
+	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000003 && b->getCollisionBitmask() == 0x000001))
 	{
 		this->onTheRightWall = true;
 		if (!this->rightMovement && !this->leftMovement)
@@ -191,7 +190,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
             }
 		}
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004))
+	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000004 && b->getCollisionBitmask() == 0x000001))
 	{
 		this->onTheLeftWall = true;
 		if (!this->rightMovement && !this->leftMovement)
@@ -223,7 +222,7 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 	cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 	cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
-	if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000002) || (a->getCollisionBitmask() == 0x000002 && b->getCollisionBitmask()== 0x000001))
+	if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000002) || (a->getCollisionBitmask() == 0x000002 && b->getCollisionBitmask() == 0x000001))
 	{
 		this->onTheFloor = false;
 	}
@@ -232,7 +231,7 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 		this->onTheRightWall = false;
 	}
 	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000004 && b->getCollisionBitmask() == 0x000001))
-    	{
-    		this->onTheLeftWall = false;
-    	}
+    {
+    	this->onTheLeftWall = false;
+    }
 }

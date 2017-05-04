@@ -28,7 +28,7 @@ namespace NinjaM{
         void setPosition(cocos2d::Vec2 position) {this->position = position;}
         void setAnchorPoint(cocos2d::Vec2 anchorPoint) {this->anchorPoint = anchorPoint;}
         void setTexture(std::string texture) {this->texture = texture;}
-        void setRotation(float) {this->rotation = rotation;}
+        void setRotation(float rotation) {this->rotation = rotation;}
 
 	private:
     protected:
