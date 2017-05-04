@@ -26,15 +26,23 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
+        std::mutex mNextJump;
+
 		bool rightMovement = false;
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
 		bool onTheFloor = false;
-		bool onTheWall = false;
+		bool onTheRightWall = false; //0x000003
+		bool onTheLeftWall = false; //0x000004
 		float nextJump = 0.0;
+		unsigned int jumpCounter = 0;
+
+		void jumpCleaner(unsigned int dt, unsigned int jumpCounter);
 	protected:
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);
+
+
     };
 }
 

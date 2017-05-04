@@ -24,7 +24,7 @@ void NinjaM::Touch::spawn(cocos2d::Layer *layer)
 	this->nodeSprite = cocos2d::Sprite::create();
 	this->nodeSprite->setPosition(this->position);
 	this->nodeSprite->setAnchorPoint(this->anchorPoint);
-	this->nodeSprite->setOpacity(50);
+	this->nodeSprite->setOpacity(0);
 	layer->addChild(nodeSprite);
 }
 

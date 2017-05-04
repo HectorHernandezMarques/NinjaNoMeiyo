@@ -3,6 +3,7 @@
 //
 
 #include "./Ryunosuke.h"
+#include <unistd.h>
 
 NinjaM::Ryunosuke::Ryunosuke()
 {
@@ -30,24 +31,35 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 	this->nodeBody->setDynamic(true);
 	this->nodeBody->setCollisionBitmask(0x000001);
 	this->nodeBody->setContactTestBitmask(true);
+	this->nodeBody->setRotationEnable(false);
     this->nodeSprite->setPhysicsBody(nodeBody);
 }
 
-void NinjaM::Ryunosuke::toMove(float velocity) {
-	if(velocity>0.0)
+void NinjaM::Ryunosuke::toMove(float velocity)
+{
+	if (velocity>0.0)
 	{
-		this->rightMovement = true;
+	    if (!this->onTheRightWall)
+	    {
+		    this->rightMovement = true;
+	        this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+	    }
 	}
 	else
 	{
-		this->leftMovement = true;
+	    if (!this->onTheLeftWall)
+	    {
+		    this->leftMovement = true;
+	        this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+	    }
 	}
-	
-	this->lastXVelocity = fabs(velocity);
-	this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+
 }
 
-void NinjaM::Ryunosuke::toStop(float velocity) {
+void NinjaM::Ryunosuke::toStop(float velocity)
+{
 	if (velocity>0.0)
 	{
 		this->rightMovement = false;
@@ -82,15 +94,39 @@ void NinjaM::Ryunosuke::toStop(float velocity) {
 
 void NinjaM::Ryunosuke::toJump(float velocity)
 {
-	if (this->onTheFloor || this->onTheWall)
+	if (this->onTheFloor || this->onTheRightWall || this->onTheLeftWall)
 	{
 		this->onTheFloor = false;
-		this->onTheWall = false;
-		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity*0.75, 900));
+		this->onTheRightWall = false;
+		this->onTheLeftWall = false;
+		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, 950));
 	}
-	else if (!this->nextJump)
+	else
 	{
-	    nextJump = velocity;
+	    if (this->mNextJump.try_lock()){
+	        CCLOG("DOBLESALTO");
+	        this->nextJump = velocity;
+	        //std::thread tJumpCleaner = std::thread(NinjaM::Ryunosuke::jumpCleaner, 500, this->jumpCounter);
+	        //auto sJumpCleaner = cocos2d::Director::getInstance()->getScheduler();
+            //sJumpCleaner->performFunctionInCocosThread(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, 500, ++this->jumpCounter));
+            cocos2d::DelayTime *delayAction = cocos2d::DelayTime::create(0.25f);
+            cocos2d::CallFunc *jumpCleanerAction = cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, 500, ++this->jumpCounter));
+            this->nodeSprite->runAction(cocos2d::Sequence::create(delayAction, jumpCleanerAction, nullptr));
+	        this->mNextJump.unlock();
+	    }
+	}
+}
+
+
+void NinjaM::Ryunosuke::jumpCleaner(unsigned int dt, unsigned int jumpCounter)
+{
+	if (this->mNextJump.try_lock())
+	{
+	    if (jumpCounter == this->jumpCounter)
+	    {
+	        this->nextJump = 0.0;
+	    }
+	    this->mNextJump.unlock();
 	}
 }
 
@@ -113,34 +149,73 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		if (!this->rightMovement && !this->leftMovement)
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-			if(this->nextJump)
-			{
-			    this->toJump(nextJump);
-			    this->nextJump = 0.0;
-			}
+			if (this->mNextJump.try_lock()){
+                if (this->nextJump)
+                {
+                    this->toJump(nextJump);
+                    this->nextJump = 0.0;
+                }
+                this->mNextJump.unlock();
+            }
 		}
 		else
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(this->nodeBody->getVelocity().x, 0.0));
+			if (this->mNextJump.try_lock()){
+                this->nextJump = 0.0;
+                this->mNextJump.unlock();
+            }
 		}
 	}
 	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003))
 	{
-		this->onTheWall = true;
+		this->onTheRightWall = true;
 		if (!this->rightMovement && !this->leftMovement)
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-			if(this->nextJump)
-			{
-			    this->toJump(nextJump);
-			    this->nextJump = 0.0;
-			}
+			if (this->mNextJump.try_lock()){
+                if(this->nextJump)
+                {
+                    this->toJump(nextJump);
+                    this->nextJump = 0.0;
+                }
+                this->mNextJump.unlock();
+            }
 		}
 		else
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			if (this->mNextJump.try_lock()){
+                this->nextJump = 0.0;
+                this->mNextJump.unlock();
+            }
 		}
 	}
+	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004))
+	{
+		this->onTheLeftWall = true;
+		if (!this->rightMovement && !this->leftMovement)
+		{
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if (this->mNextJump.try_lock()){
+                if(this->nextJump)
+                {
+                    this->toJump(nextJump);
+                    this->nextJump = 0.0;
+                }
+                this->mNextJump.unlock();
+            }
+		}
+		else
+		{
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if (this->mNextJump.try_lock()){
+                this->nextJump = 0.0;
+                this->mNextJump.unlock();
+            }
+		}
+	}
+	return true;
 }
 
 bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
@@ -154,6 +229,10 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 	}
 	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000003 && b->getCollisionBitmask() == 0x000001))
 	{
-		this->onTheWall = false;
+		this->onTheRightWall = false;
 	}
+	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000004 && b->getCollisionBitmask() == 0x000001))
+    	{
+    		this->onTheLeftWall = false;
+    	}
 }
