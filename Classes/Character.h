@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_CHARACTER_H
 
 #include <string>
+#include "Definitions.h"
 #include "cocos2d.h"
 #include "./PhysicNode.h"
 

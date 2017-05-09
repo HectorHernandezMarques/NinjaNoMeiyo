@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_NODE_H
 
 #include <string>
+#include "Definitions.h"
 #include "cocos2d.h"
 
 namespace NinjaM{

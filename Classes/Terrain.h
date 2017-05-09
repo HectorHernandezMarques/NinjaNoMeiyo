@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_TERRAIN_H
 
 #include <string>
+#include "Definitions.h"
 #include "cocos2d.h"
 #include "./Node.h"
 

@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_MOVEMENT_TOUCH_H
 
 #include <string>
+#include "Definitions.h"
 #include "cocos2d.h"
 #include "./Touch.h"
 #include "./Ryunosuke.h"

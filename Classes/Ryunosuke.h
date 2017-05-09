@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_RYUNOSUKE_H
 
 #include <string>
+#include "Definitions.h"
 #include "cocos2d.h"
 #include "./Character.h"
 
@@ -37,7 +38,7 @@ namespace NinjaM{
 		float nextJump = 0.0;
 		unsigned int jumpCounter = 0;
 
-		void jumpCleaner(unsigned int dt, unsigned int jumpCounter);
+		void jumpCleaner(unsigned int jumpCounter);
 	protected:
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);

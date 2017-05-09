@@ -1,6 +1,7 @@
 #ifndef __LEVELONE_SCENE_H__
 #define __LEVELONE_SCENE_H__
 
+#include "Definitions.h"
 #include "cocos2d.h"
 
 class LevelOneScene : public cocos2d::Layer

@@ -29,7 +29,7 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 	material.friction = 0.0f;
 	this->nodeBody = cocos2d::PhysicsBody::createBox(this->nodeSprite->getContentSize(), material);
 	this->nodeBody->setDynamic(true);
-	this->nodeBody->setCollisionBitmask(0x000001);
+	this->nodeBody->setCollisionBitmask(RYUNOSUKE_BITMASK);
 	this->nodeBody->setContactTestBitmask(true);
 	this->nodeBody->setRotationEnable(false);
     this->nodeSprite->setPhysicsBody(nodeBody);
@@ -45,6 +45,12 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	        this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
 	    }
+	    else if (!this->onTheFloor)
+	    {
+		    this->rightMovement = true;
+	        this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+	    }
 	}
 	else
 	{
@@ -53,6 +59,12 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 		    this->leftMovement = true;
 	        this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+	    }
+	    else if (!this->onTheFloor)
+	    {
+		    this->leftMovement = true;
+		    this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 	    }
 	}
 
@@ -72,7 +84,8 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		}
 		else
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(-this->lastXVelocity, this->nodeBody->getVelocity().y));
+		    this->toMove(-this->lastXVelocity);
+			//this->nodeBody->setVelocity(cocos2d::Vec2(-this->lastXVelocity, this->nodeBody->getVelocity().y));
 		}
 	}
 	else
@@ -87,29 +100,30 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		}
 		else
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(this->lastXVelocity, this->nodeBody->getVelocity().y));
+		    this->toMove(this->lastXVelocity);
+			//this->nodeBody->setVelocity(cocos2d::Vec2(this->lastXVelocity, this->nodeBody->getVelocity().y));
 		}
 	}
 }
 
 void NinjaM::Ryunosuke::toJump(float velocity)
 {
-	if (this->onTheFloor || this->onTheRightWall || this->onTheLeftWall)
+	if (this->onTheFloor)
 	{
+	    //toStop() needs to know if ryunosuke is in the air in order to either stop or let him go
 		this->onTheFloor = false;
-		this->onTheRightWall = false;
-		this->onTheLeftWall = false;
-		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, 950));
+		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_FLOOR));
+	}
+	else if(this->onTheRightWall || this->onTheLeftWall)
+	{
+		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
 	}
 	else
 	{
 	    if (this->mNextJump.try_lock()){
 	        this->nextJump = velocity;
-	        //std::thread tJumpCleaner = std::thread(NinjaM::Ryunosuke::jumpCleaner, 500, this->jumpCounter);
-	        //auto sJumpCleaner = cocos2d::Director::getInstance()->getScheduler();
-            //sJumpCleaner->performFunctionInCocosThread(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, 500, ++this->jumpCounter));
-            cocos2d::DelayTime *delayAction = cocos2d::DelayTime::create(0.25f);
-            cocos2d::CallFunc *jumpCleanerAction = cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, 500, ++this->jumpCounter));
+            cocos2d::DelayTime *delayAction = cocos2d::DelayTime::create(RYUNOSUKE_JUMP_TIME_REMEMBER);
+            cocos2d::CallFunc *jumpCleanerAction = cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, ++this->jumpCounter));
             this->nodeSprite->runAction(cocos2d::Sequence::create(delayAction, jumpCleanerAction, nullptr));
 	        this->mNextJump.unlock();
 	    }
@@ -117,7 +131,7 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 }
 
 
-void NinjaM::Ryunosuke::jumpCleaner(unsigned int dt, unsigned int jumpCounter)
+void NinjaM::Ryunosuke::jumpCleaner(unsigned int jumpCounter)
 {
 	if (this->mNextJump.try_lock())
 	{
@@ -142,7 +156,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 	cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
-	if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000002) || (a->getCollisionBitmask() == 0x000002 && b->getCollisionBitmask() == 0x000001))
+	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheFloor = true;
 		if (!this->rightMovement && !this->leftMovement)
@@ -166,7 +180,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
             }
 		}
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000003 && b->getCollisionBitmask() == 0x000001))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheRightWall = true;
 		if (!this->rightMovement && !this->leftMovement)
@@ -181,16 +195,28 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
                 this->mNextJump.unlock();
             }
 		}
-		else
+		else if (this->rightMovement)
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
                 this->mNextJump.unlock();
             }
 		}
+		else if (this->leftMovement)
+		{
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if (this->mNextJump.try_lock()){
+                this->nextJump = 0.0;
+                this->mNextJump.unlock();
+            }
+		}
+		else
+		{
+
+		}
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000004 && b->getCollisionBitmask() == 0x000001))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheLeftWall = true;
 		if (!this->rightMovement && !this->leftMovement)
@@ -205,13 +231,25 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
                 this->mNextJump.unlock();
             }
 		}
-		else
+		else if (this->rightMovement)
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
                 this->mNextJump.unlock();
             }
+		}
+		else if (this->leftMovement)
+		{
+			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+			if (this->mNextJump.try_lock()){
+                this->nextJump = 0.0;
+                this->mNextJump.unlock();
+            }
+		}
+		else
+		{
+
 		}
 	}
 	return true;
@@ -222,15 +260,15 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 	cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 	cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
-	if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000002) || (a->getCollisionBitmask() == 0x000002 && b->getCollisionBitmask() == 0x000001))
+	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheFloor = false;
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000003) || (a->getCollisionBitmask() == 0x000003 && b->getCollisionBitmask() == 0x000001))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheRightWall = false;
 	}
-	else if ((a->getCollisionBitmask() == 0x000001 && b->getCollisionBitmask() == 0x000004) || (a->getCollisionBitmask() == 0x000004 && b->getCollisionBitmask() == 0x000001))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
     {
     	this->onTheLeftWall = false;
     }
