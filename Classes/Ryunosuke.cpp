@@ -2,8 +2,8 @@
 // Created by AntonioMontana on 14/03/2017.
 //
 
-#include "./Ryunosuke.h"
 #include <unistd.h>
+#include "./Ryunosuke.h"
 
 NinjaM::Ryunosuke::Ryunosuke()
 {
@@ -47,8 +47,10 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	    }
 	    else if (!this->onTheFloor)
 	    {
+	        //Holding wall position
 		    this->rightMovement = true;
 	        this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 	    }
 	}
@@ -62,8 +64,10 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	    }
 	    else if (!this->onTheFloor)
 	    {
+	        //Holding wall position
 		    this->leftMovement = true;
 		    this->lastXVelocity = fabs(velocity);
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 	    }
 	}
@@ -72,6 +76,7 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 
 void NinjaM::Ryunosuke::toStop(float velocity)
 {
+    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 	if (velocity>0.0)
 	{
 		this->rightMovement = false;
@@ -85,7 +90,6 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		else
 		{
 		    this->toMove(-this->lastXVelocity);
-			//this->nodeBody->setVelocity(cocos2d::Vec2(-this->lastXVelocity, this->nodeBody->getVelocity().y));
 		}
 	}
 	else
@@ -101,7 +105,6 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		else
 		{
 		    this->toMove(this->lastXVelocity);
-			//this->nodeBody->setVelocity(cocos2d::Vec2(this->lastXVelocity, this->nodeBody->getVelocity().y));
 		}
 	}
 }
@@ -112,10 +115,12 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	{
 	    //toStop() needs to know if ryunosuke is in the air in order to either stop or let him go
 		this->onTheFloor = false;
+		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_FLOOR));
 	}
 	else if(this->onTheRightWall || this->onTheLeftWall)
 	{
+	    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
 	}
 	else
@@ -197,6 +202,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		}
 		else if (this->rightMovement)
 		{
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
@@ -205,6 +211,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		}
 		else if (this->leftMovement)
 		{
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
@@ -233,6 +240,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		}
 		else if (this->rightMovement)
 		{
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
@@ -241,6 +249,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		}
 		else if (this->leftMovement)
 		{
+	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
                 this->nextJump = 0.0;
@@ -267,9 +276,11 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheRightWall = false;
+        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
     {
     	this->onTheLeftWall = false;
+        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
     }
 }

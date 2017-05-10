@@ -24,12 +24,16 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
-		std::mutex mDoubleTouch, mDoubleJump;
+		std::mutex mDoubleTouch, mForcingUntouch, mDelay;
+		/*we want to avoid the user touching the same touch detector twice*/
+		/*we want to force the user to stop to touch the screen once he has made a gesture*/
 
         NinjaM::Ryunosuke *ryunosuke;
         int sense;
 		cocos2d::Vec2 initialVelocity;
 	protected:
+	    void toMoveAfterWait(float sense);
+
 		bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
 		void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);
 		void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
