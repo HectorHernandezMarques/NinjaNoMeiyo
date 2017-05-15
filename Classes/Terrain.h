@@ -8,11 +8,11 @@
 #include <string>
 #include "Definitions.h"
 #include "cocos2d.h"
-#include "./Node.h"
+#include "./PhysicNode.h"
 
 namespace NinjaM{
 
-    class Terrain : public NinjaM::Node
+    class Terrain : public NinjaM::PhysicNode
     {
     public:
         Terrain();

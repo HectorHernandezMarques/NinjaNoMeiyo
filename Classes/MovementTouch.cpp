@@ -54,6 +54,14 @@ bool NinjaM::MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d
             this->nodeSprite->runAction(jumpCleanerSequence);
 			this->initialTouchPosition = nodeSprite->getPosition();
 			this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
+			if (this->sense > 0.0)
+			{
+				this->ryunosuke->getNodeSprite()->setTexture("Ryunosuke1D.png");
+			}
+			else
+			{
+				this->ryunosuke->getNodeSprite()->setTexture("Ryunosuke1I.png");
+			}
 			return true;
 		}
 		else {
@@ -77,13 +85,13 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
         // | | | |
         if (nodeSprite->getPositionY() > this->initialTouchPosition.y + this->visibleSize.height / TOUCH_UPPER_JUMP)
         {
-			std::try_lock(this->mGestureMade, this->mForcingUntouch);
-			this->nodeSprite->stopAction(jumpCleanerSequence);
             // | | |o|
             // | | | |
             // | | | |
             if (nodeSprite->getPositionX() > this->initialTouchPosition.x + this->visibleSize.height / TOUCH_RIGHT_JUMP)
             {
+				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+				this->nodeSprite->stopAction(jumpCleanerSequence);
                 this->ryunosuke->toJump(fabs(this->sense));
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
@@ -94,6 +102,8 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             // | | | |
             else if (nodeSprite->getPositionX() < this->initialTouchPosition.x - this->visibleSize.height / TOUCH_LEFT_JUMP)
             {
+				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+				this->nodeSprite->stopAction(jumpCleanerSequence);
                 this->ryunosuke->toJump(-fabs(this->sense));
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
@@ -102,8 +112,10 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             // | |o| |
             // | | | |
             // | | | |
-            else
+            else if (nodeSprite->getPositionY() > this->initialTouchPosition.y + this->visibleSize.height / TOUCH_UPPER_JUMP_2)
             {
+				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+				this->nodeSprite->stopAction(jumpCleanerSequence);
                 this->ryunosuke->toJump(0.0);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);

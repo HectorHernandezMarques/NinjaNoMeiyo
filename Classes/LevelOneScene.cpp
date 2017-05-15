@@ -33,7 +33,7 @@ bool LevelOneScene::init()
     {
         return false;
     }
-    
+
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -82,7 +82,7 @@ bool LevelOneScene::init()
     // add the sprite as a child to this layer
     //this->addChild(sprite, 0);
 
-    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ninja1.png", 0.0);
+    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ryunosuke1D.png", 0.0);
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher();
 	

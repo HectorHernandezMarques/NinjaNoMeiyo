@@ -25,11 +25,13 @@ namespace NinjaM{
         std::string getTexture() {return texture;}
         float getRotation() {return rotation;}
         cocos2d::Sprite* getNodeSprite() {return this->nodeSprite;}
+		cocos2d::PolygonInfo getPoligonInfo() { return this->poligonInfo; }
 
         void setPosition(cocos2d::Vec2 position) {this->position = position;}
         void setAnchorPoint(cocos2d::Vec2 anchorPoint) {this->anchorPoint = anchorPoint;}
         void setTexture(std::string texture) {this->texture = texture;}
         void setRotation(float rotation) {this->rotation = rotation;}
+		void setPoligonInfo(cocos2d::PolygonInfo poligonInfo) { this->poligonInfo = poligonInfo; }
 
 	private:
     protected:

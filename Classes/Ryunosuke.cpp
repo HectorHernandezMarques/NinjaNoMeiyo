@@ -33,6 +33,8 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 	this->nodeBody->setContactTestBitmask(true);
 	this->nodeBody->setRotationEnable(false);
     this->nodeSprite->setPhysicsBody(nodeBody);
+	auto followTheSprite = cocos2d::Follow::create(this->nodeSprite, cocos2d::Rect::ZERO);
+	layer->runAction(followTheSprite);
 }
 
 void NinjaM::Ryunosuke::toMove(float velocity)
@@ -53,6 +55,7 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 	    }
+		this->nodeSprite->setTexture("Ryunosuke1D.png");
 	}
 	else
 	{
@@ -70,6 +73,7 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 	    }
+		this->nodeSprite->setTexture("Ryunosuke1I.png");
 	}
 
 }
@@ -117,11 +121,27 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 		this->onTheFloor = false;
 		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_FLOOR));
+		if (velocity > 0.0)
+		{
+			this->nodeSprite->setTexture("Ryunosuke1D.png");
+		}
+		else if (velocity < 0.0)
+		{
+			this->nodeSprite->setTexture("Ryunosuke1I.png");
+		}
 	}
 	else if(this->onTheRightWall || this->onTheLeftWall)
 	{
 	    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
+		if (velocity > 0.0)
+		{
+			this->nodeSprite->setTexture("Ryunosuke1D.png");
+		}
+		else if (velocity < 0.0)
+		{
+			this->nodeSprite->setTexture("Ryunosuke1I.png");
+		}
 	}
 	else
 	{
