@@ -35,7 +35,8 @@ namespace NinjaM{
 		bool onTheFloor = false;
 		bool onTheRightWall = false; //0x000003
 		bool onTheLeftWall = false; //0x000004
-		float nextJump = 0.0;
+		bool nextJump = false;
+		float nextJumpVelocity = 0.0;
 		unsigned int jumpCounter = 0;
 
 		void jumpCleaner(unsigned int jumpCounter);

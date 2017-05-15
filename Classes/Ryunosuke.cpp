@@ -146,7 +146,8 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	else
 	{
 	    if (this->mNextJump.try_lock()){
-	        this->nextJump = velocity;
+	        this->nextJumpVelocity = velocity;
+	        this->nextJump = true;
             cocos2d::DelayTime *delayAction = cocos2d::DelayTime::create(RYUNOSUKE_JUMP_TIME_REMEMBER);
             cocos2d::CallFunc *jumpCleanerAction = cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::jumpCleaner, this, ++this->jumpCounter));
             this->nodeSprite->runAction(cocos2d::Sequence::create(delayAction, jumpCleanerAction, nullptr));
@@ -162,7 +163,7 @@ void NinjaM::Ryunosuke::jumpCleaner(unsigned int jumpCounter)
 	{
 	    if (jumpCounter == this->jumpCounter)
 	    {
-	        this->nextJump = 0.0;
+	        this->nextJump = false;
 	    }
 	    this->mNextJump.unlock();
 	}
@@ -190,8 +191,8 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 			if (this->mNextJump.try_lock()){
                 if (this->nextJump)
                 {
-                    this->toJump(nextJump);
-                    this->nextJump = 0.0;
+                    this->toJump(nextJumpVelocity);
+                    this->nextJump = false;
                 }
                 this->mNextJump.unlock();
             }
@@ -200,7 +201,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		{
 			this->nodeBody->setVelocity(cocos2d::Vec2(this->nodeBody->getVelocity().x, 0.0));
 			if (this->mNextJump.try_lock()){
-                this->nextJump = 0.0;
+                this->nextJump = false;
                 this->mNextJump.unlock();
             }
 		}
@@ -214,8 +215,8 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 			if (this->mNextJump.try_lock()){
                 if(this->nextJump)
                 {
-                    this->toJump(nextJump);
-                    this->nextJump = 0.0;
+                    this->toJump(nextJumpVelocity);
+                    this->nextJump = false;
                 }
                 this->mNextJump.unlock();
             }
@@ -225,7 +226,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
-                this->nextJump = 0.0;
+                this->nextJump = false;
                 this->mNextJump.unlock();
             }
 		}
@@ -234,7 +235,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
-                this->nextJump = 0.0;
+                this->nextJump = false;
                 this->mNextJump.unlock();
             }
 		}
@@ -252,8 +253,8 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 			if (this->mNextJump.try_lock()){
                 if(this->nextJump)
                 {
-                    this->toJump(nextJump);
-                    this->nextJump = 0.0;
+                    this->toJump(nextJumpVelocity);
+                    this->nextJump = false;
                 }
                 this->mNextJump.unlock();
             }
@@ -263,7 +264,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
-                this->nextJump = 0.0;
+                this->nextJump = false;
                 this->mNextJump.unlock();
             }
 		}
@@ -272,7 +273,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 			if (this->mNextJump.try_lock()){
-                this->nextJump = 0.0;
+                this->nextJump = false;
                 this->mNextJump.unlock();
             }
 		}
