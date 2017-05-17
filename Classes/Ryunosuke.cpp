@@ -185,25 +185,47 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->onTheFloor = true;
-		if (!this->rightMovement && !this->leftMovement)
+		bool ryunosukeOverFloor = false;
+		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-			if (this->mNextJump.try_lock()){
-                if (this->nextJump)
-                {
-                    this->toJump(nextJumpVelocity);
-                    this->nextJump = false;
+		    if((a->getPosition().x + this->nodeSprite->getContentSize().height/2) > b->getPosition().x)
+		    {
+		        ryunosukeOverFloor = true;
+		    }
+		}
+		else
+		{
+		    if((b->getPosition().x + this->nodeSprite->getContentSize().height/2) > a->getPosition().x)
+		    {
+		        ryunosukeOverFloor = true;
+		    }
+		}
+	    if (ryunosukeOverFloor)
+	    {
+            if (!this->rightMovement && !this->leftMovement)
+            {
+                this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                if (this->mNextJump.try_lock()){
+                    if (this->nextJump)
+                    {
+                        this->toJump(nextJumpVelocity);
+                        this->nextJump = false;
+                    }
+                    this->mNextJump.unlock();
                 }
-                this->mNextJump.unlock();
+            }
+            else
+            {
+                this->nodeBody->setVelocity(cocos2d::Vec2(this->nodeBody->getVelocity().x, 0.0));
+                if (this->mNextJump.try_lock()){
+                    this->nextJump = false;
+                    this->mNextJump.unlock();
+                }
             }
 		}
 		else
 		{
-			this->nodeBody->setVelocity(cocos2d::Vec2(this->nodeBody->getVelocity().x, 0.0));
-			if (this->mNextJump.try_lock()){
-                this->nextJump = false;
-                this->mNextJump.unlock();
-            }
+		    return false;
 		}
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
