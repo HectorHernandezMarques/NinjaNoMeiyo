@@ -25,7 +25,7 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
     NinjaM::Node::spawn(layer);
 	auto material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT;
 	material.density = 1.0f;
-	material.restitution = 0.7f;
+	material.restitution = 0.5f;
 	material.friction = 0.0f;
 	this->nodeBody = cocos2d::PhysicsBody::createBox(this->nodeSprite->getContentSize(), material);
 	this->nodeBody->setDynamic(true);

@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include ".\Ryunosuke.h"
 #include ".\MovementTouch.h"
+#include ".\Terrain.h"
 
 USING_NS_CC;
 
@@ -9,7 +10,7 @@ Scene* LevelOneScene::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::createWithPhysics();
-    //scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
     // 'layer' is an autorelease object
     auto layer = LevelOneScene::create();
@@ -82,7 +83,7 @@ bool LevelOneScene::init()
     // add the sprite as a child to this layer
     //this->addChild(sprite, 0);
 
-    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y), Vec2::ZERO, "Ryunosuke1D.png", 0.0);
+    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2(visibleSize.width / 2 , visibleSize.height / 2), Vec2::ZERO, "Ryunosuke1D.png", 0.0);
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher();
 	
@@ -137,6 +138,9 @@ bool LevelOneScene::init()
 	rightEdgeNode->setPhysicsBody(rightEdgeBody);
 
 	this->addChild(rightEdgeNode);
+
+    NinjaM::Node *box = new NinjaM::Terrain(visibleSize, Vec2(visibleSize.width / 2 , 0), Vec2::ZERO, "HelloWorld.png", 0.0);
+    box->spawn(this);
 
     NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, RYUNOSUKE_SPEED, ((NinjaM::Ryunosuke*)ryunosuke));
     rightMovementTouch->spawn(this);
