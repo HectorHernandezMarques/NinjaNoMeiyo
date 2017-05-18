@@ -185,31 +185,22 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		bool ryunosukeOverFloor = false;
+		//Check if ryunosuke is over the floor detected.
 		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-		    if((a->getPosition().y) > b->getPosition().y)
+		    if(a->getPosition().y > b->getPosition().y && (a->getPosition().x >= (b->getPosition().x - ((cocos2d::PhysicsShapeBox*)contact.getShapeB())->getSize().width/2) && (a->getPosition().x <= (b->getPosition().x + ((cocos2d::PhysicsShapeBox*)contact.getShapeB())->getSize().width/2))))
 		    {
 				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
-				CCLOG("SUELO1");
 		    }
-			else
-			{
-				CCLOG("TECHO1");
-			}
 		}
 		else
 		{
-		    if((b->getPosition().y) > a->getPosition().y)
+		    if(b->getPosition().y > a->getPosition().y && (b->getPosition().x >= (a->getPosition().x - ((cocos2d::PhysicsShapeBox*)contact.getShapeA())->getSize().width/2) && (b->getPosition().x <= (a->getPosition().x + ((cocos2d::PhysicsShapeBox*)contact.getShapeA())->getSize().width/2))))
 		    {
 				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
-				CCLOG("SUELO2");
 		    }
-			else
-			{
-				CCLOG("TECHO2");
-			}
 		}
 	    if (ryunosukeOverFloor)
 	    {
