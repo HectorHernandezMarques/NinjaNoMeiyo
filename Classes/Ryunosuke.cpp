@@ -184,21 +184,32 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 
 	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
-		this->onTheFloor = true;
 		bool ryunosukeOverFloor = false;
 		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-		    if((a->getPosition().x + this->nodeSprite->getContentSize().height/2) > b->getPosition().x)
+		    if((a->getPosition().y) > b->getPosition().y)
 		    {
+				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
+				CCLOG("SUELO1");
 		    }
+			else
+			{
+				CCLOG("TECHO1");
+			}
 		}
 		else
 		{
-		    if((b->getPosition().x + this->nodeSprite->getContentSize().height/2) > a->getPosition().x)
+		    if((b->getPosition().y) > a->getPosition().y)
 		    {
+				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
+				CCLOG("SUELO2");
 		    }
+			else
+			{
+				CCLOG("TECHO2");
+			}
 		}
 	    if (ryunosukeOverFloor)
 	    {

@@ -33,8 +33,10 @@ namespace NinjaM{
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
 		bool onTheFloor = false;
-		bool onTheRightWall = false; //0x000003
-		bool onTheLeftWall = false; //0x000004
+		bool onTheRightWall = false; //0x000030 0x000032
+		bool onTheLeftWall = false; //0x000040 0x000042
+		bool onTheLongRightWall = false; //0x000030
+		bool onTheLongLeftWall = false; //0x000040
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
 		unsigned int jumpCounter = 0;
