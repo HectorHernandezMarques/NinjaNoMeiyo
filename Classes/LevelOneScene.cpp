@@ -101,6 +101,9 @@ bool LevelOneScene::init()
     this->addChild( topEdgeNode );
 
 	//bottom edge
+	NinjaM::Node *floor = new NinjaM::Terrain(visibleSize, Vec2(0, 0), Vec2::ZERO, "FloorTest.png", 0.0);
+	floor->spawn(this);
+	/*
 	auto bottomEdgeBody = PhysicsBody::createBox(cocos2d::Size(visibleSize.width, 2), PHYSICSBODY_MATERIAL_DEFAULT);
 	bottomEdgeBody->setDynamic(false);
 	bottomEdgeBody->setCollisionBitmask(FLOOR_BITMASK);
@@ -112,6 +115,7 @@ bool LevelOneScene::init()
 	bottomEdgeNode->setPhysicsBody(bottomEdgeBody);
 
 	this->addChild(bottomEdgeNode);
+	*/
 
 	//left edge
 	auto leftEdgeBody = PhysicsBody::createBox(cocos2d::Size(3, visibleSize.height), PHYSICSBODY_MATERIAL_DEFAULT);
@@ -139,7 +143,7 @@ bool LevelOneScene::init()
 
 	this->addChild(rightEdgeNode);
 
-    NinjaM::Node *box = new NinjaM::Terrain(visibleSize, Vec2(visibleSize.width / 2 , 0), Vec2::ZERO, "HelloWorld.png", 0.0);
+    NinjaM::Node *box = new NinjaM::Terrain(visibleSize, Vec2(visibleSize.width / 2 , 144), Vec2::ZERO, "HelloWorld.png", 0.0);
     box->spawn(this);
 
     NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, RYUNOSUKE_SPEED, ((NinjaM::Ryunosuke*)ryunosuke));

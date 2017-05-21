@@ -21,7 +21,8 @@ NinjaM::Terrain::~Terrain()
 
 void NinjaM::Terrain::spawn(cocos2d::Layer *layer)
 {
-    NinjaM::Node::spawn(layer);
+    NinjaM::PhysicNode::spawn(layer);
+	this->nodeBody->setCollisionBitmask(FIXED_OBSTACLE_BITMASK);
     for ( int i = 0 ; i < SURFACE_NUMBER ; i++ )
     {
         this->surfaceNode[i] = cocos2d::Node::create();

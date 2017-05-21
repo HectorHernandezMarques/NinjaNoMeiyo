@@ -4,7 +4,12 @@
 
 #include <unistd.h>
 #include "./Ryunosuke.h"
-
+#include <sstream>
+char* Convert(float number) {
+	std::ostringstream buff;
+	buff << number;
+	return &buff.str()[0];
+}
 NinjaM::Ryunosuke::Ryunosuke()
 {
 
@@ -130,16 +135,31 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 			this->nodeSprite->setTexture("Ryunosuke1I.png");
 		}
 	}
-	else if(this->onTheRightWall || this->onTheLeftWall)
+	else if(this->onTheRightWall)
 	{
 	    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
-		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
 		if (velocity > 0.0)
 		{
+			getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(0.0, RYUNOSUKE_JUMP_ON_WALL));
 			this->nodeSprite->setTexture("Ryunosuke1D.png");
 		}
 		else if (velocity < 0.0)
 		{
+			getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
+			this->nodeSprite->setTexture("Ryunosuke1I.png");
+		}
+	}
+	else if (this->onTheLeftWall)
+	{
+		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		if (velocity > 0.0)
+		{
+			getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_WALL));
+			this->nodeSprite->setTexture("Ryunosuke1D.png");
+		}
+		else if (velocity < 0.0)
+		{
+			getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(0.0, RYUNOSUKE_JUMP_ON_WALL));
 			this->nodeSprite->setTexture("Ryunosuke1I.png");
 		}
 	}
@@ -182,13 +202,17 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 	cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
-	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FIXED_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == FIXED_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	{
+		return true;
+	}
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		bool ryunosukeOverFloor = false;
 		//Check if ryunosuke is over the floor detected.
 		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-		    if(a->getPosition().y > b->getPosition().y && (a->getPosition().x >= (b->getPosition().x - ((cocos2d::PhysicsShapeBox*)contact.getShapeB())->getSize().width/2) && (a->getPosition().x <= (b->getPosition().x + ((cocos2d::PhysicsShapeBox*)contact.getShapeB())->getSize().width/2))))
+		    if((a->getPosition().y - this->nodeSprite->getContentSize().height/8) >= b->getPosition().y)
 		    {
 				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
@@ -196,7 +220,7 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 		}
 		else
 		{
-		    if(b->getPosition().y > a->getPosition().y && (b->getPosition().x >= (a->getPosition().x - ((cocos2d::PhysicsShapeBox*)contact.getShapeA())->getSize().width/2) && (b->getPosition().x <= (a->getPosition().x + ((cocos2d::PhysicsShapeBox*)contact.getShapeA())->getSize().width/2))))
+		    if((b->getPosition().y - this->nodeSprite->getContentSize().height/8) >= a->getPosition().y)
 		    {
 				this->onTheFloor = true;
 		        ryunosukeOverFloor = true;
