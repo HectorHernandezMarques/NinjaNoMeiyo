@@ -33,6 +33,7 @@ namespace NinjaM{
                                                                                                                         this->surfaceBody[LOWER_SURFACE_INDEX]->setCollisionBitmask(lowerSurfaceMask);}
 
         virtual void spawn(cocos2d::Layer *layer);
+		virtual void spawn(cocos2d::Layer *layer, int upperSurfaceBitmask, int rightSurfaceBitmask, int leftSurfaceBitmask, int lowerSurfaceBitmask);
 
     private:
         cocos2d::Node *surfaceNode[SURFACE_NUMBER];

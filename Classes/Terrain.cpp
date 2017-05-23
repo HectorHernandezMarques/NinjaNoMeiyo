@@ -67,3 +67,52 @@ void NinjaM::Terrain::spawn(cocos2d::Layer *layer)
 
     }
 }
+
+void NinjaM::Terrain::spawn(cocos2d::Layer *layer, int upperSurfaceBitmask, int rightSurfaceBitmask, int leftSurfaceBitmask, int lowerSurfaceBitmask)
+{
+	NinjaM::PhysicNode::spawn(layer);
+	this->nodeBody->setCollisionBitmask(FIXED_OBSTACLE_BITMASK);
+	for (int i = 0; i < SURFACE_NUMBER; i++)
+	{
+		this->surfaceNode[i] = cocos2d::Node::create();
+		switch (i)
+		{
+		case UPPER_SURFACE_INDEX:
+			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->nodeSprite->getContentSize().width / 2, this->position.y + this->nodeSprite->getContentSize().height));
+
+			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->nodeSprite->getContentSize().width, 1));
+			this->surfaceBody[i]->setCollisionBitmask(upperSurfaceBitmask);
+
+			break;
+
+		case RIGHT_SURFACE_INDEX:
+			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->nodeSprite->getContentSize().width, this->position.y + this->nodeSprite->getContentSize().height / 2));
+
+			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->nodeSprite->getContentSize().height));
+			this->surfaceBody[i]->setCollisionBitmask(rightSurfaceBitmask);
+			break;
+
+		case LEFT_SURFACE_INDEX:
+			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x, this->position.y + this->nodeSprite->getContentSize().height / 2));
+
+			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->nodeSprite->getContentSize().height));
+			this->surfaceBody[i]->setCollisionBitmask(leftSurfaceBitmask);
+			break;
+
+		case LOWER_SURFACE_INDEX:
+			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->nodeSprite->getContentSize().width / 2, this->position.y));
+
+			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->nodeSprite->getContentSize().width, 1));
+			this->surfaceBody[i]->setCollisionBitmask(lowerSurfaceBitmask);
+			break;
+		}
+
+		this->surfaceBody[i]->setDynamic(false);
+		this->surfaceBody[i]->setContactTestBitmask(true);
+		this->surfaceBody[i]->setRotationEnable(false);
+
+		this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
+		layer->addChild(this->surfaceNode[i]);
+
+	}
+}

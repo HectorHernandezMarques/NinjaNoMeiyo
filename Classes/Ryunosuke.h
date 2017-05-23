@@ -27,16 +27,26 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
-        std::mutex mNextJump;
+        std::mutex mNextJump, mWallDetection;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
 		bool onTheFloor = false;
-		bool onTheRightWall = false; //0x000030 0x000032
-		bool onTheLeftWall = false; //0x000040 0x000042
-		bool onTheLongRightWall = false; //0x000030
-		bool onTheLongLeftWall = false; //0x000040
+		
+		bool onTheRightWall = false; //0x000030 0x000031
+		bool onTheLeftWall = false; //0x000040 0x000041
+
+		bool onTheOilRightWall = false; //0x000033 0x000034
+		bool onTheOilLeftWall = false; //0x000043 0x000044
+
+		bool onTheEdgeFloor = false; //0x000024
+		bool onTheEdgeRightWall = false; //0x000034
+		bool onTheEdgeLeftWall = false; //0x000044
+
+		cocos2d::Vec2 rightEdgeWallPosition;
+		cocos2d::Vec2 leftEdgeWallPosition;
+
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
 		unsigned int jumpCounter = 0;

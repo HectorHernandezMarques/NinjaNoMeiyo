@@ -19,3 +19,13 @@
 !/proj.android-studio/app/jni/Application.mk
 !/.gitignore
 !/README.md
+!/cocos2d/
+/cocos2d/*
+!/cocos2d/cocos/
+/cocos2d/cocos/*
+!/cocos2d/cocos/2d/
+/cocos2d/cocos/2d/*
+!/cocos2d/cocos/2d/CCNode.h
+!/cocos2d/cocos/physics/
+/cocos2d/cocos/physics/*
+!/cocos2d/cocos/physics/CCPhysicsBody.h
