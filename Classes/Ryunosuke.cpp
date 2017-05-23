@@ -10,8 +10,9 @@ NinjaM::Ryunosuke::Ryunosuke()
 
 }
 
-NinjaM::Ryunosuke::Ryunosuke(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation) : Character(visibleSize, position, anchorPoint, texture, rotation)
+NinjaM::Ryunosuke::Ryunosuke(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, cocos2d::Size boxSize) : Character(visibleSize, position, anchorPoint, texture, rotation)
 {
+    this->boxSize = boxSize;
 	CCLOG("Ryunosuke builder");
 }
 
@@ -42,15 +43,19 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	if (velocity>0.0)
 	{
 		mWallDetection.lock();
+		mJumpTrigger.lock();
 	    if (!this->onTheRightWall && !this->onTheEdgeRightWall)
 	    {
+		    mJumpTrigger.unlock();
 		    this->rightMovement = true;
+		    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 	        this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
 			CCLOG("(toMove) Right Move -- Not in wall");
 	    }
 	    else if (!this->onTheFloor && !this->onTheEdgeFloor)
 	    {
+		    mJumpTrigger.unlock();
 	        //Holding wall position
 		    this->rightMovement = true;
 	        this->lastXVelocity = fabs(velocity);
@@ -59,26 +64,30 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 			CCLOG("(toMove) Right Move -- In wall Not in Floor");
 	    }
 		else if (this->onTheEdgeRightWall && this->onTheEdgeFloor)
-		{	//       |x|
-			// | |o|o|x|
-			// | |o|o|
+		{
+		    mJumpTrigger.unlock();
+			//     |x|
+			//     |x|
+			// | | |/|
+			// | |/| |
 			// | | | |
-			if (this->rightEdgeWallPosition.y < (this->nodeSprite->getPosition().y - this->nodeSprite->getContentSize().height / 2))
+			if (fabs(this->nodeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x - this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
 			{
-				this->rightMovement = true;
-				this->lastXVelocity = fabs(velocity);
-				this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
-				CCLOG("(toMove) Right Move -- In Edge wall and Edge floor and OVER center of Edge Wall");
+                this->rightMovement = true;
+                this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+                this->lastXVelocity = fabs(velocity);
+                this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+				CCLOG("(toMove) Right Move -- In Edge wall and Edge floor and OVER");
 				//DIFERENCIATE BETWEEN OVER FLOOR AND NOT OVER FLOOR.
 			}
 			else
 			{
-				//Holding wall position
-				this->rightMovement = true;
-				this->lastXVelocity = fabs(velocity);
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				CCLOG("(toMove) Right Move -- In Ege wall and Edge floor and UNDER center of Edge Wall");
+                //Holding wall position
+                this->rightMovement = true;
+                this->lastXVelocity = fabs(velocity);
+                this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+				CCLOG("(toMove) Right Move -- In Ege wall and Edge floor and UNDER");
 			}
 		}
 		mWallDetection.unlock();
@@ -87,15 +96,19 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 	else
 	{
 		mWallDetection.lock();
+		mJumpTrigger.lock();
 	    if (!this->onTheLeftWall && !this->onTheEdgeLeftWall)
 	    {
+		    mJumpTrigger.unlock();
 		    this->leftMovement = true;
+		    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 	        this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
 			CCLOG("(toMove) Left Move -- Not in wall");
 	    }
 	    else if (!this->onTheFloor && !this->onTheEdgeFloor)
 	    {
+		    mJumpTrigger.unlock();
 	        //Holding wall position
 		    this->leftMovement = true;
 		    this->lastXVelocity = fabs(velocity);
@@ -104,25 +117,29 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 			CCLOG("(toMove) Left Move -- In wall Not in Floor");
 	    }
 		else if (this->onTheEdgeLeftWall && this->onTheEdgeFloor)
-		{	// |x|
-			// |x|| |o|o|
-			//    | |o|o|
+		{
+		    mJumpTrigger.unlock();
+			//    |x|
+			//    |x|
+			//    |\| | |
+			//    | |\| |
 			//    | | | |
-			if (this->leftEdgeWallPosition.y < (this->nodeSprite->getPosition().y - this->nodeSprite->getContentSize().height / 2))
+			if (fabs(this->nodeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x + this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
 			{
-				this->leftMovement = true;
-				this->lastXVelocity = fabs(velocity);
-				this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
+                this->leftMovement = true;
+                this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+                this->lastXVelocity = fabs(velocity);
+                this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
 				CCLOG("(toMove) Left Move -- In Edge wall and Edge floor and OVER center of Edge Wall");
 				//DIFERENCIATE BETWEEN OVER FLOOR AND NOT OVER FLOOR.
 			}
 			else
 			{
-				//Holding wall position
-				this->leftMovement = true;
-				this->lastXVelocity = fabs(velocity);
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                //Holding wall position
+                this->leftMovement = true;
+                this->lastXVelocity = fabs(velocity);
+                this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
 				CCLOG("(toMove) Left Move -- In Ege wall and Edge floor and UNDER center of Edge Wall");
 			}
 		}	
@@ -140,13 +157,16 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		this->rightMovement = false;
 		if (!this->leftMovement)
 		{
+		    mJumpTrigger.unlock();
 			if (this->onTheFloor || this->onTheEdgeFloor)
 			{
+		        mJumpTrigger.unlock();
 				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 				CCLOG("(toStop) From Right -- On the floor");
 			}
 			else
 			{
+		        mJumpTrigger.unlock();
 				CCLOG("(toStop) From Right -- On the air");
 			}
 		}
@@ -161,13 +181,16 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 		this->leftMovement = false;
 		if (!this->rightMovement)
 		{
+		    mJumpTrigger.lock();
 			if (this->onTheFloor || this->onTheEdgeFloor)
 			{
+		        mJumpTrigger.unlock();
 				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 				CCLOG("(toStop) From Left -- On the floor");
 			}
 			else
 			{
+		        mJumpTrigger.unlock();
 				CCLOG("(toStop) From Left -- On the air");
 			}
 		}
@@ -181,10 +204,17 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 
 void NinjaM::Ryunosuke::toJump(float velocity)
 {
+	mJumpTrigger.lock();
 	if (this->onTheFloor || this->onTheEdgeFloor)
 	{
+	    mJumpTrigger.unlock();
 	    //toStop() needs to know if ryunosuke is in the air in order to either stop or let him go
+
+		mJumpTrigger.lock();
 		this->onTheFloor = false;
+		this->onTheEdgeFloor = false;
+		mJumpTrigger.unlock();
+
 		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		getNodeSprite()->getPhysicsBody()->setVelocity(cocos2d::Vec2(velocity, RYUNOSUKE_JUMP_ON_FLOOR));
 		if (velocity > 0.0)
@@ -199,6 +229,7 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	}
 	else if(this->onTheRightWall || this->onTheEdgeRightWall)
 	{
+		mJumpTrigger.unlock();
 	    this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		if (velocity >= 0.0)
 		{
@@ -214,6 +245,7 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	}
 	else if (this->onTheLeftWall || this->onTheEdgeLeftWall)
 	{
+		mJumpTrigger.unlock();
 		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		if (velocity > 0.0)
 		{
@@ -228,6 +260,7 @@ void NinjaM::Ryunosuke::toJump(float velocity)
 	}
 	else
 	{
+		mJumpTrigger.unlock();
 	    if (this->mNextJump.try_lock()){
 	        this->nextJumpVelocity = velocity;
 	        this->nextJump = true;
@@ -272,26 +305,8 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
-		/*
-		bool ryunosukeOverFloor = false
-		//Check if ryunosuke is over the floor detected.
-		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
-		{
-		    if((a->getPosition().y) >= b->getPosition().y)
-		    {
-		        ryunosukeOverFloor = true;
-		    }
-		}
-		else
-		{
-		    if((b->getPosition().y) >= a->getPosition().y)
-		    {
-				this->onTheFloor = true;
-		        ryunosukeOverFloor = true;
-		    }
-		}*/
-
 		CCLOG("Floor collision");
+		mJumpTrigger.lock();
 		this->onTheFloor = true;
 		this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
         if (!this->rightMovement && !this->leftMovement)
@@ -322,24 +337,11 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 				this->mNextJump.unlock();
 			}
 		}
+		mJumpTrigger.unlock();
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
-		mWallDetection.lock();
-		this->onTheRightWall = true;
-		cocos2d::Vec2 currentRyunosukePosition;
-		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
-		{
-			this->rightEdgeWallPosition = b->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = a->getLinkedSprite()->getPosition();
-		}
-		else
-		{
-			this->rightEdgeWallPosition = a->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = b->getLinkedSprite()->getPosition();
-		}
-		mWallDetection.unlock();
-
+		mJumpTrigger.lock();
 		if (!this->onTheFloor)
 		{
 			if (!this->rightMovement && !this->leftMovement)
@@ -388,25 +390,11 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 			CCLOG("Right Wall collision - On the floor");
 			return true;
 		}
-
+		mJumpTrigger.unlock();
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
-		mWallDetection.lock();
-		this->onTheLeftWall = true;
-		cocos2d::Vec2 currentRyunosukePosition;
-		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
-		{
-			this->leftEdgeWallPosition = b->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = a->getLinkedSprite()->getPosition();
-		}
-		else
-		{
-			this->leftEdgeWallPosition = a->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = b->getLinkedSprite()->getPosition();
-		}
-		mWallDetection.unlock();
-
+		mJumpTrigger.lock();
 		if (!this->onTheFloor)
 		{
 			if (!this->rightMovement && !this->leftMovement)
@@ -456,30 +444,36 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 			CCLOG("Left Wall collision - On the floor");
 			return true;
 		}
+		mJumpTrigger.unlock();
 	}
-	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
+		mWallDetection.lock();
+		mJumpTrigger.lock();
+
 		this->onTheEdgeFloor = true;
-		bool ryunosukeOverFloor = false;
-		//Check if ryunosuke is over the floor detected.
-		if(a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
+
+		cocos2d::Node *currentRyunosukeSprite;
+		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			if((a->getLinkedSprite()->getPosition().y + this->nodeSprite->getContentSize().height/2) >= b->getLinkedSprite()->getPosition().y)
-			{
-				this->onTheEdgeFloor = true;
-				ryunosukeOverFloor = true;
-			}
+			this->edgeFloorNode = b->getLinkedSprite();
+			currentRyunosukeSprite = a->getLinkedSprite();
 		}
 		else
 		{
-			if((b->getLinkedSprite()->getPosition().y + this->nodeSprite->getContentSize().height/2) >= a->getLinkedSprite()->getPosition().y)
-			{
-				this->onTheEdgeFloor = true;
-				ryunosukeOverFloor = true;
-			}
+			this->edgeFloorNode = a->getLinkedSprite();
+			currentRyunosukeSprite = b->getLinkedSprite();
 		}
-		CCLOG("Edge Floor collision");
-		if (ryunosukeOverFloor)
+
+		//Check if ryunosuke is over the floor detected.
+        bool ryunosukeOverRightEdgeFloor = false;
+        if (fabs(currentRyunosukeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x + this->boxSize.width/2)) < fabs(currentRyunosukeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
+        {
+            ryunosukeOverRightEdgeFloor = true;
+        }
+
+		CCLOG("Edge Right Floor collision");
+		if (ryunosukeOverRightEdgeFloor)
 		{
 			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 			if (!this->rightMovement && !this->leftMovement)
@@ -511,224 +505,330 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 				}
 			}
 		}
+		else
+		{
+		    mWallDetection.unlock();
+		    return false;
+		}
+		mJumpTrigger.unlock();
+        mWallDetection.unlock();
+	}
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_LEFT_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_LEFT_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	{
+		mWallDetection.lock();
+		mJumpTrigger.lock();
+
+		this->onTheEdgeFloor = true;
+
+		cocos2d::Node *currentRyunosukeSprite;
+		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
+		{
+			this->edgeFloorNode = b->getLinkedSprite();
+			currentRyunosukeSprite = a->getLinkedSprite();
+		}
+		else
+		{
+			this->edgeFloorNode = a->getLinkedSprite();
+			currentRyunosukeSprite = b->getLinkedSprite();
+		}
+
+		//Check if ryunosuke is over the floor detected.
+        bool ryunosukeOverLeftEdgeFloor = false;
+        if (fabs(currentRyunosukeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x - this->boxSize.width/2)) < fabs(currentRyunosukeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
+        {
+            ryunosukeOverLeftEdgeFloor = true;
+        }
+
+		CCLOG("Edge Left Floor collision");
+		if (ryunosukeOverLeftEdgeFloor)
+		{
+			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+			if (!this->rightMovement && !this->leftMovement)
+			{
+				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+				if (this->mNextJump.try_lock()) {
+					if (this->nextJump)
+					{
+						this->toJump(nextJumpVelocity);
+						this->nextJump = false;
+					}
+					this->mNextJump.unlock();
+				}
+			}
+			else if (this->rightMovement)
+			{
+				this->toMove(RYUNOSUKE_SPEED);
+				if (this->mNextJump.try_lock()) {
+					this->nextJump = false;
+					this->mNextJump.unlock();
+				}
+			}
+			else if (this->leftMovement)
+			{
+				this->toMove(-RYUNOSUKE_SPEED);
+				if (this->mNextJump.try_lock()) {
+					this->nextJump = false;
+					this->mNextJump.unlock();
+				}
+			}
+		}
+		else
+		{
+		    mWallDetection.unlock();
+		    return false;
+		}
+		mJumpTrigger.unlock();
+        mWallDetection.unlock();
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == EDGE_RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		mWallDetection.lock();
+		mJumpTrigger.lock();
+
 		this->onTheEdgeRightWall = true;
-		cocos2d::Vec2 currentRyunosukePosition;
+
+		cocos2d::Node *currentRyunosukeSprite;
 		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			this->rightEdgeWallPosition = b->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = a->getLinkedSprite()->getPosition();
+			this->rightEdgeWallNode = b->getLinkedSprite();
+			currentRyunosukeSprite = a->getLinkedSprite();
 		}
 		else
 		{
-			this->rightEdgeWallPosition = a->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = b->getLinkedSprite()->getPosition();
+			this->rightEdgeWallNode = a->getLinkedSprite();
+			currentRyunosukeSprite = b->getLinkedSprite();
 		}
-		mWallDetection.unlock();
 
-		if (!this->onTheFloor && !this->onTheEdgeFloor)
-		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					if (this->nextJump)
-					{
-						this->toJump(nextJumpVelocity);
-						this->nextJump = false;
-					}
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			CCLOG("Right Wall collision - Not on the floor");
-		}
-		else if (this->rightEdgeWallPosition.y > (currentRyunosukePosition.y - this->nodeSprite->getContentSize().height / 2))
-		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					if (this->nextJump)
-					{
-						this->toJump(nextJumpVelocity);
-						this->nextJump = false;
-					}
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			CCLOG("Right Wall collision - In the floor and base of Ryunosuke UNDER center of the Right Wall");
-		}
-		else
-		{
-			CCLOG("Right Wall collision - In the floor and base of Ryunosuke OVER center of the Right Wall");
-			return false;
-		}
+		//Check if ryunosuke is over the floor detected.
+        bool ryunosukeOverRightEdgeFloor = false;
+        if (fabs(currentRyunosukeSprite->getPosition().x - (this->rightEdgeWallNode->getPosition().x + this->boxSize.width)) < fabs(currentRyunosukeSprite->getPosition().y - (this->rightEdgeWallNode->getPosition().y - this->boxSize.height/2)))
+        {
+            ryunosukeOverRightEdgeFloor = true;
+        }
+
+        if (!ryunosukeOverRightEdgeFloor)
+        {
+            if (!this->onTheFloor)
+            {
+                if (!this->rightMovement && !this->leftMovement)
+                {
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        if (this->nextJump)
+                        {
+                            this->toJump(nextJumpVelocity);
+                            this->nextJump = false;
+                        }
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->rightMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->leftMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                CCLOG("Right Wall collision - Not on the floor");
+            }
+            else
+            {
+                if (!this->rightMovement && !this->leftMovement)
+                {
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        if (this->nextJump)
+                        {
+                            this->toJump(nextJumpVelocity);
+                            this->nextJump = false;
+                        }
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->rightMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->leftMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                CCLOG("Right Wall collision - In the floor and base of Ryunosuke UNDER center of the Right Wall");
+            }
+        }
+        else
+        {
+            CCLOG("Right Wall collision - In the floor and base of Ryunosuke OVER center of the Right Wall");
+		    mJumpTrigger.unlock();
+            mWallDetection.unlock();
+            return false;
+        }
+		mJumpTrigger.unlock();
+		mWallDetection.unlock();
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == EDGE_LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		mWallDetection.lock();
+		mJumpTrigger.unlock();
+
 		this->onTheEdgeLeftWall = true;
-		cocos2d::Vec2 currentRyunosukePosition;
+
+		cocos2d::Node *currentRyunosukeSprite;
 		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			this->leftEdgeWallPosition = b->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = a->getLinkedSprite()->getPosition();
+			this->leftEdgeWallNode = b->getLinkedSprite();
+			currentRyunosukeSprite = a->getLinkedSprite();
 		}
 		else
 		{
-			this->leftEdgeWallPosition = a->getLinkedSprite()->getPosition();
-			currentRyunosukePosition = b->getLinkedSprite()->getPosition();
+			this->leftEdgeWallNode = a->getLinkedSprite();
+			currentRyunosukeSprite = b->getLinkedSprite();
 		}
-		mWallDetection.unlock();
 
-		if (!this->onTheFloor && !this->onTheEdgeFloor)
-		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					if (this->nextJump)
-					{
-						this->toJump(nextJumpVelocity);
-						this->nextJump = false;
-					}
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			CCLOG("Left Wall collision - Not on the floor");
-		}
-		else if (this->leftEdgeWallPosition.y > (currentRyunosukePosition.y - this->nodeSprite->getContentSize().height / 2))
-		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					if (this->nextJump)
-					{
-						this->toJump(nextJumpVelocity);
-						this->nextJump = false;
-					}
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			else
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				if (this->mNextJump.try_lock()) {
-					this->nextJump = false;
-					this->mNextJump.unlock();
-				}
-			}
-			CCLOG("Left Wall collision - In the floor and base of Ryunosuke UNDER center of the Left Wall");
-		}
-		else
-		{
-			CCLOG("Left Wall collision - In the floor and base of Ryunosuke OVER center of the Left Wall");
-			return false;
-		}
+		//Check if ryunosuke is over the floor detected.
+        bool ryunosukeOverLeftEdgeFloor = false;
+        if (fabs(currentRyunosukeSprite->getPosition().x - (this->leftEdgeWallNode->getPosition().x - this->boxSize.width)) < fabs(currentRyunosukeSprite->getPosition().y - (this->leftEdgeWallNode->getPosition().y - this->boxSize.height/2)))
+        {
+            ryunosukeOverLeftEdgeFloor = true;
+        }
+
+        if (!ryunosukeOverLeftEdgeFloor)
+        {
+            if (!this->onTheFloor)
+            {
+                if (!this->rightMovement && !this->leftMovement)
+                {
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        if (this->nextJump)
+                        {
+                            this->toJump(nextJumpVelocity);
+                            this->nextJump = false;
+                        }
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->rightMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->leftMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                CCLOG("Left Wall collision - Not on the floor");
+            }
+            else
+            {
+                if (!this->rightMovement && !this->leftMovement)
+                {
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        if (this->nextJump)
+                        {
+                            this->toJump(nextJumpVelocity);
+                            this->nextJump = false;
+                        }
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->rightMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else if (this->leftMovement)
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                else
+                {
+                    this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+                    this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+                    if (this->mNextJump.try_lock()) {
+                        this->nextJump = false;
+                        this->mNextJump.unlock();
+                    }
+                }
+                CCLOG("Left Wall collision - In the floor and base of Ryunosuke UNDER center of the Right Wall");
+            }
+        }
+        else
+        {
+            CCLOG("Left Wall collision - In the floor and base of Ryunosuke OVER center of the Right Wall");
+		    mJumpTrigger.unlock();
+            mWallDetection.unlock();
+            return false;
+        }
+		mJumpTrigger.unlock();
+		mWallDetection.unlock();
 	}
 	return true;
 }
@@ -740,7 +840,9 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 
 	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FLOOR_BITMASK) || (a->getCollisionBitmask() == FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
+		mJumpTrigger.lock();
 		this->onTheFloor = false;
+		mJumpTrigger.unlock();
 		CCLOG("Floor Separation");
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
@@ -755,10 +857,19 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
         this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 		CCLOG("Left Wall Separation");
     }
-	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
+		mJumpTrigger.lock();
 		this->onTheEdgeFloor = false;
-		CCLOG("Edge Floor Separation");
+		mJumpTrigger.unlock();
+		CCLOG("Edge Right Floor Separation");
+	}
+	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_LEFT_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_LEFT_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
+	{
+		mJumpTrigger.lock();
+		this->onTheEdgeFloor = false;
+		mJumpTrigger.unlock();
+		CCLOG("Edge Left Floor Separation");
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == EDGE_RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{

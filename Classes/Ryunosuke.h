@@ -16,7 +16,7 @@ namespace NinjaM{
     {
     public:
         Ryunosuke();
-		Ryunosuke(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation);
+		Ryunosuke(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, cocos2d::Size boxSize);
         virtual ~Ryunosuke();
 
         virtual void spawn(cocos2d::Layer *layer);
@@ -27,7 +27,7 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
-        std::mutex mNextJump, mWallDetection;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
@@ -44,8 +44,11 @@ namespace NinjaM{
 		bool onTheEdgeRightWall = false; //0x000034
 		bool onTheEdgeLeftWall = false; //0x000044
 
-		cocos2d::Vec2 rightEdgeWallPosition;
-		cocos2d::Vec2 leftEdgeWallPosition;
+		cocos2d::Node* edgeFloorNode;
+		cocos2d::Node* rightEdgeWallNode;
+		cocos2d::Node* leftEdgeWallNode;
+
+        cocos2d::Size boxSize;
 
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
