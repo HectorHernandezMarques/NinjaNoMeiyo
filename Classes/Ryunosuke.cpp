@@ -66,12 +66,12 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 		else if (this->onTheEdgeRightWall && this->onTheEdgeFloor)
 		{
 		    mJumpTrigger.unlock();
-			//     |x|
-			//     |x|
-			// | | |/|
-			// | |/| |
-			// | | | |
-			if (fabs(this->nodeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x - this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
+			//    |x|
+			//    |x|
+			//    |\| | |
+			//    | |\| |
+			//    | | | |
+			if (fabs((this->nodeSprite->getPosition().x + this->nodeSprite->getContentSize().width/2) - (this->edgeFloorNode->getPosition().x + this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
 			{
                 this->rightMovement = true;
                 this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
@@ -120,18 +120,18 @@ void NinjaM::Ryunosuke::toMove(float velocity)
 		else if (this->onTheEdgeLeftWall && this->onTheEdgeFloor)
 		{
 		    mJumpTrigger.unlock();
-			//    |x|
-			//    |x|
-			//    |\| | |
-			//    | |\| |
-			//    | | | |
-			if (fabs(this->nodeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x + this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
+			//     |x|
+			//     |x|
+			// | | |/|
+			// | |/| |
+			// | | | |
+			if (fabs(this->nodeSprite->getPosition().x - (this->edgeFloorNode->getPosition().x - this->boxSize.width/2)) < fabs(this->nodeSprite->getPosition().y - (this->edgeFloorNode->getPosition().y - this->boxSize.height)))
 			{
                 this->leftMovement = true;
                 this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
                 this->lastXVelocity = fabs(velocity);
                 this->nodeBody->setVelocity(cocos2d::Vec2(velocity, this->nodeBody->getVelocity().y));
-				CCLOG("(toMove) Left Move -- In Edge wall and Edge floor and OVER center of Edge Wall");
+				CCLOG("(toMove) Left Move -- In Edge wall and Edge floor and OVER");
 				//DIFERENCIATE BETWEEN OVER FLOOR AND NOT OVER FLOOR.
 			}
 			else
@@ -141,7 +141,7 @@ void NinjaM::Ryunosuke::toMove(float velocity)
                 this->lastXVelocity = fabs(velocity);
                 this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
                 this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
-				CCLOG("(toMove) Left Move -- In Ege wall and Edge floor and UNDER center of Edge Wall");
+				CCLOG("(toMove) Left Move -- In Ege wall and Edge floor and UNDER");
 			}
 		}
 		mJumpTrigger.unlock();

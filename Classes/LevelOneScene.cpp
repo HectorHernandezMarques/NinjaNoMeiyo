@@ -147,10 +147,10 @@ bool LevelOneScene::init()
     ((NinjaM::Terrain*)box)->spawn(this, AIR_BITMASK,  LEFT_OBSTACLE_BITMASK, RIGHT_OBSTACLE_BITMASK, CEILING_BITMASK);
 
 	NinjaM::Node *boxED = new NinjaM::Terrain(visibleSize, Vec2(700 + box->getNodeSprite()->getContentSize().height * 2, floor->getNodeSprite()->getContentSize().height + box->getNodeSprite()->getContentSize().height), Vec2::ZERO, "BoxED.png", 0.0);
-	((NinjaM::Terrain*)boxED)->spawn(this, EDGE_FLOOR_RIGHT_BITMASK, EDGE_LEFT_OBSTACLE_BITMASK, AIR_BITMASK, CEILING_BITMASK);
+	((NinjaM::Terrain*)boxED)->spawn(this, EDGE_FLOOR_LEFT_BITMASK, EDGE_LEFT_OBSTACLE_BITMASK, AIR_BITMASK, CEILING_BITMASK);
 
 	NinjaM::Node *boxEI = new NinjaM::Terrain(visibleSize, Vec2(700, floor->getNodeSprite()->getContentSize().height + box->getNodeSprite()->getContentSize().height), Vec2::ZERO, "BoxEI.png", 0.0);
-	((NinjaM::Terrain*)boxEI)->spawn(this, EDGE_FLOOR_LEFT_BITMASK, AIR_BITMASK, EDGE_RIGHT_OBSTACLE_BITMASK, CEILING_BITMASK);
+	((NinjaM::Terrain*)boxEI)->spawn(this, EDGE_FLOOR_RIGHT_BITMASK, AIR_BITMASK, EDGE_RIGHT_OBSTACLE_BITMASK, CEILING_BITMASK);
 
 	NinjaM::Node *boxC = new NinjaM::Terrain(visibleSize, Vec2(700 + box->getNodeSprite()->getContentSize().height, floor->getNodeSprite()->getContentSize().height + box->getNodeSprite()->getContentSize().height), Vec2::ZERO, "BoxC.png", 0.0);
 	((NinjaM::Terrain*)boxC)->spawn(this, FLOOR_BITMASK, AIR_BITMASK, AIR_BITMASK, CEILING_BITMASK);
