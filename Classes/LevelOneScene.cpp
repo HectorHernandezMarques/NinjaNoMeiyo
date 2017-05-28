@@ -94,7 +94,7 @@ bool LevelOneScene::init()
 	topEdgeBody->setContactTestBitmask(true);
 
     auto topEdgeNode = Node::create();
-    topEdgeNode->setPosition( Vec2(visibleSize.width/2 + origin.x, visibleSize.height + origin.y) );
+    topEdgeNode->setPosition( Vec2(visibleSize.width/2, visibleSize.height) );
 
     topEdgeNode->setPhysicsBody( topEdgeBody );
 
@@ -103,19 +103,6 @@ bool LevelOneScene::init()
 	//bottom edge
 	NinjaM::Node *floor = new NinjaM::Terrain(visibleSize, Vec2(0, 0), Vec2::ZERO, "FloorTest.png", 0.0);
 	floor->spawn(this);
-	/*
-	auto bottomEdgeBody = PhysicsBody::createBox(cocos2d::Size(visibleSize.width, 2), PHYSICSBODY_MATERIAL_DEFAULT);
-	bottomEdgeBody->setDynamic(false);
-	bottomEdgeBody->setCollisionBitmask(FLOOR_BITMASK);
-	bottomEdgeBody->setContactTestBitmask(true);
-
-	auto bottomEdgeNode = Node::create();
-	bottomEdgeNode->setPosition(Vec2(visibleSize.width/2 + origin.x, origin.y));
-
-	bottomEdgeNode->setPhysicsBody(bottomEdgeBody);
-
-	this->addChild(bottomEdgeNode);
-	*/
 
 	//left edge
 	auto leftEdgeBody = PhysicsBody::createBox(cocos2d::Size(3, visibleSize.height), PHYSICSBODY_MATERIAL_DEFAULT);
@@ -124,7 +111,7 @@ bool LevelOneScene::init()
 	leftEdgeBody->setContactTestBitmask(true);
 
 	auto leftEdgeNode = Node::create();
-	leftEdgeNode->setPosition(Vec2(origin.x, visibleSize.height/2 + origin.y));
+	leftEdgeNode->setPosition(Vec2(0, visibleSize.height/2));
 
 	leftEdgeNode->setPhysicsBody(leftEdgeBody);
 
@@ -137,7 +124,7 @@ bool LevelOneScene::init()
 	rightEdgeBody->setContactTestBitmask(true);
 
 	auto rightEdgeNode = Node::create();
-	rightEdgeNode->setPosition(Vec2(visibleSize.width + origin.x, visibleSize.height/2 + origin.y));
+	rightEdgeNode->setPosition(Vec2(floor->getNodeSprite()->getContentSize().width, visibleSize.height/2));
 
 	rightEdgeNode->setPhysicsBody(rightEdgeBody);
 
@@ -155,7 +142,7 @@ bool LevelOneScene::init()
 	NinjaM::Node *boxC = new NinjaM::Terrain(visibleSize, Vec2(700 + box->getNodeSprite()->getContentSize().height, floor->getNodeSprite()->getContentSize().height + box->getNodeSprite()->getContentSize().height), Vec2::ZERO, "BoxC.png", 0.0);
 	((NinjaM::Terrain*)boxC)->spawn(this, FLOOR_BITMASK, AIR_BITMASK, AIR_BITMASK, CEILING_BITMASK);
 
-    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2 + origin.x, 0), Vec2::ZERO, 0.0, RYUNOSUKE_SPEED, ((NinjaM::Ryunosuke*)ryunosuke));
+    NinjaM::Node *rightMovementTouch = new NinjaM::MovementTouch(visibleSize, Vec2(visibleSize.width / 2, 0), Vec2::ZERO, 0.0, RYUNOSUKE_SPEED, ((NinjaM::Ryunosuke*)ryunosuke));
     rightMovementTouch->spawn(this);
     ((NinjaM::MovementTouch*)rightMovementTouch)->setEventDispatcher();
 
