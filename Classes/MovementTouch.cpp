@@ -50,8 +50,9 @@ bool NinjaM::MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d
 	if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
 		if (this->mDoubleTouch.try_lock()) {
 		    //añadir retraso
-			this->jumpCleanerSequence = cocos2d::Sequence::create(cocos2d::DelayTime::create(TOUCH_DELAY), cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::MovementTouch::toMoveAfterWait, this, this->sense)), nullptr);
-            this->nodeSprite->runAction(jumpCleanerSequence);
+			this->jumpCleanerSequence = cocos2d::Sequence::create(cocos2d::DelayTime::create(TOUCH_DELAY), cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::MovementTouch::toMoveAfterWait, this, this->sense)), cocos2d::DelayTime::create(0.2f), nullptr);
+			this->movingAction = cocos2d::RepeatForever::create(this->jumpCleanerSequence);
+            this->nodeSprite->runAction(movingAction);
 			this->initialTouchPosition = nodeSprite->getPosition();
 			this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
 			if (this->sense > 0.0)
@@ -91,7 +92,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             if (nodeSprite->getPositionX() > this->initialTouchPosition.x + this->visibleSize.height / TOUCH_RIGHT_JUMP)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
-				this->nodeSprite->stopAction(jumpCleanerSequence);
+				this->nodeSprite->stopAction(this->movingAction);
                 this->ryunosuke->toJump(fabs(this->sense));
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
@@ -103,7 +104,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             else if (nodeSprite->getPositionX() < this->initialTouchPosition.x - this->visibleSize.height / TOUCH_LEFT_JUMP)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
-				this->nodeSprite->stopAction(jumpCleanerSequence);
+				this->nodeSprite->stopAction(this->movingAction);
                 this->ryunosuke->toJump(-fabs(this->sense));
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
@@ -115,7 +116,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             else if (nodeSprite->getPositionY() > this->initialTouchPosition.y + this->visibleSize.height / TOUCH_UPPER_JUMP_2)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
-				this->nodeSprite->stopAction(jumpCleanerSequence);
+				this->nodeSprite->stopAction(this->movingAction);
                 this->ryunosuke->toJump(0.0);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
@@ -128,7 +129,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
 
 void NinjaM::MovementTouch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	this->nodeSprite->stopAction(jumpCleanerSequence);
+	this->nodeSprite->stopAction(this->movingAction);
 	this->ryunosuke->toStop(this->sense);
 	this->nodeSprite->setPosition(this->position);
 	this->mDoubleTouch.unlock();
