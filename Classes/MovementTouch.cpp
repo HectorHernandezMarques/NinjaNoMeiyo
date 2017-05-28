@@ -39,7 +39,7 @@ void NinjaM::MovementTouch::setEventDispatcher()
 
 void NinjaM::MovementTouch::toMoveAfterWait(float sense)
 {
-	this->ryunosuke->toMove(this->sense);
+	this->ryunosuke->toMove(this->sense, true);
 }
 
 bool NinjaM::MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event)

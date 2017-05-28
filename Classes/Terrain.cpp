@@ -60,11 +60,11 @@ void NinjaM::Terrain::spawn(cocos2d::Layer *layer)
 
         this->surfaceBody[i]->setDynamic(false);
         this->surfaceBody[i]->setContactTestBitmask(true);
+		this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
         this->surfaceBody[i]->setRotationEnable(false);
 
         this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
         layer->addChild(this->surfaceNode[i]);
-
     }
 }
 
@@ -109,6 +109,7 @@ void NinjaM::Terrain::spawn(cocos2d::Layer *layer, int upperSurfaceBitmask, int 
 
 		this->surfaceBody[i]->setDynamic(false);
 		this->surfaceBody[i]->setContactTestBitmask(true);
+		this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
 		this->surfaceBody[i]->setRotationEnable(false);
 
 		this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);

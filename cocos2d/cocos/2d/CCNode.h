@@ -2002,12 +2002,12 @@ public:
     {
         if (_physicsBody != nullptr)
         {
-			_physicsBody->clearLinkedSprite();
+			_physicsBody->clearLinkedNode();
             removeComponent(_physicsBody);
         }
 
         addComponent(physicsBody);
-		physicsBody->setLinkedSprite(*this);
+		physicsBody->setLinkedNode(this);
     }
     PhysicsBody* getPhysicsBody() const { return _physicsBody; }
 

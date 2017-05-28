@@ -254,17 +254,30 @@ public:
 	virtual Vec2 getVelocity();
 
 	/**
-	* Set the Sprite linked to this PhysicsBody.
+	* Set the Node linked to this PhysicsBody.
 	*
-	* @param linkedSprite The sprite is set to this body.
+	* @param linkedNode The node is set to this body.
 	*/
-	virtual void setLinkedSprite(Node& linkedSprite) { this->_linkedSprite = &linkedSprite; }
+	virtual void setLinkedNode(Node *linkedNode) { this->_linkedNode = linkedNode; }
 
-	/** Get the Sprite linked to this body. */
-	virtual Node* getLinkedSprite() { return this->_linkedSprite; }
+	/** Get the Node linked to this body. */
+	virtual Node* getLinkedNode() { return this->_linkedNode; }
 
-	/** Set the Sprite linked into nullptr. */
-	virtual void clearLinkedSprite() { this->_linkedSprite = nullptr; }
+	/** Set the Node linked into nullptr. */
+	virtual void clearLinkedNode() { this->_linkedNode = nullptr; }
+
+	/**
+	* Set the Owner Node to this PhysicsBody Ninja no Meiyo mod.
+	*
+	* @param ownerNode The node is set to this body.
+	*/
+	virtual void setOwnerNode(Node *ownerNode) { this->_ownerNode = ownerNode; }
+
+	/** Get the Owner Node to this body. */
+	virtual Node* getOwnerNode() { return this->_ownerNode; }
+
+	/** Set the Owner Node into nullptr. */
+	virtual void clearOwnerNode() { this->_ownerNode = nullptr; }
 
     /** 
      * Set the angular velocity of a body.
@@ -534,7 +547,8 @@ protected:
     Vector<PhysicsShape*> _shapes;
     PhysicsWorld* _world;
     
-	Node* _linkedSprite;
+	Node* _linkedNode;
+	Node* _ownerNode;
 
     cpBody* _cpBody;
     bool _dynamic;

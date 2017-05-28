@@ -6,6 +6,7 @@
 #define NINJANOMEIYO_RYUNOSUKE_H
 
 #include <string>
+#include <set>
 #include "Definitions.h"
 #include "cocos2d.h"
 #include "./Character.h"
@@ -20,33 +21,35 @@ namespace NinjaM{
         virtual ~Ryunosuke();
 
         virtual void spawn(cocos2d::Layer *layer);
-		void toMove(float velocity);
+		void toMove(float velocity, bool waitWallDetection);
 		void toStop(float velocity);
 		void toJump(float velocity);
 
 		void setEventDispatcher();
 
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
-		bool onTheFloor = false;
 		
-		bool onTheRightWall = false; //0x000030 0x000031
-		bool onTheLeftWall = false; //0x000040 0x000041
+		std::set <cocos2d::Node*> floors; //0x000020
 
-		bool onTheOilRightWall = false; //0x000033 0x000034
-		bool onTheOilLeftWall = false; //0x000043 0x000044
 
-		bool onTheEdgeFloor = false; //0x000024
-		bool onTheEdgeRightWall = false; //0x000034
-		bool onTheEdgeLeftWall = false; //0x000044
+		std::set <cocos2d::Node*> rightWalls; //0x000030 0x000031
+		std::set <cocos2d::Node*> leftWalls; //0x000040 0x000041
 
-		cocos2d::Node* edgeFloorNode;
-		cocos2d::Node* rightEdgeWallNode;
-		cocos2d::Node* leftEdgeWallNode;
+		std::set <cocos2d::Node*> oilRightWalls; //0x000033 0x000034
+		std::set <cocos2d::Node*> oilLeftWalls; //0x000043 0x000044
+
+		std::set <cocos2d::Node*> edgeFloors; //0x000024
+		std::set <cocos2d::Node*> edgeRightWalls; //0x000034
+		std::set <cocos2d::Node*> edgeLeftWalls; //0x000044
+
+		//cocos2d::Node *edgeFloorNode;
+		//cocos2d::Node *rightEdgeWallNode;
+		//cocos2d::Node *leftEdgeWallNode;
 
         cocos2d::Size boxSize;
 
@@ -59,7 +62,7 @@ namespace NinjaM{
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);
 
-
+		cocos2d::Node* searchForCorrespondence(std::set <cocos2d::Node*> edgeRightWalls, std::set <cocos2d::Node*> edgeFloors);
     };
 }
 
