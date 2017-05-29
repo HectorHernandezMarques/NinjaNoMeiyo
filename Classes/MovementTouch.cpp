@@ -92,8 +92,15 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             if (nodeSprite->getPositionX() > this->initialTouchPosition.x + this->visibleSize.height / TOUCH_RIGHT_JUMP)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+
+				this->ryunosuke->getMStopAnimation()->lock();
 				this->nodeSprite->stopAction(this->movingAction);
-                this->ryunosuke->toJump(fabs(this->sense));
+				this->ryunosuke->getMWallDetection()->unlock();
+				this->ryunosuke->getMSingleMovement()->unlock();
+				this->ryunosuke->getMJumpTrigger()->unlock();
+				this->ryunosuke->getMStopAnimation()->unlock();
+
+                this->ryunosuke->toJump(fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
 				this->mDoubleTouch.unlock();
@@ -104,8 +111,15 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             else if (nodeSprite->getPositionX() < this->initialTouchPosition.x - this->visibleSize.height / TOUCH_LEFT_JUMP)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+
+				this->ryunosuke->getMStopAnimation()->lock();
 				this->nodeSprite->stopAction(this->movingAction);
-                this->ryunosuke->toJump(-fabs(this->sense));
+				this->ryunosuke->getMWallDetection()->unlock();
+				this->ryunosuke->getMSingleMovement()->unlock();
+				this->ryunosuke->getMJumpTrigger()->unlock();
+				this->ryunosuke->getMStopAnimation()->unlock();
+
+                this->ryunosuke->toJump(-fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
 				this->mDoubleTouch.unlock();
@@ -116,8 +130,15 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             else if (nodeSprite->getPositionY() > this->initialTouchPosition.y + this->visibleSize.height / TOUCH_UPPER_JUMP_2)
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
+
+				this->ryunosuke->getMStopAnimation()->lock();
 				this->nodeSprite->stopAction(this->movingAction);
-                this->ryunosuke->toJump(0.0);
+				this->ryunosuke->getMWallDetection()->unlock();
+				this->ryunosuke->getMSingleMovement()->unlock();
+				this->ryunosuke->getMJumpTrigger()->unlock();
+				this->ryunosuke->getMStopAnimation()->unlock();
+
+                this->ryunosuke->toJump(0.0, true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
 				this->mDoubleTouch.unlock();
@@ -130,7 +151,14 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
 void NinjaM::MovementTouch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	this->nodeSprite->stopAction(this->movingAction);
+
+	this->ryunosuke->getMStopAnimation()->lock();
+	this->ryunosuke->getMWallDetection()->unlock();
+	this->ryunosuke->getMSingleMovement()->unlock();
+	this->ryunosuke->getMJumpTrigger()->unlock();
 	this->ryunosuke->toStop(this->sense);
+	this->ryunosuke->getMStopAnimation()->unlock();
+
 	this->nodeSprite->setPosition(this->position);
 	this->mDoubleTouch.unlock();
 }

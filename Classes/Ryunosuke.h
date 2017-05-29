@@ -23,12 +23,17 @@ namespace NinjaM{
         virtual void spawn(cocos2d::Layer *layer);
 		void toMove(float velocity, bool waitWallDetection);
 		void toStop(float velocity);
-		void toJump(float velocity);
+		void toJump(float velocity, bool waitWallDetection);
 
 		void setEventDispatcher();
 
+		std::mutex* getMWallDetection() { return &(this->mWallDetection); }
+		std::mutex* getMJumpTrigger() { return &(this->mJumpTrigger); }
+		std::mutex* getMSingleMovement() { return &(this->mSingleMovement); }
+		std::mutex* getMStopAnimation() { return &(this->mStopAnimation); }
+
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mStopAnimation;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
@@ -62,7 +67,8 @@ namespace NinjaM{
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);
 
-		cocos2d::Node* searchForCorrespondence(std::set <cocos2d::Node*> edgeRightWalls, std::set <cocos2d::Node*> edgeFloors);
+		cocos2d::Node* searchForCorrespondenceFloor(std::set <cocos2d::Node*> edgeRightWalls, std::set <cocos2d::Node*> edgeFloors);
+		cocos2d::Node* searchForCorrespondenceWall(std::set <cocos2d::Node*> edgeRightWalls, std::set <cocos2d::Node*> edgeFloors);
     };
 }
 
