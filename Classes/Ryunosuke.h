@@ -26,27 +26,21 @@ namespace NinjaM{
 		void toJump(float velocity, bool waitWallDetection);
 
 		void setEventDispatcher();
-		void setMutexState(int mutexState) { this->mutexState = mutexState; }
 
 		std::mutex* getMWallDetection() { return &(this->mWallDetection); }
 		std::mutex* getMJumpTrigger() { return &(this->mJumpTrigger); }
 		std::mutex* getMSingleMovement() { return &(this->mSingleMovement); }
-		std::mutex* getMStopRightAnimation() { return &(this->mStopRightAnimation); }
-		std::mutex* getMStopLeftAnimation() { return &(this->mStopLeftAnimation); }
-		std::mutex* getMMutexState() { return &(this->mMutexState); }
-		int getMutexState() { return this->mutexState; }
-		
+		std::mutex* getMStopAnimation() { return &(this->mStopAnimation); }
 
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mStopRightAnimation, mStopLeftAnimation, mMutexState;
-		int mutexState = 0; //0 - nothing; 1 - mWallDetection; 2 - mSingleMovement; 3 - mJumpTrigger;
-
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mStopAnimation;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
 		
 		std::set <cocos2d::Node*> floors; //0x000020
+
 
 		std::set <cocos2d::Node*> rightWalls; //0x000030 0x000031
 		std::set <cocos2d::Node*> leftWalls; //0x000040 0x000041
