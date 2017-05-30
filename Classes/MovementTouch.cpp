@@ -93,12 +93,52 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
 
-				this->ryunosuke->getMStopAnimation()->lock();
-				this->nodeSprite->stopAction(this->movingAction);
-				this->ryunosuke->getMWallDetection()->unlock();
-				this->ryunosuke->getMSingleMovement()->unlock();
-				this->ryunosuke->getMJumpTrigger()->unlock();
-				this->ryunosuke->getMStopAnimation()->unlock();
+				if (this->sense > 0.0)
+				{
+					this->ryunosuke->getMStopRightAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+						case 3:
+							this->ryunosuke->getMJumpTrigger()->unlock();
+						case 2:
+							this->ryunosuke->getMWallDetection()->unlock();
+						case 1:
+							this->ryunosuke->getMSingleMovement()->unlock();
+						case 0:
+							break;
+						default:
+							break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopRightAnimation()->unlock();
+				}
+				else
+				{
+					this->ryunosuke->getMStopLeftAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+					case 3:
+						this->ryunosuke->getMJumpTrigger()->unlock();
+					case 2:
+						this->ryunosuke->getMWallDetection()->unlock();
+					case 1:
+						this->ryunosuke->getMSingleMovement()->unlock();
+					case 0:
+						break;
+					default:
+						break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopLeftAnimation()->unlock();
+				}
 
                 this->ryunosuke->toJump(fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
@@ -112,12 +152,52 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
 
-				this->ryunosuke->getMStopAnimation()->lock();
-				this->nodeSprite->stopAction(this->movingAction);
-				this->ryunosuke->getMWallDetection()->unlock();
-				this->ryunosuke->getMSingleMovement()->unlock();
-				this->ryunosuke->getMJumpTrigger()->unlock();
-				this->ryunosuke->getMStopAnimation()->unlock();
+				if (this->sense > 0.0)
+				{
+					this->ryunosuke->getMStopRightAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+					case 3:
+						this->ryunosuke->getMJumpTrigger()->unlock();
+					case 2:
+						this->ryunosuke->getMWallDetection()->unlock();
+					case 1:
+						this->ryunosuke->getMSingleMovement()->unlock();
+					case 0:
+						break;
+					default:
+						break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopRightAnimation()->unlock();
+				}
+				else
+				{
+					this->ryunosuke->getMStopLeftAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+					case 3:
+						this->ryunosuke->getMJumpTrigger()->unlock();
+					case 2:
+						this->ryunosuke->getMWallDetection()->unlock();
+					case 1:
+						this->ryunosuke->getMSingleMovement()->unlock();
+					case 0:
+						break;
+					default:
+						break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopLeftAnimation()->unlock();
+				}
 
                 this->ryunosuke->toJump(-fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
@@ -131,12 +211,52 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
             {
 				std::try_lock(this->mGestureMade, this->mForcingUntouch);
 
-				this->ryunosuke->getMStopAnimation()->lock();
-				this->nodeSprite->stopAction(this->movingAction);
-				this->ryunosuke->getMWallDetection()->unlock();
-				this->ryunosuke->getMSingleMovement()->unlock();
-				this->ryunosuke->getMJumpTrigger()->unlock();
-				this->ryunosuke->getMStopAnimation()->unlock();
+				if (this->sense > 0.0)
+				{
+					this->ryunosuke->getMStopRightAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+					case 3:
+						this->ryunosuke->getMJumpTrigger()->unlock();
+					case 2:
+						this->ryunosuke->getMWallDetection()->unlock();
+					case 1:
+						this->ryunosuke->getMSingleMovement()->unlock();
+					case 0:
+						break;
+					default:
+						break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopRightAnimation()->unlock();
+				}
+				else
+				{
+					this->ryunosuke->getMStopLeftAnimation()->lock();
+					this->ryunosuke->getMMutexState()->lock();
+
+					this->nodeSprite->stopAction(this->movingAction);
+					switch (this->ryunosuke->getMutexState())
+					{
+					case 3:
+						this->ryunosuke->getMJumpTrigger()->unlock();
+					case 2:
+						this->ryunosuke->getMWallDetection()->unlock();
+					case 1:
+						this->ryunosuke->getMSingleMovement()->unlock();
+					case 0:
+						break;
+					default:
+						break;
+					}
+
+					this->ryunosuke->getMMutexState()->unlock();
+					this->ryunosuke->getMStopLeftAnimation()->unlock();
+				}
 
                 this->ryunosuke->toJump(0.0, true);
 				this->ryunosuke->toStop(this->sense);
@@ -152,13 +272,54 @@ void NinjaM::MovementTouch::endMovement(cocos2d::Touch* touch, cocos2d::Event* e
 {
 	this->nodeSprite->stopAction(this->movingAction);
 
-	this->ryunosuke->getMStopAnimation()->lock();
-	this->ryunosuke->getMWallDetection()->unlock();
-	this->ryunosuke->getMSingleMovement()->unlock();
-	this->ryunosuke->getMJumpTrigger()->unlock();
-	this->ryunosuke->toStop(this->sense);
-	this->ryunosuke->getMStopAnimation()->unlock();
+	if (this->sense > 0.0)
+	{
+		this->ryunosuke->getMStopRightAnimation()->lock();
+		this->ryunosuke->getMMutexState()->lock();
 
+		this->nodeSprite->stopAction(this->movingAction);
+		switch (this->ryunosuke->getMutexState())
+		{
+		case 3:
+			this->ryunosuke->getMJumpTrigger()->unlock();
+		case 2:
+			this->ryunosuke->getMWallDetection()->unlock();
+		case 1:
+			this->ryunosuke->getMSingleMovement()->unlock();
+		case 0:
+			break;
+		default:
+			break;
+		}
+
+		this->ryunosuke->getMMutexState()->unlock();
+		this->ryunosuke->getMStopRightAnimation()->unlock();
+	}
+	else
+	{
+		this->ryunosuke->getMStopLeftAnimation()->lock();
+		this->ryunosuke->getMMutexState()->lock();
+
+		this->nodeSprite->stopAction(this->movingAction);
+		switch (this->ryunosuke->getMutexState())
+		{
+		case 3:
+			this->ryunosuke->getMJumpTrigger()->unlock();
+		case 2:
+			this->ryunosuke->getMWallDetection()->unlock();
+		case 1:
+			this->ryunosuke->getMSingleMovement()->unlock();
+		case 0:
+			break;
+		default:
+			break;
+		}
+
+		this->ryunosuke->getMMutexState()->unlock();
+		this->ryunosuke->getMStopLeftAnimation()->unlock();
+	}
+
+	this->ryunosuke->toStop(this->sense);
 	this->nodeSprite->setPosition(this->position);
 	this->mDoubleTouch.unlock();
 }
