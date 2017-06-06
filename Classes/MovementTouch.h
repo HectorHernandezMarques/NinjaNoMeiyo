@@ -32,7 +32,6 @@ namespace NinjaM{
         int sense;
 		cocos2d::Vec2 initialVelocity;
 		cocos2d::Sequence *jumpCleanerSequence;
-		cocos2d::Action *movingAction;
 	protected:
 	    void toMoveAfterWait(float sense);
 

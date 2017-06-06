@@ -20,6 +20,8 @@ public:
 private:
 
     cocos2d::PhysicsWorld *sceneWorld;
+
+	void createWorld(std::string path, cocos2d::Size boxSize);
 };
 
 #endif // __LEVELONE_SCENE_H__

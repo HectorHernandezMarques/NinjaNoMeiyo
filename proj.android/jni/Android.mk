@@ -17,8 +17,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Node.cpp\
                    ../../Classes/Touch.cpp\
                    ../../Classes/MovementTouch.cpp\
+                   ../../Classes/Surface.cpp\
                    ../../Classes/PhysicNode.cpp\
-                   ../../Classes/Terrain.cpp\
+                   ../../Classes/Limit.cpp\
                    ../../Classes/Character.cpp\
                    ../../Classes/Ryunosuke.cpp
 

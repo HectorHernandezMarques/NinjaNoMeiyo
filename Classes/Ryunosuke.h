@@ -27,13 +27,8 @@ namespace NinjaM{
 
 		void setEventDispatcher();
 
-		std::mutex* getMWallDetection() { return &(this->mWallDetection); }
-		std::mutex* getMJumpTrigger() { return &(this->mJumpTrigger); }
-		std::mutex* getMSingleMovement() { return &(this->mSingleMovement); }
-		std::mutex* getMStopAnimation() { return &(this->mStopAnimation); }
-
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mStopAnimation;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
@@ -51,10 +46,6 @@ namespace NinjaM{
 		std::set <cocos2d::Node*> edgeFloors; //0x000024
 		std::set <cocos2d::Node*> edgeRightWalls; //0x000034
 		std::set <cocos2d::Node*> edgeLeftWalls; //0x000044
-
-		//cocos2d::Node *edgeFloorNode;
-		//cocos2d::Node *rightEdgeWallNode;
-		//cocos2d::Node *leftEdgeWallNode;
 
         cocos2d::Size boxSize;
 

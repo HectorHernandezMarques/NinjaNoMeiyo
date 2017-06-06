@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="80" tileheight="80" nextobjectid="415">
+ <tileset firstgid="1" name="GroundUpper" tilewidth="80" tileheight="80" tilecount="1" columns="1">
+  <image source="../GroundUpper.png" width="80" height="80"/>
+ </tileset>
+ <tileset firstgid="2" name="GroundLower" tilewidth="80" tileheight="80" tilecount="1" columns="1">
+  <image source="../GroundLower.png" width="80" height="80"/>
+ </tileset>
+ <tileset firstgid="3" source="Box.tsx"/>
+ <tileset firstgid="4" source="LimitsBox.tsx"/>
+ <tileset firstgid="5" source="SurfaceBox.tsx"/>
+ <layer name="Capa de Patrones 1" width="100" height="100" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
+0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <objectgroup name="Textures">
+  <object id="10" type="GroundUpper.png" gid="1" x="0" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="130" type="GroundUpper.png" gid="1" x="80" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="131" type="GroundUpper.png" gid="1" x="160" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="132" type="GroundUpper.png" gid="1" x="240" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="133" type="GroundUpper.png" gid="1" x="480" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="134" type="GroundUpper.png" gid="1" x="320" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="135" type="GroundUpper.png" gid="1" x="400" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="136" type="GroundUpper.png" gid="1" x="560" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="139" type="GroundUpper.png" gid="1" x="640" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="258" type="Box.png" gid="3" x="80" y="5920" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="261" type="Box.png" gid="3" x="80" y="5840" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="262" type="Box.png" gid="3" x="80" y="5760" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="263" type="Box.png" gid="3" x="80" y="5680" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="264" type="Box.png" gid="3" x="80" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="265" type="Box.png" gid="3" x="80" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="5"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="266" type="Box.png" gid="3" x="80" y="5440" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="267" type="Box.png" gid="3" x="80" y="5520" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="268" type="Box.png" gid="3" x="160" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="269" type="Box.png" gid="3" x="240" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="270" type="Box.png" gid="3" x="320" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="271" type="Box.png" gid="3" x="560" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="272" type="Box.png" gid="3" x="400" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="273" type="Box.png" gid="3" x="480" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="274" type="Box.png" gid="3" x="640" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="6"/>
+    <property name="upperSurfaceBitmask" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="275" type="Box.png" gid="3" x="640" y="5440" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="276" type="Box.png" gid="3" x="640" y="5520" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="277" type="Box.png" gid="3" x="640" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="18"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="278" type="Box.png" gid="3" x="560" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="280" type="Box.png" gid="3" x="480" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="281" type="Box.png" gid="3" x="400" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="282" type="Box.png" gid="3" x="320" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="5"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="284" type="GroundUpper.png" gid="1" x="1360" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="285" type="GroundUpper.png" gid="1" x="1120" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="286" type="GroundUpper.png" gid="1" x="800" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="287" type="GroundUpper.png" gid="1" x="720" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="288" type="GroundUpper.png" gid="1" x="1280" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="289" type="GroundUpper.png" gid="1" x="960" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="290" type="GroundUpper.png" gid="1" x="880" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="291" type="GroundUpper.png" gid="1" x="1040" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="292" type="GroundUpper.png" gid="1" x="1200" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="293" type="GroundUpper.png" gid="1" x="1680" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="294" type="GroundUpper.png" gid="1" x="2240" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="295" type="GroundUpper.png" gid="1" x="1520" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="296" type="GroundUpper.png" gid="1" x="1440" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="297" type="GroundUpper.png" gid="1" x="2320" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="298" type="GroundUpper.png" gid="1" x="2160" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="300" type="GroundUpper.png" gid="1" x="1600" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="301" type="GroundUpper.png" gid="1" x="1760" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="302" type="GroundUpper.png" gid="1" x="1840" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="303" type="GroundUpper.png" gid="1" x="2640" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="304" type="GroundUpper.png" gid="1" x="2800" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="305" type="GroundUpper.png" gid="1" x="2080" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="306" type="GroundUpper.png" gid="1" x="1920" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="307" type="GroundUpper.png" gid="1" x="2560" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="308" type="GroundUpper.png" gid="1" x="2720" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="309" type="GroundUpper.png" gid="1" x="2000" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="310" type="GroundUpper.png" gid="1" x="2400" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="311" type="GroundUpper.png" gid="1" x="3120" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="313" type="GroundUpper.png" gid="1" x="4400" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="314" type="GroundUpper.png" gid="1" x="5360" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="315" type="GroundUpper.png" gid="1" x="2960" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="316" type="GroundUpper.png" gid="1" x="2880" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="317" type="GroundUpper.png" gid="1" x="4880" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="318" type="GroundUpper.png" gid="1" x="5120" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="319" type="GroundUpper.png" gid="1" x="4800" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="320" type="GroundUpper.png" gid="1" x="4560" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="321" type="GroundUpper.png" gid="1" x="3760" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="323" type="GroundUpper.png" gid="1" x="5680" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="324" type="GroundUpper.png" gid="1" x="3920" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="325" type="GroundUpper.png" gid="1" x="3200" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="326" type="GroundUpper.png" gid="1" x="3040" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="327" type="GroundUpper.png" gid="1" x="4640" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="328" type="GroundUpper.png" gid="1" x="4080" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="329" type="GroundUpper.png" gid="1" x="3280" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="330" type="GroundUpper.png" gid="1" x="5440" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="331" type="GroundUpper.png" gid="1" x="5280" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="332" type="GroundUpper.png" gid="1" x="5040" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="333" type="GroundUpper.png" gid="1" x="5600" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="334" type="GroundUpper.png" gid="1" x="5520" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="335" type="GroundUpper.png" gid="1" x="4240" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="336" type="GroundUpper.png" gid="1" x="3520" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="337" type="GroundUpper.png" gid="1" x="4960" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="338" type="GroundUpper.png" gid="1" x="5200" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="339" type="GroundUpper.png" gid="1" x="4480" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="340" type="GroundUpper.png" gid="1" x="3360" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="341" type="GroundUpper.png" gid="1" x="4720" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="342" type="GroundUpper.png" gid="1" x="4000" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="343" type="GroundUpper.png" gid="1" x="4320" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="344" type="GroundUpper.png" gid="1" x="4160" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="345" type="GroundUpper.png" gid="1" x="3440" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="346" type="GroundUpper.png" gid="1" x="3840" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="347" type="GroundUpper.png" gid="1" x="5760" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="348" type="GroundUpper.png" gid="1" x="6640" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="349" type="GroundUpper.png" gid="1" x="6720" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="350" type="GroundUpper.png" gid="1" x="7040" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="351" type="GroundUpper.png" gid="1" x="6560" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="352" type="GroundUpper.png" gid="1" x="6800" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="353" type="GroundUpper.png" gid="1" x="6160" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="354" type="GroundUpper.png" gid="1" x="6480" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="355" type="GroundUpper.png" gid="1" x="7520" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="356" type="GroundUpper.png" gid="1" x="6400" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="357" type="GroundUpper.png" gid="1" x="6320" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="358" type="GroundUpper.png" gid="1" x="7440" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="359" type="GroundUpper.png" gid="1" x="6880" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="360" type="GroundUpper.png" gid="1" x="6240" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="361" type="GroundUpper.png" gid="1" x="6000" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="362" type="GroundUpper.png" gid="1" x="7360" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="363" type="GroundUpper.png" gid="1" x="7200" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="364" type="GroundUpper.png" gid="1" x="7680" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="365" type="GroundUpper.png" gid="1" x="7280" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="366" type="GroundUpper.png" gid="1" x="6960" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="367" type="GroundUpper.png" gid="1" x="5840" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="368" type="GroundUpper.png" gid="1" x="5920" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="369" type="GroundUpper.png" gid="1" x="7600" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="370" type="GroundUpper.png" gid="1" x="6080" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="371" type="GroundUpper.png" gid="1" x="7120" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="372" type="GroundUpper.png" gid="1" x="7760" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="373" type="GroundUpper.png" gid="1" x="7840" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="374" type="GroundUpper.png" gid="1" x="7920" y="6000" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" name="Surfaces">
+  <object id="391" gid="5" x="80" y="5920" width="80" height="560">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="392" gid="5" x="400" y="5600" width="240" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="393" gid="5" x="640" y="5520" width="80" height="160">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="1"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="2"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="394" gid="5" x="160" y="5360" width="480" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="395" gid="5" x="640" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="18"/>
+    <property name="upperSurfaceBitmask" type="int" value="128"/>
+   </properties>
+  </object>
+  <object id="396" gid="5" x="320" y="5600" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="5"/>
+    <property name="lowerSurfaceBitmask" type="int" value="3"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="397" gid="5" x="640" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="6"/>
+    <property name="upperSurfaceBitmask" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="399" gid="5" x="80" y="5360" width="80" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="5"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="400" gid="5" x="0" y="6000" width="2400" height="80">
+   <properties>
+    <property name="leftSurfaceBitmask" type="int" value="128"/>
+    <property name="lowerSurfaceBitmask" type="int" value="128"/>
+    <property name="rightSurfaceBitmask" type="int" value="128"/>
+    <property name="upperSurfaceBitmask" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="413" gid="5" x="2400" y="6000" width="80" height="80"/>
+ </objectgroup>
+ <objectgroup name="Limits">
+  <object id="401" gid="4" x="80" y="5360" width="640" height="80">
+   <properties>
+    <property name="limitBitmask" type="int" value="130"/>
+   </properties>
+  </object>
+  <object id="408" gid="4" x="80" y="5920" width="80" height="640">
+   <properties>
+    <property name="limitBitmask" type="int" value="130"/>
+   </properties>
+  </object>
+  <object id="409" gid="4" x="640" y="5600" width="80" height="320">
+   <properties>
+    <property name="limitBitmask" type="int" value="130"/>
+   </properties>
+  </object>
+  <object id="410" gid="4" x="320" y="5600" width="400" height="80">
+   <properties>
+    <property name="limitBitmask" type="int" value="130"/>
+   </properties>
+  </object>
+  <object id="412" gid="4" x="0" y="6000" width="2480" height="80">
+   <properties>
+    <property name="limitBitmask" type="int" value="130"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

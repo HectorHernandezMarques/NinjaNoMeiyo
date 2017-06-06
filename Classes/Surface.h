@@ -2,8 +2,8 @@
 // Created by AntonioMontana on 14/03/2017.
 //
 
-#ifndef NINJANOMEIYO_TERRAIN_H
-#define NINJANOMEIYO_TERRAIN_H
+#ifndef NINJANOMEIYO_SURFACE_H
+#define NINJANOMEIYO_SURFACE_H
 
 #include <string>
 #include "Definitions.h"
@@ -12,12 +12,12 @@
 
 namespace NinjaM{
 
-    class Terrain : public NinjaM::PhysicNode
+    class Surface : public NinjaM::Node
     {
     public:
-        Terrain();
-        Terrain(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation);
-        virtual ~Terrain();
+        Surface();
+        Surface(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, cocos2d::Size size);
+        virtual ~Surface();
 
         cocos2d::PhysicsBody* getSurfaceBody(int index) {return surfaceBody[index];}
 
@@ -38,7 +38,8 @@ namespace NinjaM{
     private:
         cocos2d::Node *surfaceNode[SURFACE_NUMBER];
         cocos2d::PhysicsBody *surfaceBody[SURFACE_NUMBER];
+		cocos2d::Size contentSize;
     };
 }
 
-#endif //NINJANOMEIYO_TERRAIN_H
+#endif //NINJANOMEIYO_SURFACE_H

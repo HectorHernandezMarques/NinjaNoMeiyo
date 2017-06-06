@@ -31,5 +31,4 @@ void NinjaM::Node::spawn(cocos2d::Layer *layer)
     this->nodeSprite->setPosition(this->position);
 	this->nodeSprite->setAnchorPoint(this->anchorPoint);
     layer->addChild(nodeSprite);
-
 }
