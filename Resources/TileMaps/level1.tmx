@@ -1145,26 +1145,66 @@
  <objectgroup name="Limits">
   <object id="401" gid="4" x="80" y="5360" width="640" height="80">
    <properties>
+    <property name="0x" type="int" value="1"/>
+    <property name="0y" type="int" value="0"/>
+    <property name="1x" type="int" value="-1"/>
+    <property name="1y" type="int" value="0"/>
+    <property name="2x" type="int" value="0"/>
+    <property name="2y" type="int" value="0"/>
+    <property name="3x" type="int" value="0"/>
+    <property name="3y" type="int" value="0"/>
     <property name="limitBitmask" type="int" value="130"/>
    </properties>
   </object>
   <object id="408" gid="4" x="80" y="5920" width="80" height="640">
    <properties>
+    <property name="0x" type="int" value="0"/>
+    <property name="0y" type="int" value="0"/>
+    <property name="1x" type="int" value="0"/>
+    <property name="1y" type="int" value="0"/>
+    <property name="2x" type="int" value="0"/>
+    <property name="2y" type="int" value="-1"/>
+    <property name="3x" type="int" value="0"/>
+    <property name="3y" type="int" value="0"/>
     <property name="limitBitmask" type="int" value="130"/>
    </properties>
   </object>
   <object id="409" gid="4" x="640" y="5600" width="80" height="320">
    <properties>
+    <property name="0x" type="int" value="0"/>
+    <property name="0y" type="int" value="1"/>
+    <property name="1x" type="int" value="0"/>
+    <property name="1y" type="int" value="0"/>
+    <property name="2x" type="int" value="0"/>
+    <property name="2y" type="int" value="0"/>
+    <property name="3x" type="int" value="0"/>
+    <property name="3y" type="int" value="-1"/>
     <property name="limitBitmask" type="int" value="130"/>
    </properties>
   </object>
   <object id="410" gid="4" x="320" y="5600" width="400" height="80">
    <properties>
+    <property name="0x" type="int" value="0"/>
+    <property name="0y" type="int" value="0"/>
+    <property name="1x" type="int" value="0"/>
+    <property name="1y" type="int" value="0"/>
+    <property name="2x" type="int" value="-1"/>
+    <property name="2y" type="int" value="0"/>
+    <property name="3x" type="int" value="0"/>
+    <property name="3y" type="int" value="0"/>
     <property name="limitBitmask" type="int" value="130"/>
    </properties>
   </object>
   <object id="412" gid="4" x="0" y="6000" width="2480" height="80">
    <properties>
+    <property name="0x" type="int" value="0"/>
+    <property name="0y" type="int" value="0"/>
+    <property name="1x" type="int" value="-1"/>
+    <property name="1y" type="int" value="0"/>
+    <property name="2x" type="int" value="0"/>
+    <property name="2y" type="int" value="0"/>
+    <property name="3x" type="int" value="0"/>
+    <property name="3y" type="int" value="0"/>
     <property name="limitBitmask" type="int" value="130"/>
    </properties>
   </object>
