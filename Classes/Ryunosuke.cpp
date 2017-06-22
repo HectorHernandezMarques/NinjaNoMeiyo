@@ -572,6 +572,10 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 	cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
+	if ((a->getCollisionBitmask() != RYUNOSUKE_BITMASK && b->getCollisionBitmask() != RYUNOSUKE_BITMASK))
+	{
+		return false;
+	}
 	if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == FIXED_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == FIXED_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		return true;
@@ -1241,7 +1245,10 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 		{
 			this->rightWalls.erase(a->getLinkedNode());
 		}
-        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		if (this->rightWalls.empty() && this->edgeRightWalls.empty())
+		{
+			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		}
 		CCLOG("Right Wall Separation");
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
@@ -1254,7 +1261,10 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 		{
 			this->leftWalls.erase(a->getLinkedNode());
 		}
-        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		if (this->leftWalls.empty() && this->edgeLeftWalls.empty())
+		{
+			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		}
 		CCLOG("Left Wall Separation");
     }
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK) || (a->getCollisionBitmask() == EDGE_FLOOR_RIGHT_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
@@ -1291,7 +1301,10 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 		{
 			this->edgeRightWalls.erase(a->getLinkedNode());
 		}
-        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		if (this->rightWalls.empty() && this->edgeRightWalls.empty())
+		{
+			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		}
 		CCLOG("Edge Right Wall Separation");
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == EDGE_LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == EDGE_LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
@@ -1304,7 +1317,10 @@ bool NinjaM::Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact)
 		{
 			this->edgeLeftWalls.erase(a->getLinkedNode());
 		}
-        this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		if (this->leftWalls.empty() && this->edgeLeftWalls.empty())
+		{
+			this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+		}
 		CCLOG("Edge Left Wall Separation");
 	}
 	this->mWallDetection.unlock();

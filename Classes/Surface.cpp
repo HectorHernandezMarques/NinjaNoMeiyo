@@ -70,46 +70,87 @@ void NinjaM::Surface::spawn(cocos2d::Layer *layer, int upperSurfaceBitmask, int 
 {
 	for (int i = 0; i < SURFACE_NUMBER; i++)
 	{
-		this->surfaceNode[i] = cocos2d::Node::create();
 		switch (i)
 		{
 		case UPPER_SURFACE_INDEX:
-			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width / 2, this->position.y + this->contentSize.height));
+			if (upperSurfaceBitmask != 128)
+			{
+				this->surfaceNode[i] = cocos2d::Node::create();
+				this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width / 2, this->position.y + this->contentSize.height));
 
-			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->contentSize.width, 1));
-			this->surfaceBody[i]->setCollisionBitmask(upperSurfaceBitmask);
+				this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->contentSize.width, 1));
+				this->surfaceBody[i]->setCollisionBitmask(upperSurfaceBitmask);
+
+				this->surfaceBody[i]->setDynamic(false);
+				this->surfaceBody[i]->setContactTestBitmask(true);
+				this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
+				this->surfaceBody[i]->setRotationEnable(false);
+
+				this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
+				layer->addChild(this->surfaceNode[i]);
+			}
 
 			break;
 
 		case RIGHT_SURFACE_INDEX:
-			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width, this->position.y + this->contentSize.height / 2));
+			if (rightSurfaceBitmask != 128)
+			{
+				this->surfaceNode[i] = cocos2d::Node::create();
+				this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width, this->position.y + this->contentSize.height / 2));
 
-			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->contentSize.height));
-			this->surfaceBody[i]->setCollisionBitmask(rightSurfaceBitmask);
+				this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->contentSize.height));
+				this->surfaceBody[i]->setCollisionBitmask(rightSurfaceBitmask);
+
+				this->surfaceBody[i]->setDynamic(false);
+				this->surfaceBody[i]->setContactTestBitmask(true);
+				this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
+				this->surfaceBody[i]->setRotationEnable(false);
+
+				this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
+				layer->addChild(this->surfaceNode[i]);
+			}
+
 			break;
 
 		case LEFT_SURFACE_INDEX:
-			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x, this->position.y + this->contentSize.height / 2));
+			if (leftSurfaceBitmask != 128)
+			{
+				this->surfaceNode[i] = cocos2d::Node::create();
+				this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x, this->position.y + this->contentSize.height / 2));
 
-			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->contentSize.height));
-			this->surfaceBody[i]->setCollisionBitmask(leftSurfaceBitmask);
+				this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(1, this->contentSize.height));
+				this->surfaceBody[i]->setCollisionBitmask(leftSurfaceBitmask);
+
+				this->surfaceBody[i]->setDynamic(false);
+				this->surfaceBody[i]->setContactTestBitmask(true);
+				this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
+				this->surfaceBody[i]->setRotationEnable(false);
+
+				this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
+				layer->addChild(this->surfaceNode[i]);
+			}
+
 			break;
 
 		case LOWER_SURFACE_INDEX:
-			this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width / 2, this->position.y));
+			if (lowerSurfaceBitmask != 128)
+			{
+				this->surfaceNode[i] = cocos2d::Node::create();
+				this->surfaceNode[i]->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width / 2, this->position.y));
 
-			this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->contentSize.width, 1));
-			this->surfaceBody[i]->setCollisionBitmask(lowerSurfaceBitmask);
+				this->surfaceBody[i] = cocos2d::PhysicsBody::createBox(cocos2d::Size(this->contentSize.width, 1));
+				this->surfaceBody[i]->setCollisionBitmask(lowerSurfaceBitmask);
+
+				this->surfaceBody[i]->setDynamic(false);
+				this->surfaceBody[i]->setContactTestBitmask(true);
+				this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
+				this->surfaceBody[i]->setRotationEnable(false);
+
+				this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
+				layer->addChild(this->surfaceNode[i]);
+			}
+
 			break;
 		}
-
-		this->surfaceBody[i]->setDynamic(false);
-		this->surfaceBody[i]->setContactTestBitmask(true);
-		this->surfaceBody[i]->setOwnerNode(this->nodeSprite);
-		this->surfaceBody[i]->setRotationEnable(false);
-
-		this->surfaceNode[i]->setPhysicsBody(this->surfaceBody[i]);
-		layer->addChild(this->surfaceNode[i]);
-
 	}
 }

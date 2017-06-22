@@ -216,11 +216,9 @@ void LevelOneScene::createWorld(std::string path, Size boxSize)
 		properties = object.asValueMap();
 
 		Size surfaceSize((properties["width"].asInt() / tiledBoxSize.width)*boxSize.width, (properties["height"].asInt() / tiledBoxSize.height)*boxSize.height);
-		CCLOG("TAMANYO SUFACEBOX: %f, %f", (properties["width"].asInt() / tiledBoxSize.width), (properties["height"].asInt() / tiledBoxSize.height));
 		Vec2 position((properties["x"].asInt() / tiledBoxSize.width)*boxSize.width, ((properties["y"].asInt() / tiledBoxSize.height) + (properties["height"].asInt() / tiledBoxSize.height) - 1)*boxSize.height);
 		NinjaM::Node *box = new NinjaM::Limit(Director::getInstance()->getVisibleSize(), position, Vec2::ZERO, "", 0.0, surfaceSize, 4);
 		((NinjaM::Limit*)box)->setPoints(Vec2(properties["0x"].asInt()*boxSize.width, properties["0y"].asInt()*boxSize.height), Vec2(surfaceSize.width + properties["1x"].asInt()*boxSize.width, properties["1y"].asInt()*boxSize.height), Vec2(surfaceSize.width + properties["2x"].asInt()*boxSize.width, surfaceSize.height + properties["2y"].asInt()*boxSize.height), Vec2(properties["3x"].asInt()*boxSize.width, surfaceSize.height + properties["3y"].asInt()*boxSize.height));
 		((NinjaM::Limit*)box)->spawn(this, properties["limitBitmask"].asInt());
 	}
-	CCLOG("TAMANYO BOX: %f, %f", boxSize.width, boxSize.height);
 }
