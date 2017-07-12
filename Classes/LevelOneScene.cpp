@@ -11,7 +11,7 @@ Scene* LevelOneScene::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::createWithPhysics();
-    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_CONTACT);
 
     // 'layer' is an autorelease object
     auto layer = LevelOneScene::create();
@@ -207,7 +207,7 @@ void LevelOneScene::createWorld(std::string path, Size boxSize)
 		NinjaM::Node *box = new NinjaM::Surface(Director::getInstance()->getVisibleSize(), Vec2((properties["x"].asInt() / tiledBoxSize.width)*boxSize.width, ((properties["y"].asInt() / tiledBoxSize.height) + (properties["height"].asInt() / tiledBoxSize.height) - 1)*boxSize.height), Vec2::ZERO, "", 0.0, surfaceSize);
 		((NinjaM::Surface*)box)->spawn(this, properties["upperSurfaceBitmask"].asInt(), properties["rightSurfaceBitmask"].asInt(), properties["leftSurfaceBitmask"].asInt(), properties["lowerSurfaceBitmask"].asInt());
 	}
-
+	/*
 	objects = map->getObjectGroup("Limits");
 	vectorObjects = objects->getObjects();
 
@@ -220,5 +220,44 @@ void LevelOneScene::createWorld(std::string path, Size boxSize)
 		NinjaM::Node *box = new NinjaM::Limit(Director::getInstance()->getVisibleSize(), position, Vec2::ZERO, "", 0.0, surfaceSize, 4);
 		((NinjaM::Limit*)box)->setPoints(Vec2(properties["0x"].asInt()*boxSize.width, properties["0y"].asInt()*boxSize.height), Vec2(surfaceSize.width + properties["1x"].asInt()*boxSize.width, properties["1y"].asInt()*boxSize.height), Vec2(surfaceSize.width + properties["2x"].asInt()*boxSize.width, surfaceSize.height + properties["2y"].asInt()*boxSize.height), Vec2(properties["3x"].asInt()*boxSize.width, surfaceSize.height + properties["3y"].asInt()*boxSize.height));
 		((NinjaM::Limit*)box)->spawn(this, properties["limitBitmask"].asInt());
+	}*/
+
+	objects = map->getObjectGroup("Limits");
+	vectorObjects = objects->getObjects();
+	std::vector<std::vector<Vec2>> vecObjects;
+	Vec2 pointsArray[32];
+
+	int numObjects = 1000;
+	int numPoints = 0;
+	for (int i = 0; i < numObjects; i++) {
+		numObjects = (numObjects == 1000) ? 0 : numObjects;
+		Vec2 position;
+		std::vector<Vec2> vecPoints;
+		vecPoints.reserve(32);
+		numPoints = 0;
+		for (const auto& object : vectorObjects)
+		{
+			properties = object.asValueMap();
+			if (properties["Object"].asInt() == i) {
+				pointsArray[properties["Index"].asInt()] = Vec2((properties["x"].asInt() / tiledBoxSize.width)*boxSize.width + properties["XVar"].asInt(), ((properties["y"].asInt() / tiledBoxSize.height) + (properties["height"].asInt() / tiledBoxSize.height) - 1)*boxSize.height + properties["YVar"].asInt());
+				if (properties["IsAnchor"].asInt()) {
+					position = Vec2((properties["x"].asInt() / tiledBoxSize.width)*boxSize.width + properties["XVar"].asInt(), ((properties["y"].asInt() / tiledBoxSize.height) + (properties["height"].asInt() / tiledBoxSize.height) - 1)*boxSize.height + properties["YVar"].asInt());
+				}
+				numPoints++;
+			}			
+			if (i == 0)
+			{
+				numObjects = (numObjects < properties["Object"].asInt() + 1) ? properties["Object"].asInt() + 1 : numObjects;
+			}
+
+			for (int j = 0; j < numPoints; j++)
+			{
+				vecPoints.insert(vecPoints.begin() + j, pointsArray[j]);
+			}
+
+		}
+		NinjaM::Node *box = new NinjaM::Limit(Director::getInstance()->getVisibleSize(), position, Vec2::ZERO, "", 0.0, vecPoints, numPoints);
+		((NinjaM::Limit*)box)->spawn(this, properties["limitBitmask"].asInt());
+		//vecObjects.insert(vecObjects.begin() + properties["Object"].asInt(), vecPoints);
 	}
 }

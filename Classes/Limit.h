@@ -16,15 +16,14 @@ namespace NinjaM{
     {
     public:
         Limit();
-        Limit(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, cocos2d::Size contentSize, int count);
+        Limit(cocos2d::Size visibleSize, cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, std::vector<cocos2d::Vec2> points, int count);
         virtual ~Limit();
 
-		void setPoints(cocos2d::Vec2 p0, cocos2d::Vec2 p1, cocos2d::Vec2 p2, cocos2d::Vec2 p3);
+		void setPoints(std::vector<cocos2d::Vec2> points);
         virtual void spawn(cocos2d::Layer *layer, int limitBitmask);
 
     private:
-		cocos2d::Size contentSize;
-		cocos2d::Vec2 points[4];
+		std::vector<cocos2d::Vec2> points;
 		int count;
     };
 }

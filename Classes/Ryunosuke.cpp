@@ -38,7 +38,30 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 	layer->runAction(followTheSprite);
 }
 
+
 void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
+{
+	
+	this->mContiniousMovement.lock();
+	if (this->movementAction != nullptr) { this->nodeSprite->stopAction(this->movementAction); }
+	this->movementAction = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::toMoveSingle, this , velocity, waitWallDetection)), nullptr));
+	this->nodeSprite->runAction(this->movementAction);
+	this->mContiniousMovement.unlock();
+	/*if (velocity < 0)
+	{
+		this->nodeSprite->stopAllActions();
+		CCLOG("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+	}
+	else
+	{
+		this->mContiniousMovement.lock();
+		this->movementAction = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::toMoveSingle, this, velocity, waitWallDetection)), nullptr));
+		this->nodeSprite->runAction(this->movementAction);
+		this->mContiniousMovement.unlock();
+	}*/
+}
+
+void NinjaM::Ryunosuke::toMoveSingle(float velocity, bool waitWallDetection)
 {
 	CCLOG("(toMove)");
 	if (waitWallDetection)
@@ -65,7 +88,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 		    this->rightMovement = true;
 	        this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 			CCLOG("(toMove) Right Move -- In wall but not in Floor");
 	    }
 		else if (!this->edgeRightWalls.empty() && !this->edgeFloors.empty())
@@ -95,7 +118,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 						this->rightMovement = true;
 						this->lastXVelocity = fabs(velocity);
 						this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-						this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+						this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 						CCLOG("(toMove) Right Move -- In the Edge corner OVER the floor. Near the Right Wall though");
 					}
 				}
@@ -105,7 +128,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 					this->rightMovement = true;
 					this->lastXVelocity = fabs(velocity);
 					this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 					CCLOG("(toMove) Right Move -- In the Edge corner UNDER the floor.");
 				}
 			}
@@ -115,7 +138,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 				this->rightMovement = true;
 				this->lastXVelocity = fabs(velocity);
 				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 				CCLOG("(toMove) Right Move -- In the Edge corner OVER the floor. Internal Corner though");
 
 			}
@@ -145,7 +168,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 		    this->leftMovement = true;
 		    this->lastXVelocity = fabs(velocity);
 	        this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+	        this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 			CCLOG("(toMove) Left Move -- In wall but not in Floor");
 	    }
 		else if (!this->edgeLeftWalls.empty() && !this->edgeFloors.empty())
@@ -175,7 +198,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 						this->leftMovement = true;
 						this->lastXVelocity = fabs(velocity);
 						this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-						this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+						this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 						CCLOG("(toMove) Left Move -- In the Edge corner OVER the floor. Near the Left Wall though");
 					}
 				}
@@ -185,7 +208,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 					this->leftMovement = true;
 					this->lastXVelocity = fabs(velocity);
 					this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 					CCLOG("(toMove) Left Move -- In the Edge corner UNDER the floor.");
 				}
 			}
@@ -195,7 +218,7 @@ void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 				this->leftMovement = true;
 				this->lastXVelocity = fabs(velocity);
 				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, 0.0));
+				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 				CCLOG("(toMove) Left Move -- In the Edge corner OVER the floor. Internal Corner though");
 			}
 		}
@@ -220,7 +243,11 @@ void NinjaM::Ryunosuke::toStop(float velocity)
     this->nodeBody->setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 	if (velocity>0.0)
 	{
+		this->mContiniousMovement.lock();
+		this->nodeSprite->stopAction(this->movementAction);
 		this->rightMovement = false;
+		this->mContiniousMovement.unlock();
+
 		if (!this->leftMovement)
 		{
 		    mJumpTrigger.lock();
@@ -247,7 +274,11 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 	}
 	else
 	{
+		this->mContiniousMovement.lock();
+		this->nodeSprite->stopAction(this->movementAction);
 		this->leftMovement = false;
+		this->mContiniousMovement.unlock();
+
 		if (!this->rightMovement)
 		{
 		    mJumpTrigger.lock();

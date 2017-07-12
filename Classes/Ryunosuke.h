@@ -22,13 +22,14 @@ namespace NinjaM{
 
         virtual void spawn(cocos2d::Layer *layer);
 		void toMove(float velocity, bool waitWallDetection);
+		void toMoveSingle(float velocity, bool waitWallDetection);
 		void toStop(float velocity);
 		void toJump(float velocity, bool waitWallDetection);
 
 		void setEventDispatcher();
 
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mContiniousMovement;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
@@ -48,6 +49,7 @@ namespace NinjaM{
 		std::set <cocos2d::Node*> edgeLeftWalls; //0x000044
 
         cocos2d::Size boxSize;
+		cocos2d::Action *movementAction = nullptr;
 
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
