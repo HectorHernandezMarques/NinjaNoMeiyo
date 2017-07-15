@@ -1630,7 +1630,7 @@
   </object>
   <object id="626" gid="5" x="2640" y="6320" width="80" height="80">
    <properties>
-    <property name="leftSurfaceBitmask" type="int" value="18"/>
+    <property name="leftSurfaceBitmask" type="int" value="17"/>
     <property name="lowerSurfaceBitmask" type="int" value="3"/>
     <property name="rightSurfaceBitmask" type="int" value="128"/>
     <property name="upperSurfaceBitmask" type="int" value="128"/>
@@ -1910,7 +1910,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Limits">
+ <objectgroup name="Limits" visible="0">
   <object id="629" gid="4" x="80" y="5280" width="80" height="80">
    <properties>
     <property name="Index" type="int" value="0"/>
