@@ -84,7 +84,7 @@ bool LevelOneScene::init()
     // add the sprite as a child to this layer
     //this->addChild(sprite, 0);
 
-    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2((5)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().width, (5800 / 80)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().height), Vec2::ZERO, "Ryunosuke1D.png", 0.0, cocos2d::Sprite::create("BoxSample.png")->getContentSize());
+    NinjaM::Node *ryunosuke = new NinjaM::Ryunosuke(visibleSize, Vec2((5)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().width, (5800 / 80)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().height), Vec2::ZERO, "Ryunosuke0D.png", 0.0, cocos2d::Sprite::create("BoxSample.png")->getContentSize());
     ryunosuke->spawn(this);
 	((NinjaM::Ryunosuke*)ryunosuke)->setEventDispatcher();
 	

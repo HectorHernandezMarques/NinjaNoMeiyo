@@ -34,6 +34,8 @@ namespace NinjaM{
 		bool rightMovement = false;
 		bool leftMovement = false;
 		float lastXVelocity = 0.0;
+
+		int numberAnimation = 1;
 		
 		std::set <cocos2d::Node*> floors; //0x000020
 
@@ -50,12 +52,14 @@ namespace NinjaM{
 
         cocos2d::Size boxSize;
 		cocos2d::Action *movementAction = nullptr;
+		cocos2d::Action *movementAnimation = nullptr;
 
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
 		unsigned int jumpCounter = 0;
 
 		void jumpCleaner(unsigned int jumpCounter);
+		void moveAnimation(float velocity);
 	protected:
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);

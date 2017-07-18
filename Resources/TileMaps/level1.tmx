@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="80" tileheight="80" nextobjectid="717">
+<map version="1.0.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="80" tileheight="80" nextobjectid="4531">
  <tileset firstgid="1" name="GroundUpper" tilewidth="80" tileheight="80" tilecount="1" columns="1">
   <image source="../GroundUpper.png" width="80" height="80"/>
  </tileset>
@@ -1403,7 +1403,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" name="Surfaces">
+ <objectgroup draworder="index" name="Surfaces" visible="0">
   <object id="391" gid="5" x="80" y="5920" width="80" height="560">
    <properties>
     <property name="leftSurfaceBitmask" type="int" value="1"/>

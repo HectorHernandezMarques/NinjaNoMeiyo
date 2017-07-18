@@ -5,6 +5,16 @@
 #include <unistd.h>
 #include "./Ryunosuke.h"
 
+#include <sstream>
+#include <string>
+#include <iostream>
+
+std::string to_string(int num) {
+	std::ostringstream ss;
+	ss << num;
+	return ss.str();
+}
+
 NinjaM::Ryunosuke::Ryunosuke()
 {
 
@@ -39,12 +49,36 @@ void NinjaM::Ryunosuke::spawn(cocos2d::Layer *layer)
 }
 
 
+void NinjaM::Ryunosuke::moveAnimation(float velocity)
+{
+	std::string nameAnimation;
+	if (velocity > 0.0)
+	{
+		nameAnimation.append("Ryunosuke");
+		nameAnimation.append(to_string(this->numberAnimation++%RYUNOSUKE_ANIMATION_NUMBER));
+		nameAnimation.append("D.png");
+	}
+	else
+	{
+		nameAnimation.append("Ryunosuke");
+		nameAnimation.append(to_string(this->numberAnimation++%RYUNOSUKE_ANIMATION_NUMBER));
+		nameAnimation.append("I.png");
+	}
+	this->nodeSprite->setTexture(nameAnimation);
+}
+
 void NinjaM::Ryunosuke::toMove(float velocity, bool waitWallDetection)
 {
 	this->mContiniousMovement.lock();
 	if (this->movementAction != nullptr) { this->nodeSprite->stopAction(this->movementAction); }
+	if (this->movementAnimation != nullptr) { this->nodeSprite->stopAction(this->movementAnimation); }
+
 	this->movementAction = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::toMoveSingle, this , velocity, waitWallDetection)), nullptr));
 	this->nodeSprite->runAction(this->movementAction);
+
+	this->movementAnimation = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::Ryunosuke::moveAnimation, this , velocity)), cocos2d::DelayTime::create(RYUNOSUKE_ANIMATION_DELAY), nullptr));
+	this->nodeSprite->runAction(this->movementAnimation);
+
 	this->mContiniousMovement.unlock();
 }
 
@@ -146,7 +180,7 @@ void NinjaM::Ryunosuke::toMoveSingle(float velocity, bool waitWallDetection)
 		{
 			mJumpTrigger.unlock();
 		}
-		this->nodeSprite->setTexture("Ryunosuke1D.png");
+		//this->nodeSprite->setTexture("Ryunosuke1D.png");
 	}
 	else
 	{
@@ -237,7 +271,7 @@ void NinjaM::Ryunosuke::toMoveSingle(float velocity, bool waitWallDetection)
 		{
 			mJumpTrigger.unlock();
 		}
-		this->nodeSprite->setTexture("Ryunosuke1I.png");
+		//this->nodeSprite->setTexture("Ryunosuke1I.png");
 	}
 
 	this->mSingleMovement.unlock();
@@ -256,6 +290,7 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 	{
 		this->mContiniousMovement.lock();
 		this->nodeSprite->stopAction(this->movementAction);
+		this->nodeSprite->stopAction(this->movementAnimation);
 		this->rightMovement = false;
 		this->mContiniousMovement.unlock();
 
@@ -287,6 +322,7 @@ void NinjaM::Ryunosuke::toStop(float velocity)
 	{
 		this->mContiniousMovement.lock();
 		this->nodeSprite->stopAction(this->movementAction);
+		this->nodeSprite->stopAction(this->movementAnimation);
 		this->leftMovement = false;
 		this->mContiniousMovement.unlock();
 
@@ -1299,214 +1335,264 @@ bool NinjaM::Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact)
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == OIL_RIGHT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == OIL_RIGHT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->mWallDetection.lock();
+
+		cocos2d::Node *currentRyunosukeSprite;
+		cocos2d::Node *rightOilWallNode;
+
 		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			this->oilRightWalls.insert(b->getLinkedNode());
+			rightOilWallNode = b->getLinkedNode();
+			this->oilRightWalls.insert(rightOilWallNode);
+			currentRyunosukeSprite = a->getLinkedNode();
 		}
 		else
 		{
-			this->oilRightWalls.insert(a->getLinkedNode());
+			rightOilWallNode = a->getLinkedNode();
+			this->oilRightWalls.insert(rightOilWallNode);
+			currentRyunosukeSprite = b->getLinkedNode();
 		}
-		if (this->floors.empty() && this->edgeFloors.empty())
+
+		//Check if ryunosuke is over the floor detected.
+		bool ryunosukeOverRightOilFloor = false;
+		if (fabs((currentRyunosukeSprite->getPosition().x + this->nodeSprite->getContentSize().width) - (rightOilWallNode->getPosition().x + this->boxSize.width)) < fabs(currentRyunosukeSprite->getPosition().y - (rightOilWallNode->getPosition().y - this->boxSize.height / 2)))
 		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			ryunosukeOverRightOilFloor = true;
+		}
 
-				this->mNextJump.lock();
-				if (this->nextJump)
+		if (!ryunosukeOverRightOilFloor)
+		{
+			if (this->floors.empty() && this->edgeFloors.empty())
+			{
+				if (!this->rightMovement && !this->leftMovement)
 				{
-					this->toJump(nextJumpVelocity, false);
-					this->nextJump = false;
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					if (this->nextJump)
+					{
+						this->toJump(nextJumpVelocity, false);
+						this->nextJump = false;
+					}
+					this->mNextJump.unlock();
+
 				}
-				this->mNextJump.unlock();
+				else if (this->rightMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+				}
+				else if (this->leftMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+				}
+				else
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				CCLOG("(ContactBegion) - Oil Left Wall - Not on the floor");
 			}
 			else
 			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+				if (!this->rightMovement && !this->leftMovement)
+				{
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+					this->mNextJump.lock();
+					if (this->nextJump)
+					{
+						this->toJump(nextJumpVelocity, false);
+						this->nextJump = false;
+					}
+					this->mNextJump.unlock();
 
+				}
+				else if (this->rightMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				else if (this->leftMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				else
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				CCLOG("(ContactBegion) - Oil Right Wall - On the floor");
 			}
-			CCLOG("(ContactBegion) - Oil Right Wall - Not on the floor");
 		}
 		else
 		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				if (this->nextJump)
-				{
-					this->toJump(nextJumpVelocity, false);
-					this->nextJump = false;
-				}
-				this->mNextJump.unlock();
-
-			}
-			else if (this->rightMovement)
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			else if (this->leftMovement)
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			else
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			CCLOG("(ContactBegion) - Oil Right Wall - On the floor");
+			CCLOG("(ContactBegion) - Right Oil Wall - Over the upper Oil floor");
+			this->mWallDetection.unlock();
+			return false;
 		}
 		this->mWallDetection.unlock();
 	}
 	else if ((a->getCollisionBitmask() == RYUNOSUKE_BITMASK && b->getCollisionBitmask() == OIL_LEFT_OBSTACLE_BITMASK) || (a->getCollisionBitmask() == OIL_LEFT_OBSTACLE_BITMASK && b->getCollisionBitmask() == RYUNOSUKE_BITMASK))
 	{
 		this->mWallDetection.lock();
+
+		cocos2d::Node *currentRyunosukeSprite;
+		cocos2d::Node *leftOilWallNode;
+
 		if (a->getCollisionBitmask() == RYUNOSUKE_BITMASK)
 		{
-			this->oilLeftWalls.insert(b->getLinkedNode());
+			leftOilWallNode = b->getLinkedNode();
+			this->oilLeftWalls.insert(leftOilWallNode);
+			currentRyunosukeSprite = a->getLinkedNode();
 		}
 		else
 		{
-			this->oilLeftWalls.insert(a->getLinkedNode());
+			leftOilWallNode = a->getLinkedNode();
+			this->oilLeftWalls.insert(leftOilWallNode);
+			currentRyunosukeSprite = b->getLinkedNode();
 		}
-		if (this->floors.empty() && this->edgeFloors.empty())
+
+		//Check if ryunosuke is over the floor detected.
+		bool ryunosukeOverLeftOilFloor = false;
+		if (fabs(currentRyunosukeSprite->getPosition().x - (leftOilWallNode->getPosition().x - this->boxSize.width)) < fabs(currentRyunosukeSprite->getPosition().y - (leftOilWallNode->getPosition().y - this->boxSize.height / 2)))
 		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+			ryunosukeOverLeftOilFloor = true;
+		}
 
-				this->mNextJump.lock();
-				if (this->nextJump)
+		if (!ryunosukeOverLeftOilFloor)
+		{
+			if (this->floors.empty() && this->edgeFloors.empty())
+			{
+				if (!this->rightMovement && !this->leftMovement)
 				{
-					this->toJump(nextJumpVelocity, false);
-					this->nextJump = false;
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					if (this->nextJump)
+					{
+						this->toJump(nextJumpVelocity, false);
+						this->nextJump = false;
+					}
+					this->mNextJump.unlock();
+
 				}
-				this->mNextJump.unlock();
+				else if (this->rightMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-			}
-			else if (this->rightMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+				}
+				else if (this->leftMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-			}
-			else if (this->leftMovement)
-			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+				}
+				else
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				CCLOG("(ContactBegion) - Oil Left Wall - Not on the floor");
 			}
 			else
 			{
-				this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+				if (!this->rightMovement && !this->leftMovement)
+				{
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
 
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
+					this->mNextJump.lock();
+					if (this->nextJump)
+					{
+						this->toJump(nextJumpVelocity, false);
+						this->nextJump = false;
+					}
+					this->mNextJump.unlock();
 
+				}
+				else if (this->rightMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				else if (this->leftMovement)
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				else
+				{
+					//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
+					this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
+
+					this->mNextJump.lock();
+					this->nextJump = false;
+					this->mNextJump.unlock();
+
+				}
+				CCLOG("(ContactBegion) - Oil Right Wall - On the floor");
 			}
-			CCLOG("(ContactBegion) - Oil Right Wall - Not on the floor");
 		}
 		else
 		{
-			if (!this->rightMovement && !this->leftMovement)
-			{
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				if (this->nextJump)
-				{
-					this->toJump(nextJumpVelocity, false);
-					this->nextJump = false;
-				}
-				this->mNextJump.unlock();
-
-			}
-			else if (this->rightMovement)
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			else if (this->leftMovement)
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			else
-			{
-				//this->nodeBody->setVelocityLimit(RYUNOSUKE_WALL_SPEED);
-				this->nodeBody->setVelocity(cocos2d::Vec2(0.0, this->nodeBody->getVelocity().y));
-
-				this->mNextJump.lock();
-				this->nextJump = false;
-				this->mNextJump.unlock();
-
-			}
-			CCLOG("(ContactBegion) - Oil Right Wall - On the floor");
+			CCLOG("(ContactBegion) - Left Oil Wall - Over the upper Oil floor");
+			this->mWallDetection.unlock();
+			return false;
 		}
 		this->mWallDetection.unlock();
 	}
