@@ -50,21 +50,16 @@ bool NinjaM::MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d
 	if (this->nodeSprite->getBoundingBox().containsPoint(touchPosition)) {
 		if (this->mDoubleTouch.try_lock()) {
 		    //añadir retraso
+			CCLOG("ACEPTED TOUCH");
+			this->stopped = false;
 			this->jumpCleanerSequence = cocos2d::Sequence::create(cocos2d::DelayTime::create(TOUCH_DELAY), cocos2d::CallFunc::create(CC_CALLBACK_0(NinjaM::MovementTouch::toMoveAfterWait, this, this->sense)), nullptr);
             this->nodeSprite->runAction(this->jumpCleanerSequence);
 			this->initialTouchPosition = nodeSprite->getPosition();
 			this->positionVariation = cocos2d::Vec2(touch->getLocation().x - this->initialTouchPosition.x, touch->getLocation().y - this->initialTouchPosition.y);
-			if (this->sense > 0.0)
-			{
-				this->ryunosuke->getNodeSprite()->setTexture("Ryunosuke1D.png");
-			}
-			else
-			{
-				this->ryunosuke->getNodeSprite()->setTexture("Ryunosuke1I.png");
-			}
 			return true;
 		}
 		else {
+			CCLOG("DENYED TOUCH");
 			return false;
 		}
 	}
@@ -97,7 +92,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
                 this->ryunosuke->toJump(fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
-				this->mDoubleTouch.unlock();
+				this->stopped = true;
             }
             // |o| | |
             // | | | |
@@ -111,7 +106,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
                 this->ryunosuke->toJump(-fabs(this->sense), true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
-				this->mDoubleTouch.unlock();
+				this->stopped = true;
             }
             // | |o| |
             // | | | |
@@ -125,7 +120,7 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
                 this->ryunosuke->toJump(0.0, true);
 				this->ryunosuke->toStop(this->sense);
 				this->nodeSprite->setPosition(this->position);
-				this->mDoubleTouch.unlock();
+				this->stopped = true;
             }
 
         }
@@ -134,9 +129,13 @@ void NinjaM::MovementTouch::moveTouch(cocos2d::Touch* touch, cocos2d::Event* eve
 
 void NinjaM::MovementTouch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	if(!this->stopped)
+	{
+		this->ryunosuke->toStop(this->sense);
+	}
+
 	this->nodeSprite->stopAction(this->jumpCleanerSequence);
 
-	this->ryunosuke->toStop(this->sense);
 
 	this->nodeSprite->setPosition(this->position);
 	this->mDoubleTouch.unlock();

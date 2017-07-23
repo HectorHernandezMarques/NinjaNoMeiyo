@@ -29,7 +29,7 @@ namespace NinjaM{
 		void setEventDispatcher();
 
     private:
-        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mContiniousMovement;
+        std::mutex mNextJump, mWallDetection, mJumpTrigger, mSingleMovement, mContiniousMovement, mSetAnimation;
 
 		bool rightMovement = false;
 		bool leftMovement = false;
@@ -52,14 +52,44 @@ namespace NinjaM{
 
         cocos2d::Size boxSize;
 		cocos2d::Action *movementAction = nullptr;
-		cocos2d::Action *movementAnimation = nullptr;
+		cocos2d::Action *animationAction = nullptr;
 
 		bool nextJump = false;
 		float nextJumpVelocity = 0.0;
 		unsigned int jumpCounter = 0;
 
 		void jumpCleaner(unsigned int jumpCounter);
-		void moveAnimation(float velocity);
+
+		void toMoveAnimation(float velocity);
+		void toMoveAnimationFunction(float velocity);
+		float moveAnimationSense = 0.0;
+
+		void toStopAnimation(float velocity);
+		void toStopAnimationFunction(float velocity);
+		float stopAnimationSense = 0.0;
+
+		void toJumpAnimation(float velocity);
+		void toJumpAnimationFunction(float velocity);
+		int numberJumpAnimation = 0;
+		float jumpAnimationSense = 0.0;
+
+		void toJumpWallAnimation(float velocity, bool separate);
+		void toJumpWallAnimationFunction(float velocity, bool separate);
+		int numberJumpWallAnimation = 0;
+		float jumpWallAnimationSense = 0.0;
+
+		void toFallAnimation();
+		void toFallAnimationFunction();
+		int numberFallAnimation = 0;
+
+		void toClimbAnimation(float velocity);
+		void toClimbAnimationFunction(float velocity);
+		float climbAnimationSense = 0.0;
+
+		void setAnimationSense(float animationSense);
+
+		float lastAnimation = RYUNOSUKE_SPEED;
+
 	protected:
 		bool onContactBegin(cocos2d::PhysicsContact &contact);
 		bool onContactSeparate(cocos2d::PhysicsContact &contact);

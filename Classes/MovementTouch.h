@@ -29,6 +29,8 @@ namespace NinjaM{
 		/*we want to force the user to stop to touch the screen once he has made a gesture*/
 
         NinjaM::Ryunosuke *ryunosuke;
+
+		bool stopped = false;
         int sense;
 		cocos2d::Vec2 initialVelocity;
 		cocos2d::Sequence *jumpCleanerSequence;

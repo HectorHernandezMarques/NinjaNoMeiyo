@@ -33,7 +33,7 @@ void NinjaM::Limit::spawn(cocos2d::Layer *layer, int limitBitmask)
 	//this->nodeSprite->setPosition(cocos2d::Vec2(this->position.x + this->contentSize.width/2, this->position.y + this->contentSize.height/2));
 	this->nodeSprite->setAnchorPoint(this->anchorPoint);
 
-	cocos2d::Vec2 arrayPoints[this->count];
+	cocos2d::Vec2 arrayPoints[/*this->count*/100];
 
 	for (int i = 0 ; i < this->count ; i++)
 	{
@@ -50,5 +50,4 @@ void NinjaM::Limit::spawn(cocos2d::Layer *layer, int limitBitmask)
 	this->nodeSprite->setPhysicsBody(nodeBody);
 
 	layer->addChild(nodeSprite);
-	CCLOG("xdno");
 }
