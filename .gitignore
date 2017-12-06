@@ -26,6 +26,7 @@
 !/cocos2d/cocos/2d/
 /cocos2d/cocos/2d/*
 !/cocos2d/cocos/2d/CCNode.h
+!/cocos2d/cocos/2d/CCSprite.cpp
 !/cocos2d/cocos/physics/
 /cocos2d/cocos/physics/*
 !/cocos2d/cocos/physics/CCPhysicsBody.h
