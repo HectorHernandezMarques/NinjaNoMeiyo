@@ -169,7 +169,7 @@ bool Sprite::initWithFile(const std::string& filename)
     if (filename.empty())
     {
         CCLOG("Call Sprite::initWithFile with blank resource filename.");
-        return false;
+        return true;
     }
 
     _fileName = filename;
