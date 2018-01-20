@@ -12,16 +12,20 @@ LOCAL_MODULE := MyGame_shared
 LOCAL_MODULE_FILENAME := libMyGame
 
 LOCAL_SRC_FILES := hellocpp/main.cpp\
-                   ../../../Classes/AppDelegate.cpp\
-                   ../../../Classes/LevelOneScene.cpp\
-                   ../../../Classes/Node.cpp\
-                   ../../../Classes/Touch.cpp\
-                   ../../../Classes/MovementTouch.cpp\
-                   ../../../Classes/PhysicNode.cpp\
-                   ../../../Classes/Terrain.cpp\
-                   ../../../Classes/Character.cpp\
-                   ../../../Classes/Ryunosuke.cpp
-
+                   ../../../Classes/AppDelegate.cpp \
+                   ../../../Classes/LevelOneScene.cpp \
+                   ../../../Classes/Models/Node.cpp \
+                   ../../../Classes/Models/Physic.cpp \
+                   ../../../Classes/Models/PhysicBox.cpp \
+                   ../../../Classes/Models/Aspects/Node/PhysicAspect.cpp \
+                   ../../../Classes/Models/Aspects/Node/PositionAspect.cpp \
+                   ../../../Classes/Models/Aspects/Node/RotationAspect.cpp \
+                   ../../../Classes/Models/Aspects/Node/TextureAspect.cpp \
+                   ../../../Classes/Models/Maps/Map.cpp \
+                   ../../../Classes/Models/Maps/MapBuilder.cpp\
+                   ../../../Classes/Views/Node.cpp \
+                   ../../../Classes/Views/Map.cpp \
+				   
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 
 # _COCOS_HEADER_ANDROID_BEGIN
