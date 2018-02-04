@@ -20,6 +20,7 @@ namespace NinjaNoMeiyo {
 
 					private:
 						float xVelocity;
+						void visitFunction(Ryunosuke &ryunosuke);
 					};
 				}
 			}

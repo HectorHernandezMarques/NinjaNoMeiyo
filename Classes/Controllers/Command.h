@@ -15,9 +15,6 @@ namespace NinjaNoMeiyo {
 			virtual void stop() = 0;
 			bool isStoppable();
 
-		protected:
-			cocos2d::Action *animationAction;
-
 		private:
 			bool stoppable;
 

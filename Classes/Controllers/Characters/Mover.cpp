@@ -17,18 +17,14 @@ namespace NinjaNoMeiyo {
 				default:
 					assert(false);
 				}
+
+				this->modelVisitor = new NinjaNoMeiyo::Models::Characters::Visitors::Models::ModelMover(this->xVelocity);
+				this->animationVisitor = new NinjaNoMeiyo::Models::Characters::Visitors::Animations::AnimationMover(this->xVelocity);
 			}
 
 			Mover::~Mover() {
 			}
 
-			void Mover::execute() {
-				NinjaNoMeiyo::Models::Characters::Visitors::Models::ModelMover modelMover(this->xVelocity);
-				this->character.accept(modelMover);
-				NinjaNoMeiyo::Models::Characters::Visitors::Animations::AnimationMover animationMover(this->xVelocity);
-				this->character.accept(animationMover);
-				this->animationAction = animationMover.getAnimationAction();
-			}
 		}
 	}
 }

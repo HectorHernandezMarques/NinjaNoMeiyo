@@ -28,8 +28,8 @@ namespace NinjaNoMeiyo {
 			void setRotation(float rotation);
 			void setTexture(std::string texture);
 			void setPhysic(cocos2d::PhysicsBody &physicBody);
-			void runAction(cocos2d::Action *animationAction);
-			void stopAction(cocos2d::Action *animationAction);
+			void runAction(cocos2d::Action *action);
+			void stopAction(cocos2d::Action *action);
 
 		protected:
 			cocos2d::Sprite &nodeSprite;

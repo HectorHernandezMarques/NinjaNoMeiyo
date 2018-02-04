@@ -17,8 +17,6 @@ namespace NinjaNoMeiyo {
 				Stopper(bool stoppable, Models::Characters::Character &character, Sense sense);
 				virtual ~Stopper();
 
-				void execute();
-
 			private:
 				float xVelocity;
 			};

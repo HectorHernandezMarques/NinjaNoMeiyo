@@ -25,8 +25,8 @@ namespace NinjaNoMeiyo {
 			void attach(Views::Observers::NodeObserver& nodeObserver);
 			void notify(Aspects::Node::Aspect &aspect);
 			bool hasPhysic();
-			void runAction(cocos2d::Action *animationAction);
-			void stopAction(cocos2d::Action *animationAction);
+			void runAction(cocos2d::Action *action);
+			void stopAction(cocos2d::Action *action);
 
 			cocos2d::Vec2 getPosition();
 			cocos2d::Vec2 getAnchorPoint();

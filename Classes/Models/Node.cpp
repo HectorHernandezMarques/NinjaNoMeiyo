@@ -27,14 +27,14 @@ namespace NinjaNoMeiyo {
 			return this->physic != nullptr;
 		}
 
-		void Node::stopAction(cocos2d::Action *animationAction) {
-			if (animationAction) {
-				this->notify(*(new Aspects::Node::StopActionAspect(animationAction)));
+		void Node::stopAction(cocos2d::Action *action) {
+			if (action) {
+				this->notify(*(new Aspects::Node::StopActionAspect(action)));
 			}
 		}
 
-		void Node::runAction(cocos2d::Action *animationAction) {
-			this->notify(*(new Aspects::Node::RunActionAspect(animationAction)));
+		void Node::runAction(cocos2d::Action *action) {
+			this->notify(*(new Aspects::Node::RunActionAspect(action)));
 		}
 
 		cocos2d::Vec2 Node::getPosition() {

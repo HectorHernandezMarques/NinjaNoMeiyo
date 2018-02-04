@@ -5,7 +5,7 @@ namespace NinjaNoMeiyo {
 		namespace Aspects {
 			namespace Node {
 
-				RunActionAspect::RunActionAspect(cocos2d::Action *animationAction) : animationAction(animationAction) {
+				RunActionAspect::RunActionAspect(cocos2d::Action *action) : action(action) {
 				}
 
 				RunActionAspect::~RunActionAspect() {
@@ -13,7 +13,7 @@ namespace NinjaNoMeiyo {
 				}
 
 				void RunActionAspect::visit(Views::Node &node) {
-					node.runAction(this->animationAction);
+					node.runAction(this->action);
 				}
 			}
 		}

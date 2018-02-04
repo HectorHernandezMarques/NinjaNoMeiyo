@@ -9,8 +9,16 @@ namespace NinjaNoMeiyo {
 
 			class CharacterVisitor {
 			public:
-				virtual void visit(Ryunosuke &ryunosuke) = 0;
+				CharacterVisitor();
+				virtual ~CharacterVisitor();
 
+				virtual void visit(Ryunosuke &ryunosuke) = 0;
+				cocos2d::Action* getAction();
+
+			protected:
+				cocos2d::Action *action;
+
+				virtual void visitFunction(Ryunosuke &ryunosuke) = 0;
 			};
 		}
 	}

@@ -17,8 +17,6 @@ namespace NinjaNoMeiyo {
 				Mover(bool stoppable, Models::Characters::Character &character, Sense sense);
 				virtual ~Mover();
 
-				void execute();
-
 			private:
 				float xVelocity;
 			};

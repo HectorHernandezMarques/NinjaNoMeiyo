@@ -3,7 +3,7 @@
 namespace NinjaNoMeiyo {
 	namespace Controllers {
 
-		Command::Command(bool stoppable) : stoppable(stoppable), animationAction(nullptr) {
+		Command::Command(bool stoppable) : stoppable(stoppable) {
 		}
 
 		Command::~Command() {

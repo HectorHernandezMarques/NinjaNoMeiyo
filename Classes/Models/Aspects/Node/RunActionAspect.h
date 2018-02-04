@@ -12,7 +12,7 @@ namespace NinjaNoMeiyo {
 
 				class RunActionAspect : virtual public Aspect {
 				public:
-					RunActionAspect(cocos2d::Action *animationAction);
+					RunActionAspect(cocos2d::Action *action);
 					virtual ~RunActionAspect();
 
 					void visit(Views::Node &node);
@@ -20,7 +20,7 @@ namespace NinjaNoMeiyo {
 				protected:
 
 				private:
-					cocos2d::Action *animationAction;
+					cocos2d::Action *action;
 				};
 			}
 		}

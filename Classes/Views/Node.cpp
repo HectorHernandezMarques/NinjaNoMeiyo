@@ -48,12 +48,12 @@ namespace NinjaNoMeiyo {
 			this->nodeSprite.setPhysicsBody(&physicBody);
 		}
 
-		void Node::runAction(cocos2d::Action *animationAction) {
-			this->nodeSprite.runAction(animationAction);
+		void Node::runAction(cocos2d::Action *action) {
+			this->nodeSprite.runAction(action);
 		}
 
-		void Node::stopAction(cocos2d::Action *animationAction) {
-			this->nodeSprite.stopAction(animationAction);
+		void Node::stopAction(cocos2d::Action *action) {
+			this->nodeSprite.stopAction(action);
 		}
 	}
 }

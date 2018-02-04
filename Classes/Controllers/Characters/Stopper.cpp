@@ -17,18 +17,14 @@ namespace NinjaNoMeiyo {
 				default:
 					assert(false);
 				}
+
+				this->modelVisitor = new NinjaNoMeiyo::Models::Characters::Visitors::Models::ModelStopper(this->xVelocity);
+				this->animationVisitor = new NinjaNoMeiyo::Models::Characters::Visitors::Animations::AnimationStopper(this->xVelocity);
 			}
 
 			Stopper::~Stopper() {
 			}
 
-			void Stopper::execute() {
-				NinjaNoMeiyo::Models::Characters::Visitors::Models::ModelStopper modelStopper(this->xVelocity);
-				this->character.accept(modelStopper);
-				NinjaNoMeiyo::Models::Characters::Visitors::Animations::AnimationStopper animationStopper(this->xVelocity);
-				this->character.accept(animationStopper);
-				this->animationAction = animationStopper.getAnimationAction();
-			}
 		}
 	}
 }

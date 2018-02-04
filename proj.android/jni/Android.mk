@@ -22,6 +22,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Aspects/Node/RunActionAspect.cpp \
                    ../../Classes/Models/Aspects/Node/StopActionAspect.cpp \
                    ../../Classes/Models/Characters/Character.cpp \
+                   ../../Classes/Models/Characters/CharacterVisitor.cpp \
                    ../../Classes/Models/Characters/Ryunosuke.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
