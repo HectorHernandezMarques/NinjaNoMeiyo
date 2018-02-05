@@ -12,11 +12,7 @@ namespace NinjaNoMeiyo {
 
 			Error CommandDealer::executeCommand(CharacterCommand &command) {
 				Error result = Error::NO_ERROR;
-				if (currentCommand == nullptr) {
-					this->currentCommand = &command;
-					this->currentCommand->execute();
-				}
-				else {
+				if (currentCommand != nullptr) {
 					if (currentCommand->isStoppable()) {
 						this->currentCommand->stop();
 						this->currentCommand = &command;
@@ -25,6 +21,10 @@ namespace NinjaNoMeiyo {
 					else {
 						result = Error::NON_STOPPABLE_COMMAND_BEING_EXECUTED;
 					}
+				}
+				else {
+					this->currentCommand = &command;
+					this->currentCommand->execute();
 				}
 				return result;
 			}
