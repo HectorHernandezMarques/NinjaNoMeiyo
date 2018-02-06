@@ -66,7 +66,7 @@ namespace NinjaNoMeiyo {
 				assert(&this->physic);
 
 				for (auto it = this->physic.getShapes().begin(); it != this->physic.getShapes().end(); ++it) {
-					(*it)->setFriction(0.0f);
+					(*it)->setFriction(friction);
 				}
 			}
 		}
