@@ -1,12 +1,13 @@
 #include "./StateAspect.h"
+#include "../../CharacterVisitor.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 			namespace Aspects {
-				namespace Node {
+				namespace Characters {
 
-					StateAspect::StateAspect(States::Ryunosuke::State &state) : state(state) {
+					StateAspect::StateAspect(States::State &state) : state(state) {
 					}
 
                     StateAspect::~StateAspect() {

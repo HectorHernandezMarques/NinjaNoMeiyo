@@ -13,13 +13,21 @@ namespace NinjaNoMeiyo {
 					}
 
 					void AnimationStopper::visit(Ryunosuke &ryunosuke) {
-						cocos2d::Action *action = cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(AnimationStopper::visitFunction, this, ryunosuke)), cocos2d::DelayTime::create(3.0), nullptr);
-						ryunosuke.runAction(action);
-						this->action = action;
+						this->characterMutex.lock();
+							this->character = &ryunosuke;
+							this->animationAction = ryunosuke.getCurrentState().stopAnimation(this->xVelocity);
+						this->characterMutex.unlock();
 					}
 
-					void AnimationStopper::visitFunction(Ryunosuke &ryunosuke) {
-						this->animationAction = ryunosuke.getCurrentState().stopAnimation(this->xVelocity);
+					void AnimationStopper::update(Aspects::Characters::Aspect &aspect) {
+						aspect.visit(*this);
+					}
+
+					void AnimationStopper::setState(States::State &state) {
+						this->characterMutex.lock();
+							this->character->stopAction(this->animationAction);
+							this->animationAction = state.stopAnimation(this->xVelocity);
+						this->characterMutex.unlock();
 					}
 				}
 			}

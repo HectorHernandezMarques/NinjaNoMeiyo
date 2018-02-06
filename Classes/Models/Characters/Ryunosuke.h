@@ -17,7 +17,7 @@ namespace NinjaNoMeiyo {
 				virtual ~Ryunosuke();
 
 				void accept(CharacterVisitor &characterVisitor);
-				States::Ryunosuke::State& getCurrentState();
+				States::State& getCurrentState();
 
 			protected:
 

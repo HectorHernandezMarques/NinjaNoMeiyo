@@ -23,7 +23,7 @@ namespace NinjaNoMeiyo {
 				characterVisitor.visit(*this);
 			}
 
-			States::Ryunosuke::State& Ryunosuke::getCurrentState() {
+			States::State& Ryunosuke::getCurrentState() {
 				return *new States::Ryunosuke::Floor(*this);
 			}
 

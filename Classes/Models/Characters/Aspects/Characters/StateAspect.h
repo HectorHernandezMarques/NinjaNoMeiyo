@@ -2,17 +2,17 @@
 #define NINJANOMEIYO_MODELS_CHARACTERS_ASPECTS_CHARACTERS_STATEASPECT_H
 
 #include "./Aspect.h"
-#include "../../CharacterVisitor.h"
+#include "../../States/State.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 			namespace Aspects {
-				namespace Node {
+				namespace Characters {
 
 					class StateAspect : virtual public Aspect {
 					public:
-						StateAspect(States::Ryunosuke::State &state);
+						StateAspect(States::State &state);
 						virtual ~StateAspect();
 
 						void visit(CharacterVisitor &characterVisitor);
@@ -20,7 +20,7 @@ namespace NinjaNoMeiyo {
 					protected:
 
 					private:
-						States::Ryunosuke::State &state;
+						States::State &state;
 
 					};
 				}

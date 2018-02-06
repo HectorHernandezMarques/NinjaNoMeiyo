@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Animations {
 
-					AnimationVisitor::AnimationVisitor() : CharacterVisitor(), animationAction(nullptr) {
+					AnimationVisitor::AnimationVisitor() : CharacterVisitor(), characterMutex(), character(nullptr), animationAction(nullptr) {
 					}
 
 					AnimationVisitor::~AnimationVisitor() {

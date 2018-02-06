@@ -13,14 +13,21 @@ namespace NinjaNoMeiyo {
 					}
 
 					void AnimationMover::visit(Ryunosuke &ryunosuke) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(AnimationMover::visitFunction, this, ryunosuke)), nullptr));
-						ryunosuke.runAction(action);
-						this->action = action;
+						this->characterMutex.lock();
+							this->character = &ryunosuke;
+							this->animationAction = ryunosuke.getCurrentState().moveAnimation(this->xVelocity);
+						this->characterMutex.unlock();
 					}
 
-					void AnimationMover::visitFunction(Ryunosuke &ryunosuke) {
-						ryunosuke.stopAction(this->animationAction);
-						this->animationAction = ryunosuke.getCurrentState().moveAnimation(this->xVelocity);
+					void AnimationMover::update(Aspects::Characters::Aspect &aspect) {
+						aspect.visit(*this);
+					}
+
+					void AnimationMover::setState(States::State &state) {
+						this->characterMutex.lock();
+							this->character->stopAction(this->animationAction);
+							this->animationAction = state.moveAnimation(this->xVelocity);
+						this->characterMutex.unlock();
 					}
 				}
 			}

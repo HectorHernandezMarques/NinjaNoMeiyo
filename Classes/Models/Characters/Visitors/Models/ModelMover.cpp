@@ -13,13 +13,15 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(ModelMover::visitFunction, this, ryunosuke)), nullptr));
-						ryunosuke.runAction(action);
-						this->action = action;
+						ryunosuke.getCurrentState().move(this->xVelocity);
 					}
 
-					void ModelMover::visitFunction(Ryunosuke &ryunosuke) {
-						ryunosuke.getCurrentState().move(xVelocity);
+					void ModelMover::update(Aspects::Characters::Aspect &aspect) {
+						aspect.visit(*this);
+					}
+
+					void ModelMover::setState(States::State &state) {
+						state.move(this->xVelocity);
 					}
 				}
 			}

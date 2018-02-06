@@ -22,7 +22,7 @@ namespace NinjaNoMeiyo {
 			Node(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, Physics::Physic *physic = new Physics::PhysicEmpty());
 			virtual ~Node();
 
-			void attach(Views::Observers::NodeObserver& nodeObserver);
+			void attach(Views::Observers::NodeObserver &nodeObserver);
 			void notify(Aspects::Node::Aspect &aspect);
 			bool hasPhysic();
 			void runAction(cocos2d::Action *action);

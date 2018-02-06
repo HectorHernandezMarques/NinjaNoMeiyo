@@ -17,6 +17,8 @@ namespace NinjaNoMeiyo {
 						cocos2d::Action* getAnimationAction();
 
 					protected:
+						std::mutex characterMutex;
+						Character *character;
 						cocos2d::Action *animationAction;
 
 					private:

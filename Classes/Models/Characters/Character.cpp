@@ -16,6 +16,15 @@ namespace NinjaNoMeiyo {
 			Character::~Character() {
 			}
 
+			void Character::attach(Observers::CharacterObserver &characterObserver) {
+				this->characterObserver = &characterObserver;
+			}
+
+			void Character::notify(Aspects::Characters::Aspect &aspect) {
+				assert(this->characterObserver);
+
+				this->characterObserver->update(aspect);
+			}
 		}
 	}
 }

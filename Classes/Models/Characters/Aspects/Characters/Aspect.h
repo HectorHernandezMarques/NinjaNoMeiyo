@@ -2,13 +2,21 @@
 #define NINJANOMEIYO_MODELS_CHARACTERS_ASPECTS_CHARACTERS_ASPECT_H
 
 #include "cocos2d.h"
-#include "../../CharacterVisitor.h"
+
+namespace NinjaNoMeiyo {
+	namespace Models {
+		namespace Characters {
+
+			class CharacterVisitor;
+		}
+	}
+}
 
 namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 		    namespace Aspects {
-                namespace Node {
+                namespace Characters {
 
                     class Aspect {
                     public:

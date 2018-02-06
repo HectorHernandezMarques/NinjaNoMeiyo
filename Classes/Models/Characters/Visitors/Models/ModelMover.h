@@ -15,12 +15,13 @@ namespace NinjaNoMeiyo {
 						virtual ~ModelMover();
 
 						void visit(Ryunosuke &ryunosuke);
+						void update(Aspects::Characters::Aspect &aspect);
+						void setState(States::State &state);
 
 					protected:
 
 					private:
 						float xVelocity;
-						void visitFunction(Ryunosuke &ryunosuke);
 					};
 				}
 			}
