@@ -24,13 +24,17 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Character.cpp \
                    ../../Classes/Models/Characters/CharacterVisitor.cpp \
                    ../../Classes/Models/Characters/Ryunosuke.cpp \
+                   ../../Classes/Models/Characters/Aspects/Characters/StateAspect.cpp \
+                   ../../Classes/Models/Characters/CollisionHandlers/CollisionHandler.cpp \
+                   ../../Classes/Models/Characters/CollisionHandlers/CollisionResult.cpp \
+                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/FloorCollisionHandler.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/Floor.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelStopper.cpp \
-                   ../../Classes/Models/Characters/States/Ryunosuke/Floor.cpp \
-                   ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
                    ../../Classes/Models/Input/Touch/Touch.cpp \
                    ../../Classes/Models/Physics/Physic.cpp \
                    ../../Classes/Models/Physics/PhysicEmpty.cpp \

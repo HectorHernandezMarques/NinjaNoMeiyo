@@ -1,5 +1,4 @@
 #include "./Physic.h"
-#include "./Bitmasks.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
