@@ -10,22 +10,21 @@ namespace NinjaNoMeiyo {
 		namespace Characters {
 			namespace CollisionHandlers {
 
-					class CollisionHandler {
-					public:
-						CollisionHandler();
-						virtual ~CollisionHandler();
+				class CollisionHandler {
+				public:
+					CollisionHandler();
+					virtual ~CollisionHandler();
 
-						virtual bool canHandle(cocos2d::Node &node) = 0;
-						virtual CollisionResult* handle(cocos2d::Node &node);
-						bool hasNext();
+					virtual bool canHandle(cocos2d::Node &node) = 0;
+					virtual CollisionResult* handle(cocos2d::Node &node);
+					bool hasNext();
 
-						void setNext(CollisionHandler &collisionHandler);
+					void setNext(CollisionHandler &collisionHandler);
 
-					private:
-						CollisionHandler *next;
+				private:
+					CollisionHandler *next;
 
-					};
-				}
+				};
 			}
 		}
 	}

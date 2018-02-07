@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 		namespace Characters {
 			namespace CollisionHandlers {
 
-				enum class Bitmasks {
+				enum class Bitmasks : int {
 					FLOOR=90,
 					RIGHT_OBSTACLE=1,
 					LEFT_OBSTACLE=2,

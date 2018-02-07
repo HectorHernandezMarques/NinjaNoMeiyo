@@ -15,7 +15,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					bool FloorCollisionHandler::canHandle(cocos2d::Node &node) {
-						return node.getPhysicsBody()->getCategoryBitmask() == Bitmasks::FLOOR;
+						return node.getPhysicsBody()->getCategoryBitmask() == static_cast<int>(Bitmasks::FLOOR);
 					}
 
 					CollisionResult* FloorCollisionHandler::handle(cocos2d::Node &node) {
