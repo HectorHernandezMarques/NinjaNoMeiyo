@@ -30,6 +30,7 @@ namespace NinjaNoMeiyo {
 			void setPhysic(cocos2d::PhysicsBody &physicBody);
 			void runAction(cocos2d::Action *action);
 			void stopAction(cocos2d::Action *action);
+			void addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener);
 
 		protected:
 			cocos2d::Sprite &nodeSprite;

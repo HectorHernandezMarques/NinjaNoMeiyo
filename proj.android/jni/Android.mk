@@ -15,6 +15,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/LevelOneScene.cpp \
                    ../../Classes/Models/Node.cpp \
+                   ../../Classes/Models/Aspects/Node/AddEventListenerWithSceneGraphPriorityAspect.cpp \
                    ../../Classes/Models/Aspects/Node/PhysicAspect.cpp \
                    ../../Classes/Models/Aspects/Node/PositionAspect.cpp \
                    ../../Classes/Models/Aspects/Node/RotationAspect.cpp \
@@ -27,7 +28,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Aspects/Characters/StateAspect.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/CollisionHandler.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/CollisionResult.cpp \
-                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/FloorCollisionHandler.cpp \
+                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandler.cpp \
+                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/Floor.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \

@@ -55,5 +55,9 @@ namespace NinjaNoMeiyo {
 		void Node::stopAction(cocos2d::Action *action) {
 			this->nodeSprite.stopAction(action);
 		}
+
+		void Node::addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener) {
+			this->nodeSprite.getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, &this->nodeSprite);
+		}
 	}
 }

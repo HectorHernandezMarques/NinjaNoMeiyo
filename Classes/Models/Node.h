@@ -5,12 +5,13 @@
 #include <unordered_set>
 #include "cocos2d.h"
 #include "../Views/Observers/NodeObserver.h"
+#include "./Aspects/Node/AddEventListenerWithSceneGraphPriorityAspect.h"
+#include "./Aspects/Node/PhysicAspect.h"
 #include "./Aspects/Node/PositionAspect.h"
 #include "./Aspects/Node/RotationAspect.h"
-#include "./Aspects/Node/TextureAspect.h"
-#include "./Aspects/Node/PhysicAspect.h"
 #include "./Aspects/Node/RunActionAspect.h"
 #include "./Aspects/Node/StopActionAspect.h"
+#include "./Aspects/Node/TextureAspect.h"
 #include "./Physics/Physic.h"
 #include "./Physics/PhysicEmpty.h"
 
@@ -27,6 +28,7 @@ namespace NinjaNoMeiyo {
 			bool hasPhysic();
 			void runAction(cocos2d::Action *action);
 			void stopAction(cocos2d::Action *action);
+			void addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener);
 
 			cocos2d::Vec2 getPosition();
 			cocos2d::Vec2 getAnchorPoint();

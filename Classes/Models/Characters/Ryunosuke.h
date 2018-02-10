@@ -6,6 +6,9 @@
 #include "./Character.h"
 #include "../Physics/PhysicBox.h"
 #include "./States/Ryunosuke/State.h"
+#include "./CollisionHandlers/Bitmasks.h"
+#include "./CollisionHandlers/CollisionHandler.h"
+#include "./CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -22,6 +25,11 @@ namespace NinjaNoMeiyo {
 			protected:
 
 			private:
+				CollisionHandlers::CollisionHandler &collisionHandler;
+
+				void setCollisionEventDispatchers();
+				bool onContactBegin(cocos2d::PhysicsContact &contact);
+				bool onContactSeparate(cocos2d::PhysicsContact &contact);
 
 			};
 		}
