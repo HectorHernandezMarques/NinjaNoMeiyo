@@ -1,6 +1,7 @@
 #include "./Ryunosuke.h"
 #include "./CharacterVisitor.h"
-#include "./States/Ryunosuke/Floor.h"
+#include "./States/Ryunosuke/InFloor.h"
+#include "./States/StateHandlers/Ryunosuke/StateHandlerBuilder.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -10,7 +11,8 @@ namespace NinjaNoMeiyo {
 				Character(position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
 					static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize())
 				),
-				collisionHandler(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler()) {
+				collisionHandler(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler()),
+				stateHandler((new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler()) {
 
 				assert(&position);
 				assert(&anchorPoint);
@@ -28,7 +30,7 @@ namespace NinjaNoMeiyo {
 			}
 
 			States::State& Ryunosuke::getCurrentState() {
-				return *new States::Ryunosuke::Floor(*this);
+				return this->stateHandler.handle(this->nodesInContact)->getState();
 			}
 
 			void Ryunosuke::setCollisionEventDispatchers() {
@@ -57,6 +59,7 @@ namespace NinjaNoMeiyo {
 					}
 					else {
 						this->nodesInContact.insert(std::make_pair<int, cocos2d::Node*>(static_cast<int>(collisionResult->getBitmask()), &collisionResult->getNode()));
+						this->notify(*new Aspects::Characters::StateAspect(this->getCurrentState()));
 					}
 				}
 
@@ -76,6 +79,7 @@ namespace NinjaNoMeiyo {
 					for (auto it = this->nodesInContact.begin(); it != this->nodesInContact.end(); ) {
 						if (it->second == nodeToErase) {
 							it = this->nodesInContact.erase(it);
+							this->notify(*new Aspects::Characters::StateAspect(this->getCurrentState()));
 						}
 						else {
 							it++;

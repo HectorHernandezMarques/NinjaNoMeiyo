@@ -61,6 +61,12 @@ namespace NinjaNoMeiyo {
 				this->physic.setVelocity(velocity);
 			}
 
+			void Physic::setVelocityLimit(float velocity) {
+				assert(&this->physic);
+
+				this->physic.setVelocityLimit(velocity);
+			}
+
 			void Physic::setFriction(float friction) {
 				assert(&this->physic);
 

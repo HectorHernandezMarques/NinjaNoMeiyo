@@ -13,6 +13,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
+						CharacterVisitor::visit(ryunosuke);
 						ryunosuke.getCurrentState().move(this->xVelocity);
 					}
 

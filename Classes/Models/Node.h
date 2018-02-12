@@ -46,6 +46,7 @@ namespace NinjaNoMeiyo {
 			void setCollisionBitmask(int bitmask);
 			void setContactTestBitmask(int bitmask);
 			void setVelocity(cocos2d::Vec2 velocity);
+			void setVelocityLimit(float velocity);
 
 		protected:
 

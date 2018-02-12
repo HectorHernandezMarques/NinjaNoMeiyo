@@ -21,6 +21,7 @@ namespace NinjaNoMeiyo {
 				void setContactTestBitmask(int bitmask);
 				void setRotationEnable(bool enable);
 				void setVelocity(cocos2d::Vec2 velocity);
+				void setVelocityLimit(float velocity);
 				void setFriction(float friction);
 
 			protected:

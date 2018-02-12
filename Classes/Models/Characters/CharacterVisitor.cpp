@@ -10,6 +10,10 @@ namespace NinjaNoMeiyo {
 			CharacterVisitor::~CharacterVisitor() {
 			}
 
+			void CharacterVisitor::visit(Ryunosuke &ryunosuke) {
+				ryunosuke.attach(*this);
+			}
+
 			cocos2d::Action* CharacterVisitor::getAction() {
 				return this->action;
 			}

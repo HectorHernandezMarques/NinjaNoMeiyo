@@ -23,8 +23,8 @@ namespace NinjaNoMeiyo {
 				assert(this->modelVisitor);
 				assert(this->animationVisitor);
 
-				this->character.accept(*this->modelVisitor);
 				this->character.accept(*this->animationVisitor);
+				this->character.accept(*this->modelVisitor);
 			}
 		}
 	}

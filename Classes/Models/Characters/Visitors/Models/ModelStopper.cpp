@@ -13,6 +13,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelStopper::visit(Ryunosuke &ryunosuke) {
+						CharacterVisitor::visit(ryunosuke);
 						ryunosuke.getCurrentState().stop(this->xVelocity);
 					}
 

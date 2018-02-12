@@ -1,4 +1,4 @@
-#include "./Floor.h"
+#include "./InFloor.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -6,33 +6,33 @@ namespace NinjaNoMeiyo {
 			namespace States {
 				namespace Ryunosuke {
 
-					Floor::Floor(Characters::Ryunosuke &ryunosuke) : State(), ryunosuke(ryunosuke) {
+					InFloor::InFloor(Characters::Ryunosuke &ryunosuke) : State(), ryunosuke(ryunosuke) {
 					}
 
-					Floor::~Floor() {
+					InFloor::~InFloor() {
 					}
 
-					void Floor::move(float xVelocity) {
+					void InFloor::move(float xVelocity) {
 						ryunosuke.setVelocity(cocos2d::Vec2(xVelocity, ryunosuke.getVelocity().y));
 					}
 
-					cocos2d::Action* Floor::moveAnimation(float xVelocity) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(Floor::moveAnimationFunction, this, xVelocity)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
+					cocos2d::Action* InFloor::moveAnimation(float xVelocity) {
+						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InFloor::moveAnimationFunction, this, xVelocity)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
 						ryunosuke.runAction(action);
 						return action;
 					}
 
-					cocos2d::Action* Floor::stopAnimation(float xVelocity) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(Floor::stopAnimationFunction, this, xVelocity)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
+					cocos2d::Action* InFloor::stopAnimation(float xVelocity) {
+						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InFloor::stopAnimationFunction, this, xVelocity)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
 						ryunosuke.runAction(action);
 						return action;
 					}
 
-					void Floor::stop(float xVelocity) {
+					void InFloor::stop(float xVelocity) {
 						ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 					}
 
-					void Floor::moveAnimationFunction(float xVelocity) {
+					void InFloor::moveAnimationFunction(float xVelocity) {
 						std::string textureName;
 						if (xVelocity > 0.0) {
 							textureName.append("RyunosukeMove");
@@ -47,7 +47,7 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setTexture(textureName);
 					}
 
-					void Floor::stopAnimationFunction(float xVelocity) {
+					void InFloor::stopAnimationFunction(float xVelocity) {
 						std::string textureName;
 						if (xVelocity > 0.0) {
 							textureName.append("RyunosukeStop");

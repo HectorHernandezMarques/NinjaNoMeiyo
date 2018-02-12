@@ -130,5 +130,11 @@ namespace NinjaNoMeiyo {
 			this->physic->setVelocity(velocity);
 		}
 
+		void Node::setVelocityLimit(float velocity) {
+			assert(&velocity);
+
+			this->physic->setVelocityLimit(velocity);
+		}
+
 	}
 }

@@ -14,6 +14,7 @@ namespace NinjaNoMeiyo {
 
 					void AnimationMover::visit(Ryunosuke &ryunosuke) {
 						this->characterMutex.lock();
+							CharacterVisitor::visit(ryunosuke);
 							this->character = &ryunosuke;
 							this->animationAction = ryunosuke.getCurrentState().moveAnimation(this->xVelocity);
 						this->characterMutex.unlock();

@@ -1,5 +1,5 @@
-#ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_FLOOR_H
-#define NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_FLOOR_H
+#ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_INFLOOR_H
+#define NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_INFLOOR_H
 
 #define MOVE_TEXTURES_NUMBER 3
 #define MOVE_ANIMATION_DELAY 0.15
@@ -16,10 +16,10 @@ namespace NinjaNoMeiyo {
 			namespace States {
 				namespace Ryunosuke {
 
-					class Floor : public State {
+					class InFloor : public State {
 					public:
-						Floor(Characters::Ryunosuke &ryunosuke);
-						virtual ~Floor();
+						InFloor(Characters::Ryunosuke &ryunosuke);
+						virtual ~InFloor();
 
 						void move(float xVelocity);
 						cocos2d::Action* moveAnimation(float xVelocity);
