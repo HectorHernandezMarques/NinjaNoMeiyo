@@ -13,6 +13,7 @@ namespace NinjaNoMeiyo {
 				class CollisionHandler {
 				public:
 					CollisionHandler();
+					CollisionHandler(CollisionHandler &next);
 					virtual ~CollisionHandler();
 
 					virtual bool canHandle(cocos2d::Node &node) = 0;

@@ -7,7 +7,7 @@ Scene* LevelOneScene::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
-	//scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 'layer' is an autorelease object
 	auto layer = LevelOneScene::create();
@@ -38,6 +38,7 @@ bool LevelOneScene::init()
 	this->node = new NinjaNoMeiyo::Models::Characters::Ryunosuke(position);
 	this->nodeView = new NinjaNoMeiyo::Views::Node(*node, *this);
 	nodeView->spawn();
+	static_cast<NinjaNoMeiyo::Models::Characters::Ryunosuke*>(this->node)->setCollisionEventDispatchers();
 
 	NinjaNoMeiyo::Models::Maps::Map map = NinjaNoMeiyo::Models::Maps::MapBuilder::getInstance().get("TileMaps/level1.tmx");
 	viewMap = new NinjaNoMeiyo::Views::Map(map, *this);
@@ -65,7 +66,6 @@ bool LevelOneScene::init()
 bool LevelOneScene::onContactBegin(PhysicsContact &contact) {
 		CCLOG("XD");
 	if (contact.getShapeA()->getBody()->getCollisionBitmask() == 3 || contact.getShapeB()->getBody()->getCollisionBitmask() == 3) {
-		CCLOG("XDddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 		return true;
 	}
 	return false;

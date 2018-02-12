@@ -13,22 +13,23 @@ namespace NinjaNoMeiyo {
 										));
 
 				surfaces.emplace_back(cocos2d::Vec2(position.x + size.width, position.y + size.height / 2), cocos2d::Vec2::ZERO, "", 0.0,
-													surfaceBitmasks[UPPER_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[LEFT_SURFACE_INDEX], cocos2d::Size(1, size.height))) :
+													surfaceBitmasks[RIGHT_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[RIGHT_SURFACE_INDEX], cocos2d::Size(1, size.height))) :
 																								static_cast<Physics::Physic*>(new Physics::PhysicEmpty()
 										));
 
 				surfaces.emplace_back(cocos2d::Vec2(position.x, position.y + size.height / 2), cocos2d::Vec2::ZERO, "", 0.0,
-													surfaceBitmasks[UPPER_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[RIGHT_SURFACE_INDEX], cocos2d::Size(1, size.height))) :
+													surfaceBitmasks[LEFT_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[LEFT_SURFACE_INDEX], cocos2d::Size(1, size.height))) :
 																								static_cast<Physics::Physic*>(new Physics::PhysicEmpty()
 										));
 
 				surfaces.emplace_back(cocos2d::Vec2(position.x + size.width / 2, position.y), cocos2d::Vec2::ZERO, "", 0.0,
-													surfaceBitmasks[UPPER_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[LOWER_SURFACE_INDEX], cocos2d::Size(size.width, 1))) :
+													surfaceBitmasks[LOWER_SURFACE_INDEX] != 0 ? static_cast<Physics::Physic*>(new Physics::PhysicBox(surfaceBitmasks[LOWER_SURFACE_INDEX], cocos2d::Size(size.width, 1))) :
 																								static_cast<Physics::Physic*>(new Physics::PhysicEmpty()
 										));
 
 				for (auto it = this->surfaces.begin(); it != this->surfaces.end(); ++it) {
 					it->setDynamic(false);
+					it->setContactTestBitmask(true);
 				}
 			}
 

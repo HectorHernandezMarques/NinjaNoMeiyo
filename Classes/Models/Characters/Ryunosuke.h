@@ -21,13 +21,13 @@ namespace NinjaNoMeiyo {
 
 				void accept(CharacterVisitor &characterVisitor);
 				States::State& getCurrentState();
+				void setCollisionEventDispatchers();
 
 			protected:
 
 			private:
 				CollisionHandlers::CollisionHandler &collisionHandler;
 
-				void setCollisionEventDispatchers();
 				bool onContactBegin(cocos2d::PhysicsContact &contact);
 				bool onContactSeparate(cocos2d::PhysicsContact &contact);
 

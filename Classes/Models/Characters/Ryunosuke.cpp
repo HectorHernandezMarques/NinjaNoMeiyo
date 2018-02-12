@@ -7,18 +7,17 @@ namespace NinjaNoMeiyo {
 		namespace Characters {
 
 			Ryunosuke::Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint) :
-					Character(position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
-                            static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) , cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize())
-                    ),
-					collisionHandler(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler()) {
+				Character(position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
+					static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize())
+				),
+				collisionHandler(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler()) {
 
 				assert(&position);
 				assert(&anchorPoint);
 
 				this->getPhysic().setRotationEnable(false);
-                this->getPhysicBody().setContactTestBitmask(true);
+				this->getPhysic().setContactTestBitmask(true);
 				this->getPhysic().setFriction(0.0);
-                this->setCollisionEventDispatchers();
 			}
 
 			Ryunosuke::~Ryunosuke() {
@@ -45,20 +44,20 @@ namespace NinjaNoMeiyo {
 
 				bool result = false;
 
-				if ((a->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) || b->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE))) {
-					cocos2d::Node *nodeToHandle;
-					if (a->getCollisionBitmask() != static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE)) {
-						nodeToHandle = a->getLinkedNode();
-					}
-					else {
-						nodeToHandle = b->getLinkedNode();
-					}
-					CollisionHandlers::CollisionResult *collisionResult = this->collisionHandler.handle(*nodeToHandle);
+				if (a->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) || b->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE)) {
+					CollisionHandlers::CollisionResult *collisionResult = this->collisionHandler.handle(
+						*(a->getCollisionBitmask() != static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) ?
+							a->getLinkedNode() :
+							b->getLinkedNode()
+						)
+					);
 
 					if (collisionResult->getBitmask() == CollisionHandlers::Bitmasks::FIXED_OBSTACLE) {
-						result = false;
+						CCLOG("FIXED_OBSTACLE");
+						result = true;
 					}
 					else {
+						CCLOG("NON_FIXED_OBSTACLE: %d", collisionResult->getBitmask());
 						//TODO SAVE RESULT ON SOMEHOW COLLECTION
 					}
 				}

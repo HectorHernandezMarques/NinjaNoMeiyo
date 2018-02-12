@@ -110,6 +110,7 @@ namespace NinjaNoMeiyo {
 						pointsList.push_back(it->second - position);
 					}
 					limit = new Limit(position, cocos2d::Vec2::ZERO, "", 0.0, pointsList);
+					limit->setContactTestBitmask(true);
 					map.add(limit);
 				}
 			}

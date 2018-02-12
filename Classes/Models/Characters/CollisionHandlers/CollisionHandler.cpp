@@ -8,6 +8,9 @@ namespace NinjaNoMeiyo {
 				CollisionHandler::CollisionHandler() : next(nullptr) {
 				}
 
+				CollisionHandler::CollisionHandler(CollisionHandler &next) : next(&next) {
+				}
+
 				CollisionHandler::~CollisionHandler() {
 				}
 
@@ -16,7 +19,7 @@ namespace NinjaNoMeiyo {
 						return this->next->handle(node);
 					}
 					else {
-						return nullptr;
+						return new CollisionResult(node, Bitmasks::UNKNOWN_BITMASK);
 					}
 				}
 

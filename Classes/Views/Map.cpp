@@ -16,7 +16,6 @@ namespace NinjaNoMeiyo {
 		}
 
 		void Map::spawn() {
-			int i = 0;
 			for (auto it = this->elements.begin(); it != this->elements.end(); ++it) {
 				it->spawn();
 			}

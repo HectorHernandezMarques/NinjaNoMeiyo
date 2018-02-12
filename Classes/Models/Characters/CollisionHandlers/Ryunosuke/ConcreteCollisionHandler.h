@@ -12,6 +12,7 @@ namespace NinjaNoMeiyo {
 					class ConcreteCollisionHandler : public CollisionHandler {
 					public:
 						ConcreteCollisionHandler(Bitmasks bitmaskToHandle);
+						ConcreteCollisionHandler(Bitmasks bitmaskToHandle, CollisionHandler &next);
 						virtual ~ConcreteCollisionHandler();
 
 						bool canHandle(cocos2d::Node &node);

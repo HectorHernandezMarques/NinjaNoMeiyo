@@ -10,16 +10,25 @@ namespace NinjaNoMeiyo {
 
 					}
 
+					ConcreteCollisionHandler::ConcreteCollisionHandler(Bitmasks bitmaskToHandle, CollisionHandler &next) : CollisionHandler(next), bitmaskToHandle(bitmaskToHandle) {
+
+					}
+
 					ConcreteCollisionHandler::~ConcreteCollisionHandler() {
 
 					}
 
 					bool ConcreteCollisionHandler::canHandle(cocos2d::Node &node) {
-						return node.getPhysicsBody()->getCategoryBitmask() == static_cast<int>(this->bitmaskToHandle);
+						return node.getPhysicsBody()->getCollisionBitmask() == static_cast<int>(this->bitmaskToHandle);
 					}
 
 					CollisionResult* ConcreteCollisionHandler::handle(cocos2d::Node &node) {
-						return new CollisionResult(node, this->bitmaskToHandle);
+						if (this->canHandle(node)) {
+							return new CollisionResult(node, this->bitmaskToHandle);
+						}
+						else {
+							return CollisionHandler::handle(node);
+						}
 					}
 
 				}

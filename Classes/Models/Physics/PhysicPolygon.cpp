@@ -17,7 +17,7 @@ namespace NinjaNoMeiyo {
 					pointsArray[i++] = point;
 				}
 				cocos2d::PhysicsBody &result = *cocos2d::PhysicsBody::createPolygon(pointsArray, points.size());
-				result.setCategoryBitmask(bitmask);
+				result.setCollisionBitmask(bitmask);
 				return result;
 			}
 		}

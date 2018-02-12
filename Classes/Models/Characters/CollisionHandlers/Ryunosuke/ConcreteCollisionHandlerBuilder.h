@@ -17,7 +17,7 @@ namespace NinjaNoMeiyo {
 						CollisionHandler& getCollisionHandler();
 
 					private:
-						CollisionHandler &collisionHandler;
+						CollisionHandler *collisionHandler;
 
 						ConcreteCollisionHandlerBuilder();
 						static ConcreteCollisionHandlerBuilder *instance;

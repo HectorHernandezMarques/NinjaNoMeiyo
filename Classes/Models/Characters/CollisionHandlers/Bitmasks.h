@@ -51,7 +51,8 @@ namespace NinjaNoMeiyo {
 					AIR=0,
 					RYUNOSUKE=129,
 
-					FIXED_OBSTACLE=130
+					FIXED_OBSTACLE=130,
+					UNKNOWN_BITMASK = 88
 				};
 			}
 		}
