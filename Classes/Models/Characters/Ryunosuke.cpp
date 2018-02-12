@@ -49,24 +49,39 @@ namespace NinjaNoMeiyo {
 						*(a->getCollisionBitmask() != static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) ?
 							a->getLinkedNode() :
 							b->getLinkedNode()
-						)
+							)
 					);
 
 					if (collisionResult->getBitmask() == CollisionHandlers::Bitmasks::FIXED_OBSTACLE) {
-						CCLOG("FIXED_OBSTACLE");
 						result = true;
 					}
 					else {
-						CCLOG("NON_FIXED_OBSTACLE: %d", collisionResult->getBitmask());
-						//TODO SAVE RESULT ON SOMEHOW COLLECTION
+						this->nodesInContact.insert(std::make_pair<int, cocos2d::Node*>(static_cast<int>(collisionResult->getBitmask()), &collisionResult->getNode()));
 					}
 				}
 
 				return result;
 			}
 
-			bool Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact) {
-				//TODO REMOVE RESULTS UPTHERE ADDED
+			void Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact) {
+				cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
+				cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
+
+				if (a->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) || b->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE)) {
+
+					cocos2d::Node *nodeToErase = a->getCollisionBitmask() != static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) ?
+						a->getLinkedNode() :
+						b->getLinkedNode();
+
+					for (auto it = this->nodesInContact.begin(); it != this->nodesInContact.end(); ) {
+						if (it->second == nodeToErase) {
+							it = this->nodesInContact.erase(it);
+						}
+						else {
+							it++;
+						}
+					}
+				}
 			}
 
 		}

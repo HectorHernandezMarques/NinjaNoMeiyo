@@ -9,6 +9,7 @@
 #include "./CollisionHandlers/Bitmasks.h"
 #include "./CollisionHandlers/CollisionHandler.h"
 #include "./CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.h"
+#include <map>
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -27,9 +28,16 @@ namespace NinjaNoMeiyo {
 
 			private:
 				CollisionHandlers::CollisionHandler &collisionHandler;
+				std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
 
 				bool onContactBegin(cocos2d::PhysicsContact &contact);
-				bool onContactSeparate(cocos2d::PhysicsContact &contact);
+				void onContactSeparate(cocos2d::PhysicsContact &contact);
+				void debugNodesIntContact() {
+					CCLOG("Number: %d", this->nodesInContact.size());
+					for (auto it = this->nodesInContact.begin(); it != this->nodesInContact.end(); ++it) {
+							CCLOG("got: %p", (*it).second);
+					}
+				}
 
 			};
 		}
