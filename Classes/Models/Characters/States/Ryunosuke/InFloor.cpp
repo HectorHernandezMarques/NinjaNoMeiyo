@@ -13,6 +13,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void InFloor::move(float xVelocity) {
+						ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 						ryunosuke.setVelocity(cocos2d::Vec2(xVelocity, ryunosuke.getVelocity().y));
 					}
 
@@ -29,6 +30,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void InFloor::stop(float xVelocity) {
+						ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 						ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 					}
 

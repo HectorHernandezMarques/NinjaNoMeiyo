@@ -14,17 +14,16 @@ namespace NinjaNoMeiyo {
 				assert(this->modelVisitor);
 				assert(this->animationVisitor);
 
-				this->character.stopAction(this->modelVisitor->getAction());
-				this->character.stopAction(this->animationVisitor->getAction());
-				this->character.stopAction(this->animationVisitor->getAnimationAction());
+				this->character.reject(*this->modelVisitor);
+				this->character.reject(*this->animationVisitor);
 			}
 
 			void CharacterCommand::execute() {
 				assert(this->modelVisitor);
 				assert(this->animationVisitor);
 
-				this->character.accept(*this->animationVisitor);
 				this->character.accept(*this->modelVisitor);
+				this->character.accept(*this->animationVisitor);
 			}
 		}
 	}

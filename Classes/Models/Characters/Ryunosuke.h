@@ -22,6 +22,7 @@ namespace NinjaNoMeiyo {
 				virtual ~Ryunosuke();
 
 				void accept(CharacterVisitor &characterVisitor);
+				void reject(CharacterVisitor &characterVisitor);
 				States::State& getCurrentState();
 				void setCollisionEventDispatchers();
 

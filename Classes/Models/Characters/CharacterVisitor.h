@@ -14,11 +14,9 @@ namespace NinjaNoMeiyo {
 				virtual ~CharacterVisitor();
 
 				virtual void visit(Ryunosuke &ryunosuke);
+				virtual void unvisit(Ryunosuke &ryunosuke);
 				virtual void setState(States::State &state) = 0;
 				cocos2d::Action* getAction();
-
-			protected:
-				cocos2d::Action *action;
 
 			};
 		}

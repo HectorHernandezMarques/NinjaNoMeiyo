@@ -4,6 +4,7 @@
 #include "../Node.h"
 #include "./Aspects/Characters/StateAspect.h"
 #include "./Observers/CharacterObserver.h"
+#include <unordered_set>
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -23,15 +24,16 @@ namespace NinjaNoMeiyo {
 				virtual ~Character();
 
 				void attach(Observers::CharacterObserver &characterObserver);
-				//void detach(Observers::CharacterObserver &characterObserver);
+				void detach(Observers::CharacterObserver &characterObserver);
 				void notify(Aspects::Characters::Aspect &aspect);
 				virtual void accept(CharacterVisitor &characterVisitor) = 0;
+                virtual void reject(CharacterVisitor &characterVisitor) = 0;
 				virtual States::State& getCurrentState() = 0;
 
 			protected:
 
 			private:
-				Observers::CharacterObserver* characterObserver;
+				std::unordered_set<Observers::CharacterObserver*> characterObservers;
 			};
 		}
 	}

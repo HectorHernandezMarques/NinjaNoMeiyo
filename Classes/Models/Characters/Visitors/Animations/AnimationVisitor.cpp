@@ -12,6 +12,11 @@ namespace NinjaNoMeiyo {
 					AnimationVisitor::~AnimationVisitor() {
 					}
 
+					void AnimationVisitor::unvisit(Ryunosuke &ryunosuke) {
+						CharacterVisitor::unvisit(ryunosuke);
+						ryunosuke.stopAction(this->animationAction);
+					}
+
 					cocos2d::Action* AnimationVisitor::getAnimationAction() {
 						return this->animationAction;
 					}

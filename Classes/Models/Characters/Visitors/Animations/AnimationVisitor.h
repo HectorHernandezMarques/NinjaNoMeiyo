@@ -14,6 +14,7 @@ namespace NinjaNoMeiyo {
 						AnimationVisitor();
 						virtual ~AnimationVisitor();
 
+						virtual void unvisit(Ryunosuke &ryunosuke);
 						cocos2d::Action* getAnimationAction();
 
 					protected:

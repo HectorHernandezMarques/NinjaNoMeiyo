@@ -4,7 +4,7 @@ namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 
-			CharacterVisitor::CharacterVisitor() : action(nullptr) {
+			CharacterVisitor::CharacterVisitor() {
 			}
 
 			CharacterVisitor::~CharacterVisitor() {
@@ -14,8 +14,8 @@ namespace NinjaNoMeiyo {
 				ryunosuke.attach(*this);
 			}
 
-			cocos2d::Action* CharacterVisitor::getAction() {
-				return this->action;
+			void CharacterVisitor::unvisit(Ryunosuke &ryunosuke) {
+				ryunosuke.detach(*this);
 			}
 		}
 	}

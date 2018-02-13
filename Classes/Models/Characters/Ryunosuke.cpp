@@ -29,6 +29,10 @@ namespace NinjaNoMeiyo {
 				characterVisitor.visit(*this);
 			}
 
+            void Ryunosuke::reject(CharacterVisitor &characterVisitor) {
+                characterVisitor.unvisit(*this);
+            }
+
 			States::State& Ryunosuke::getCurrentState() {
 				return this->stateHandler.handle(this->nodesInContact)->getState();
 			}
