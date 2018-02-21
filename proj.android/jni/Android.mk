@@ -32,12 +32,18 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloor.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InRightObstacle.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InLeftObstacle.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InFloorAndRightObstacle.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InFloorAndLeftObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateResult.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/StateHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InRightObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InLeftObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorAndRightObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorAndLeftObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \

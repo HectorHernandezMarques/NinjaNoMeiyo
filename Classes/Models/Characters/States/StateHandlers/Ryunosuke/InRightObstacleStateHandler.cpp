@@ -20,11 +20,13 @@ namespace NinjaNoMeiyo {
 						}
 
 						bool InRightObstacleStateHandler::canHandle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
+							bool result = false;
 							auto it = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::RIGHT_OBSTACLE));
 							if (it.first != it.second) {
-								return true;
+								result = true;
 							}
-							return false;
+
+							return result;
 						}
 
 						StateResult* InRightObstacleStateHandler::handle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
