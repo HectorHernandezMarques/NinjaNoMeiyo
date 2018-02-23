@@ -44,6 +44,14 @@ namespace NinjaNoMeiyo {
 				this->addEventListenerWithSceneGraphPriority(contactListener);
 			}
 
+			void Ryunosuke::notifyCurrentStateIfChanged() {
+				States::StateHandlers::StateResult& stateResult = *this->stateHandler.handle(this->nodesInContact);
+				if (stateResult.getStateIndex() != this->currentStateIndex) {
+					this->currentStateIndex = stateResult.getStateIndex();
+					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState()));
+				}
+			}
+
 			bool Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact) {
 				cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 				cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
@@ -63,7 +71,7 @@ namespace NinjaNoMeiyo {
 					}
 					else {
 						this->nodesInContact.insert(std::make_pair<int, cocos2d::Node*>(static_cast<int>(collisionResult->getBitmask()), &collisionResult->getNode()));
-						this->notify(*new Aspects::Characters::StateAspect(this->getCurrentState()));
+						this->notifyCurrentStateIfChanged();
 					}
 				}
 
@@ -83,7 +91,7 @@ namespace NinjaNoMeiyo {
 					for (auto it = this->nodesInContact.begin(); it != this->nodesInContact.end(); ) {
 						if (it->second == nodeToErase) {
 							it = this->nodesInContact.erase(it);
-							this->notify(*new Aspects::Characters::StateAspect(this->getCurrentState()));
+                            this->notifyCurrentStateIfChanged();
 						}
 						else {
 							it++;

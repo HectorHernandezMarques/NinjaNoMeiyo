@@ -33,6 +33,8 @@ namespace NinjaNoMeiyo {
 				States::StateHandlers::StateHandler &stateHandler;
 				std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
 
+				void notifyCurrentStateIfChanged();
+
 				bool onContactBegin(cocos2d::PhysicsContact &contact);
 				void onContactSeparate(cocos2d::PhysicsContact &contact);
 

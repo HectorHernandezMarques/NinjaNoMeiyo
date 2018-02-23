@@ -4,6 +4,7 @@
 #include "../Node.h"
 #include "./Aspects/Characters/StateAspect.h"
 #include "./Observers/CharacterObserver.h"
+#include "./States/StateHandlers/StateIndex.h"
 #include <unordered_set>
 
 namespace NinjaNoMeiyo {
@@ -31,6 +32,7 @@ namespace NinjaNoMeiyo {
 				virtual States::State& getCurrentState() = 0;
 
 			protected:
+				States::StateHandlers::StateIndex currentStateIndex;
 
 			private:
 				std::unordered_set<Observers::CharacterObserver*> characterObservers;
