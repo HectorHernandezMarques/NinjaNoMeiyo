@@ -6,6 +6,8 @@
 #include "./InLeftObstacleStateHandler.h"
 #include "./InFloorAndRightObstacleStateHandler.h"
 #include "./InFloorAndLeftObstacleStateHandler.h"
+#include "./InOilRightObstacleStateHandler.h"
+#include "./InOilLeftObstacleStateHandler.h"
 #include "../../../Ryunosuke.h"
 
 namespace NinjaNoMeiyo {
