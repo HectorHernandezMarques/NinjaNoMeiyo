@@ -17,8 +17,8 @@ namespace NinjaNoMeiyo {
 						IN_FLOOR_AND_LEFT_OBSTACLE,
 
 						//IN_OIL_FLOOR,
-						//IN_OIL_RIGHT_OBSTACLE,
-						//IN_OIL_LEFT_OBSTACLE,
+						IN_OIL_RIGHT_OBSTACLE,
+						IN_OIL_LEFT_OBSTACLE,
 						//IN_OIL_CEILING,
 
 						IN_AIR,

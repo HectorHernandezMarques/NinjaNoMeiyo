@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "./StateIndex.h"
 #include "./StateResult.h"
-#include "../../Character.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -14,8 +13,8 @@ namespace NinjaNoMeiyo {
 
 					class StateHandler {
 					public:
-						StateHandler(Character &character);
-						StateHandler(Character &character, StateHandler &next);
+						StateHandler();
+						StateHandler(StateHandler &next);
 						virtual ~StateHandler();
 
 						virtual bool canHandle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) = 0;
@@ -23,9 +22,6 @@ namespace NinjaNoMeiyo {
 						bool hasNext();
 
 						void setNext(StateHandler &collisionHandler);
-
-					protected:
-						Character &character;
 
 					private:
 						StateHandler *next;

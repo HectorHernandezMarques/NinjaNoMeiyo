@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_INFLOORSTATEHANDLER_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_INFLOORSTATEHANDLER_H
 
-#include "../StateHandler.h"
+#include "../CharacterStateHandler.h"
 #include "../../Ryunosuke/InFloor.h"
 
 namespace NinjaNoMeiyo {
@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 				namespace StateHandlers {
 					namespace Ryunosuke {
 
-						class InFloorStateHandler : public StateHandler {
+						class InFloorStateHandler : public CharacterStateHandler {
 						public:
 							InFloorStateHandler(Characters::Ryunosuke &ryunosuke);
 							InFloorStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next);

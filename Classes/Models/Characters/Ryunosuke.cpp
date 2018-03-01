@@ -8,11 +8,12 @@ namespace NinjaNoMeiyo {
 		namespace Characters {
 
 			Ryunosuke::Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint) :
-				Character(position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
-					static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize())
-				),
-				collisionHandler(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler()),
-				stateHandler((new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler()) {
+				Character(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler(),
+                          (new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler(),
+                          position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
+                                static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize()
+                        )
+                ) {
 
 				assert(&position);
 				assert(&anchorPoint);
@@ -33,23 +34,11 @@ namespace NinjaNoMeiyo {
                 characterVisitor.unvisit(*this);
             }
 
-			States::State& Ryunosuke::getCurrentState() {
-				return this->stateHandler.handle(this->nodesInContact)->getState();
-			}
-
 			void Ryunosuke::setCollisionEventDispatchers() {
 				cocos2d::EventListenerPhysicsContact *contactListener = cocos2d::EventListenerPhysicsContact::create();
 				contactListener->onContactBegin = CC_CALLBACK_1(NinjaNoMeiyo::Models::Characters::Ryunosuke::onContactBegin, this);
 				contactListener->onContactSeparate = CC_CALLBACK_1(NinjaNoMeiyo::Models::Characters::Ryunosuke::onContactSeparate, this);
 				this->addEventListenerWithSceneGraphPriority(contactListener);
-			}
-
-			void Ryunosuke::notifyCurrentStateIfChanged() {
-				States::StateHandlers::StateResult& stateResult = *this->stateHandler.handle(this->nodesInContact);
-				if (stateResult.getStateIndex() != this->currentStateIndex) {
-					this->currentStateIndex = stateResult.getStateIndex();
-					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState()));
-				}
 			}
 
 			bool Ryunosuke::onContactBegin(cocos2d::PhysicsContact &contact) {

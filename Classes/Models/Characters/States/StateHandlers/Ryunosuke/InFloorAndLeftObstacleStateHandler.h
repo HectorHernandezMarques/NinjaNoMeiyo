@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_INFLOORANDLEFTOBSTACLESTATEHANDLER_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_INFLOORANDLEFTOBSTACLESTATEHANDLER_H
 
-#include "../StateHandler.h"
+#include "../CharacterStateHandler.h"
 #include "../../Ryunosuke/InFloorAndLeftObstacle.h"
 
 namespace NinjaNoMeiyo {
@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 				namespace StateHandlers {
 					namespace Ryunosuke {
 
-						class InFloorAndLeftObstacleStateHandler : public StateHandler {
+						class InFloorAndLeftObstacleStateHandler : public CharacterStateHandler {
 						public:
 							InFloorAndLeftObstacleStateHandler(Characters::Ryunosuke &ryunosuke);
 							InFloorAndLeftObstacleStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next);

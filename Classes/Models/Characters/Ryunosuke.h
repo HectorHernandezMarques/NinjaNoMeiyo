@@ -7,9 +7,7 @@
 #include "../Physics/PhysicBox.h"
 #include "./States/Ryunosuke/State.h"
 #include "./CollisionHandlers/Bitmasks.h"
-#include "./CollisionHandlers/CollisionHandler.h"
 #include "./CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.h"
-#include "./States/StateHandlers/StateHandler.h"
 #include <map>
 
 namespace NinjaNoMeiyo {
@@ -23,18 +21,11 @@ namespace NinjaNoMeiyo {
 
 				void accept(CharacterVisitor &characterVisitor);
 				void reject(CharacterVisitor &characterVisitor);
-				States::State& getCurrentState();
 				void setCollisionEventDispatchers();
 
 			protected:
 
 			private:
-				CollisionHandlers::CollisionHandler &collisionHandler;
-				States::StateHandlers::StateHandler &stateHandler;
-				std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
-
-				void notifyCurrentStateIfChanged();
-
 				bool onContactBegin(cocos2d::PhysicsContact &contact);
 				void onContactSeparate(cocos2d::PhysicsContact &contact);
 

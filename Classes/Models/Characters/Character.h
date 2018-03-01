@@ -5,6 +5,8 @@
 #include "./Aspects/Characters/StateAspect.h"
 #include "./Observers/CharacterObserver.h"
 #include "./States/StateHandlers/StateIndex.h"
+#include "./States/StateHandlers/StateHandler.h"
+#include "./CollisionHandlers/CollisionHandler.h"
 #include <unordered_set>
 
 namespace NinjaNoMeiyo {
@@ -21,7 +23,8 @@ namespace NinjaNoMeiyo {
 
 			class Character : public Node {
 			public:
-				Character(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, Physics::Physic *physic = new Physics::PhysicEmpty());
+				Character(CollisionHandlers::CollisionHandler &collisionHandler, States::StateHandlers::StateHandler &stateHandler, cocos2d::Vec2 position,
+                          cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, Physics::Physic *physic = new Physics::PhysicEmpty());
 				virtual ~Character();
 
 				void attach(Observers::CharacterObserver &characterObserver);
@@ -29,13 +32,19 @@ namespace NinjaNoMeiyo {
 				void notify(Aspects::Characters::Aspect &aspect);
 				virtual void accept(CharacterVisitor &characterVisitor) = 0;
                 virtual void reject(CharacterVisitor &characterVisitor) = 0;
-				virtual States::State& getCurrentState() = 0;
+
+                States::State& getCurrentState();
 
 			protected:
 				States::StateHandlers::StateIndex currentStateIndex;
+                CollisionHandlers::CollisionHandler &collisionHandler;
+                std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
+
+                void notifyCurrentStateIfChanged();
 
 			private:
 				std::unordered_set<Observers::CharacterObserver*> characterObservers;
+                States::StateHandlers::StateHandler &stateHandler;
 			};
 		}
 	}

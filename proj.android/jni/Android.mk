@@ -37,6 +37,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloorAndLeftObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/CharacterStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateResult.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/StateHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorStateHandler.cpp \

@@ -7,11 +7,11 @@ namespace NinjaNoMeiyo {
 				namespace StateHandlers {
 					namespace Ryunosuke {
 
-						InRightObstacleStateHandler::InRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : StateHandler(ryunosuke){
+						InRightObstacleStateHandler::InRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : CharacterStateHandler(ryunosuke){
 
 						}
 
-						InRightObstacleStateHandler::InRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next) : StateHandler(ryunosuke, next) {
+						InRightObstacleStateHandler::InRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next) : CharacterStateHandler(ryunosuke, next) {
 
 						}
 
@@ -21,8 +21,8 @@ namespace NinjaNoMeiyo {
 
 						bool InRightObstacleStateHandler::canHandle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
 							bool result = false;
-							auto it = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::RIGHT_OBSTACLE));
-							if (it.first != it.second) {
+							auto itRightObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::RIGHT_OBSTACLE));
+							if (itRightObstacleNodes.first != itRightObstacleNodes.second) {
 								result = true;
 							}
 

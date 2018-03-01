@@ -7,11 +7,11 @@ namespace NinjaNoMeiyo {
 				namespace StateHandlers {
 					namespace Ryunosuke {
 
-						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : StateHandler(ryunosuke){
+						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : CharacterStateHandler(ryunosuke){
 
 						}
 
-						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next) : StateHandler(ryunosuke, next) {
+						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke, StateHandler &next) : CharacterStateHandler(ryunosuke, next) {
 
 						}
 

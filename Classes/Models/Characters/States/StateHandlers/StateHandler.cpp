@@ -6,10 +6,10 @@ namespace NinjaNoMeiyo {
 			namespace States {
 				namespace StateHandlers {
 
-					StateHandler::StateHandler(Character &character) : character(character), next(nullptr) {
+					StateHandler::StateHandler() : next(nullptr) {
 					}
 
-					StateHandler::StateHandler(Character &character, StateHandler &next) : character(character), next(&next) {
+					StateHandler::StateHandler(StateHandler &next) : next(&next) {
 					}
 
 					StateHandler::~StateHandler() {
