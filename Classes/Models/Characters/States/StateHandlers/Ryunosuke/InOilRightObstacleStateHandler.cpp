@@ -25,7 +25,8 @@ namespace NinjaNoMeiyo {
 							auto itOilRightObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::OIL_RIGHT_OBSTACLE));
 							auto itEdgeRightObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_RIGHT_OBSTACLE));
 							if (itRightObstacleNodes.first == itRightObstacleNodes.second) {
-								if (itOilRightObstacleNodes.first != itOilRightObstacleNodes.second || itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
+								if (itOilRightObstacleNodes.first != itOilRightObstacleNodes.second ||
+                                        itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
 									result = true;
 								}
 							}
@@ -38,7 +39,7 @@ namespace NinjaNoMeiyo {
 								return new StateResult(*new States::Ryunosuke::InOilRightObstacle(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::IN_OIL_RIGHT_OBSTACLE);
 							}
 							else {
-								return StateHandler::handle(nodesInContact);
+								return CharacterStateHandler::handle(nodesInContact);
 							}
 						}
 					}

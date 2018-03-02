@@ -30,6 +30,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/CollisionResult.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandler.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/UnknownState.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InAir.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloor.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InRightObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InLeftObstacle.cpp \
@@ -42,6 +44,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/CharacterStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateResult.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/StateHandlerBuilder.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InAirStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InRightObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InLeftObstacleStateHandler.cpp \

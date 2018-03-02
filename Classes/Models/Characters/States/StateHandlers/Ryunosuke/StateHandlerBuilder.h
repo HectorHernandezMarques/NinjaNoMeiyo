@@ -1,6 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_STATEHANDLERBUILDER_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_STATEHANDLERBUILDER_H
 
+#include "./InAirStateHandler.h"
 #include "./InFloorStateHandler.h"
 #include "./InRightObstacleStateHandler.h"
 #include "./InLeftObstacleStateHandler.h"

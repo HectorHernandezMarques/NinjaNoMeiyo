@@ -14,6 +14,15 @@ namespace NinjaNoMeiyo {
 
                     CharacterStateHandler::~CharacterStateHandler() {
 					}
+
+					StateResult* CharacterStateHandler::handle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
+						if (this->hasNext()) {
+							return StateHandler::handle(nodesInContact);
+						}
+						else {
+							return new StateResult(*new States::Ryunosuke::UnknownState(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::UNKNOWN_STATE);
+						}
+					}
 				}
 			}
 		}

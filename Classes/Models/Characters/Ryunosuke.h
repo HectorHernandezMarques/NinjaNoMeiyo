@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_RYUNOSUKE_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_RYUNOSUKE_H
 
-#define INITIAL_RYUNOSUKE_TEXTURE "RyunosukeMove0D.png"
+#define INITIAL_RYUNOSUKE_TEXTURE "DefaultTexture.png"
 
 #include "./Character.h"
 #include "../Physics/PhysicBox.h"

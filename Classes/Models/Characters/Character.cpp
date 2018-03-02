@@ -39,6 +39,7 @@ namespace NinjaNoMeiyo {
 
 			void Character::notifyCurrentStateIfChanged() {
 				States::StateHandlers::StateResult& stateResult = *this->stateHandler.handle(this->nodesInContact);
+
 				if (stateResult.getStateIndex() != this->currentStateIndex) {
 					this->currentStateIndex = stateResult.getStateIndex();
 					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState()));

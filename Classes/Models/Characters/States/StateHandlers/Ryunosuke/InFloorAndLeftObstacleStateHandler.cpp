@@ -35,7 +35,7 @@ namespace NinjaNoMeiyo {
 								return new StateResult(*new States::Ryunosuke::InFloorAndLeftObstacle(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::IN_FLOOR_AND_LEFT_OBSTACLE);
 							}
 							else {
-								return StateHandler::handle(nodesInContact);
+								return CharacterStateHandler::handle(nodesInContact);
 							}
 						}
 					}
