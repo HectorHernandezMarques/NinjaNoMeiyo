@@ -3,6 +3,7 @@
 
 #include <sstream>
 #include "cocos2d.h"
+#include "../../../Controllers/Sense.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -17,10 +18,12 @@ namespace NinjaNoMeiyo {
 							return ss.str();
 						}
 
-						virtual void move(float xVelocity) = 0;
-						virtual cocos2d::Action* moveAnimation(float xVelocity) = 0;
-						virtual void stop(float xVelocity) = 0;
-						virtual cocos2d::Action* stopAnimation(float xVelocity) = 0;
+						virtual void move(Controllers::Sense sense) = 0;
+						virtual cocos2d::Action* moveAnimation(Controllers::Sense sense) = 0;
+						virtual void stop(Controllers::Sense sense) = 0;
+						virtual cocos2d::Action* stopAnimation(Controllers::Sense sense) = 0;
+						virtual void jump(Controllers::Sense sense) = 0;
+						virtual cocos2d::Action* jumpAnimation(Controllers::Sense sense) = 0;
 					};
 			}
 		}

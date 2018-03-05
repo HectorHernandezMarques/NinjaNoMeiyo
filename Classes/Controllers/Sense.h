@@ -3,9 +3,10 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		enum Sense {
-			LEFT,
-			RIGHT
+		enum class Sense : int {
+			LEFT = -1,
+			RIGHT = 1,
+			MIDDLE = 0
 		};
 	}
 }

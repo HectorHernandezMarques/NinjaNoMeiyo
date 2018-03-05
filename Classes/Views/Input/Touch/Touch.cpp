@@ -5,7 +5,7 @@ namespace NinjaNoMeiyo {
 		namespace Input {
 			namespace Touch {
 
-				Touch::Touch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer) : Views::Node(touch, layer), pressed(false) {
+				Touch::Touch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer) : Views::Node(touch, layer), pressed(false), initialPosition(touch.getPosition()) {
 					assert(&touch);
 					assert(&layer);
 
@@ -35,8 +35,10 @@ namespace NinjaNoMeiyo {
 				}
 
 				void Touch::setPressed(bool pressed) {
-					this->pressed = pressed;
-					this->notify(*new Aspects::PressAspect(*this, this->pressed));
+					if (pressed != this->pressed) {
+						this->pressed = pressed;
+						this->notify(*new Aspects::PressAspect(*this, this->pressed));
+					}
 				}
 				bool Touch::getPressed() {
 					return this->pressed;

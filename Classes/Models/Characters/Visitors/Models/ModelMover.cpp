@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					ModelMover::ModelMover(float xVelocity) : CharacterVisitor(), xVelocity(xVelocity) {
+					ModelMover::ModelMover(Controllers::Sense sense) : ModelVisitor(sense) {
 					}
 
 					ModelMover::~ModelMover() {
@@ -14,7 +14,8 @@ namespace NinjaNoMeiyo {
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
 						CharacterVisitor::visit(ryunosuke);
-						ryunosuke.getCurrentState().move(this->xVelocity);
+						CCLOG("MM%d", static_cast<int>(sense));
+						ryunosuke.getCurrentState().move(this->sense);
 					}
 
 					void ModelMover::update(Aspects::Characters::Aspect &aspect) {
@@ -22,7 +23,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelMover::setState(States::State &state) {
-						state.move(this->xVelocity);
+						state.move(this->sense);
 					}
 				}
 			}

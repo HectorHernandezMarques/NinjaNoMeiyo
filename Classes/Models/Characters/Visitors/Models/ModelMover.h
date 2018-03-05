@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELMOVER_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELMOVER_H
 
-#include "../../CharacterVisitor.h"
+#include "./ModelVisitor.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -9,9 +9,9 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					class ModelMover : public CharacterVisitor {
+					class ModelMover : public ModelVisitor {
 					public:
-						ModelMover(float xVelocity);
+						ModelMover(Controllers::Sense sense);
 						virtual ~ModelMover();
 
 						void visit(Ryunosuke &ryunosuke);
@@ -21,7 +21,7 @@ namespace NinjaNoMeiyo {
 					protected:
 
 					private:
-						float xVelocity;
+
 					};
 				}
 			}

@@ -40,15 +40,19 @@ namespace NinjaNoMeiyo {
 					}
 					else {
 						if (&touch == this->leftTouchView) {
-							touch.unpress();
 							if (this->rightTouchView->getPressed()) {
 								this->rightTouchView->press();
 							}
+							else {
+								touch.unpress();
+							}
 						}
 						else if (&touch == this->rightTouchView) {
-							touch.unpress();
 							if (this->leftTouchView->getPressed()) {
 								this->leftTouchView->press();
+							}
+							else {
+								touch.unpress();
 							}
 						}
 						else {

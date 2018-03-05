@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Animations {
 
-					AnimationMover::AnimationMover(float xVelocity) : AnimationVisitor(), xVelocity(xVelocity) {
+					AnimationMover::AnimationMover(Controllers::Sense sense) : AnimationVisitor(sense) {
 					}
 
 					AnimationMover::~AnimationMover() {
@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 						this->characterMutex.lock();
 							CharacterVisitor::visit(ryunosuke);
 							this->character = &ryunosuke;
-							this->animationAction = ryunosuke.getCurrentState().moveAnimation(this->xVelocity);
+							this->animationAction = ryunosuke.getCurrentState().moveAnimation(this->sense);
 						this->characterMutex.unlock();
 					}
 
@@ -27,7 +27,7 @@ namespace NinjaNoMeiyo {
 					void AnimationMover::setState(States::State &state) {
 						this->characterMutex.lock();
 							this->character->stopAction(this->animationAction);
-							this->animationAction = state.moveAnimation(this->xVelocity);
+							this->animationAction = state.moveAnimation(this->sense);
 						this->characterMutex.unlock();
 					}
 				}

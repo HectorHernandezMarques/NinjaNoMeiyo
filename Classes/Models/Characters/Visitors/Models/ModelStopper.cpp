@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					ModelStopper::ModelStopper(float xVelocity) : CharacterVisitor(), xVelocity(xVelocity) {
+					ModelStopper::ModelStopper(Controllers::Sense sense) : ModelVisitor(sense) {
 					}
 
 					ModelStopper::~ModelStopper() {
@@ -14,7 +14,7 @@ namespace NinjaNoMeiyo {
 
 					void ModelStopper::visit(Ryunosuke &ryunosuke) {
 						CharacterVisitor::visit(ryunosuke);
-						ryunosuke.getCurrentState().stop(this->xVelocity);
+						ryunosuke.getCurrentState().stop(this->sense);
 					}
 
 					void ModelStopper::update(Aspects::Characters::Aspect &aspect) {
@@ -22,7 +22,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelStopper::setState(States::State &state) {
-						state.stop(this->xVelocity);
+						state.stop(this->sense);
 					}
 				}
 			}

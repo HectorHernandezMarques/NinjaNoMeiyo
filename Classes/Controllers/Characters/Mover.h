@@ -1,8 +1,6 @@
 #ifndef NINJANOMEIYO_CONTROLLERS_CHARACTERS_MOVER_H
 #define NINJANOMEIYO_CONTROLLERS_CHARACTERS_MOVER_H
 
-#define RYUNOSUKE_SPEED 750
-
 #include "./CharacterCommand.h"
 #include "../Sense.h"
 #include "../../Models/Characters/Visitors/Models/ModelMover.h"
@@ -17,8 +15,6 @@ namespace NinjaNoMeiyo {
 				Mover(bool stoppable, Models::Characters::Character &character, Sense sense);
 				virtual ~Mover();
 
-			private:
-				float xVelocity;
 			};
 		}
 	}

@@ -21,13 +21,13 @@ namespace NinjaNoMeiyo {
 						UnknownState(Characters::Ryunosuke &ryunosuke);
 						virtual ~UnknownState();
 
-						void move(float xVelocity);
-						cocos2d::Action* moveAnimation(float xVelocity);
-						void stop(float xVelocity);
-						cocos2d::Action* stopAnimation(float xVelocity);
+						void move(Controllers::Sense sense);
+						cocos2d::Action* moveAnimation(Controllers::Sense sense);
+						void stop(Controllers::Sense sense);
+						cocos2d::Action* stopAnimation(Controllers::Sense sense);
 
-						void moveAnimationFunction(float xVelocity);
-						void stopAnimationFunction(float xVelocity);
+						void moveAnimationFunction(Controllers::Sense sense);
+						void stopAnimationFunction(Controllers::Sense sense);
 
 					protected:
 

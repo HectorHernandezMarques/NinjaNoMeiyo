@@ -55,8 +55,11 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \
+                   ../../Classes/Models/Characters/Visitors/Animations/AnimationJumper.cpp \
+                   ../../Classes/Models/Characters/Visitors/Models/ModelVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelStopper.cpp \
+                   ../../Classes/Models/Characters/Visitors/Models/ModelJumper.cpp \
                    ../../Classes/Models/Input/Touch/Touch.cpp \
                    ../../Classes/Models/Physics/Physic.cpp \
                    ../../Classes/Models/Physics/PhysicEmpty.cpp \
@@ -78,6 +81,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Controllers/Characters/CharacterCommand.cpp \
                    ../../Classes/Controllers/Characters/Stopper.cpp \
                    ../../Classes/Controllers/Characters/Mover.cpp \
+                   ../../Classes/Controllers/Characters/Jumper.cpp \
                    ../../Classes/Controllers/Command.cpp \
 				   
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

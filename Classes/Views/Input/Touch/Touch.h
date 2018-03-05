@@ -24,12 +24,10 @@ namespace NinjaNoMeiyo {
 					virtual void press() = 0;
 					virtual void unpress() = 0;
 
-				private:
-					std::list<Views::Input::Touch::TouchObserver*> touchObservers;
-
 				protected:
 					std::mutex mPressed;
 					bool pressed;
+					cocos2d::Vec2 initialPosition;
 					cocos2d::Vec2 positionVariation;
 					cocos2d::Vec2 initialTouchPosition;
 					cocos2d::EventListenerTouchOneByOne *listener;
@@ -37,6 +35,9 @@ namespace NinjaNoMeiyo {
 					virtual bool getInitialTouchValues(cocos2d::Touch *touch, cocos2d::Event *event) = 0;
 					virtual void moveTouch(cocos2d::Touch *touch, cocos2d::Event *event) = 0;
 					virtual void endMovement(cocos2d::Touch *touch, cocos2d::Event *event) = 0;
+
+				private:
+					std::list<Views::Input::Touch::TouchObserver*> touchObservers;
 
 				};
 			}

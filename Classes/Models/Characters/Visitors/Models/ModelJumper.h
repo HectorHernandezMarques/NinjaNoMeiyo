@@ -1,5 +1,5 @@
-#ifndef NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELSTOPPER_H
-#define NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELSTOPPER_H
+#ifndef NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELJUMPER_H
+#define NINJANOMEIYO_MODELS_CHARACTERS_VISITORS_MODELS_MODELJUMPER_H
 
 #include "./ModelVisitor.h"
 
@@ -9,10 +9,10 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					class ModelStopper : public ModelVisitor {
+					class ModelJumper : public ModelVisitor {
 					public:
-						ModelStopper(Controllers::Sense sense);
-						virtual ~ModelStopper();
+						ModelJumper(Controllers::Sense sense);
+						virtual ~ModelJumper();
 
 						void visit(Ryunosuke &ryunosuke);
 						void update(Aspects::Characters::Aspect &aspect);

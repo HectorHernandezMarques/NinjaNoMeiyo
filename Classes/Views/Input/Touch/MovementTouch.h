@@ -1,6 +1,12 @@
 #ifndef NINJANOMEIYO_VIEWS_INPUT_TOUCH_MOVEMENTTOUCH_H
 #define NINJANOMEIYO_VIEWS_INPUT_TOUCH_MOVEMENTTOUCH_H
 
+#define TOUCH_UPPER_JUMP 20
+#define TOUCH_UPPER_JUMP_2 10
+#define TOUCH_RIGHT_JUMP 30
+#define TOUCH_LEFT_JUMP 30
+#define TOUCH_DELAY 0.0
+
 #include "./Touch.h"
 #include "../../../Controllers/Sense.h"
 #include "../../../Controllers/Characters/Stopper.h"
@@ -20,6 +26,11 @@ namespace NinjaNoMeiyo {
 					void press();
 					void unpress();
 
+				protected:
+					bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
+					void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);
+					void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
+
 				private:
 					std::mutex mDoubleTouch, mForcingUntouch, mGestureMade;
 					/*we want to avoid the user touching the same touch detector twice*/
@@ -28,11 +39,6 @@ namespace NinjaNoMeiyo {
 					Models::Characters::Ryunosuke& ryunosuke;
 					Controllers::Characters::CommandDealer& commandDealer;
 					Controllers::Sense sense;
-
-				protected:
-					bool getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event);
-					void moveTouch(cocos2d::Touch* touch, cocos2d::Event* event);
-					void endMovement(cocos2d::Touch* touch, cocos2d::Event* event);
 
 				};
 			}
