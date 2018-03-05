@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 				namespace StateHandlers {
 					namespace Ryunosuke {
 
-						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : CharacterStateHandler(ryunosuke){
+						InFloorAndRightObstacleStateHandler::InFloorAndRightObstacleStateHandler(Characters::Ryunosuke &ryunosuke) : CharacterStateHandler(ryunosuke) {
 
 						}
 
@@ -23,8 +23,45 @@ namespace NinjaNoMeiyo {
 							bool result = false;
 							auto itRightObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::RIGHT_OBSTACLE));
 							auto itFloorNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::FLOOR));
-							if (itRightObstacleNodes.first != itRightObstacleNodes.second && itFloorNodes.first != itFloorNodes.second) {
-								result = true;
+							auto itEdgeFloorRightNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_FLOOR_RIGHT));
+							auto itEdgeRightObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_RIGHT_OBSTACLE));
+
+							if (itFloorNodes.first != itFloorNodes.second) {
+								if (itRightObstacleNodes.first != itRightObstacleNodes.second) {
+									result = true;
+								}
+								else if (itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
+									if ((std::next(itEdgeRightObstacleNodes.first)) == itEdgeRightObstacleNodes.second) {
+										if (!this->isOverEdgeLeftWall(itEdgeRightObstacleNodes.first->second)) {
+											result = true;
+										}
+									}
+									else {
+										result = true;
+									}
+								}
+							}
+							else if (itEdgeFloorRightNodes.first != itEdgeFloorRightNodes.second) {
+								if ((std::next(itEdgeFloorRightNodes.first)) == itEdgeFloorRightNodes.second) {
+									if (this->isOverEdgeRightFloor(itEdgeFloorRightNodes.first->second)) {
+										if (itRightObstacleNodes.first != itRightObstacleNodes.second) {
+											result = true;
+										}
+										else if (itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
+											if ((std::next(itEdgeRightObstacleNodes.first)) == itEdgeRightObstacleNodes.second) {
+												if (!this->isOverEdgeLeftWall(itEdgeRightObstacleNodes.first->second)) {
+													result = true;
+												}
+											}
+											else {
+												result = true;
+											}
+										}
+									}
+								}
+								else if (itRightObstacleNodes.first != itRightObstacleNodes.second || itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
+									result = true;
+								}
 							}
 
 							return result;

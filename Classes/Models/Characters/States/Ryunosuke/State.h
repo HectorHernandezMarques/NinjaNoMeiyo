@@ -17,9 +17,6 @@ namespace NinjaNoMeiyo {
 						float xVelocityMovement;
 						float yVelocityJump;
 
-						void jump(Controllers::Sense sense) {};
-						cocos2d::Action* jumpAnimation(Controllers::Sense sense) {};
-
 					public:
 						State();
 						virtual ~State();

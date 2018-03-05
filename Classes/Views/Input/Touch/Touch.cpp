@@ -5,7 +5,7 @@ namespace NinjaNoMeiyo {
 		namespace Input {
 			namespace Touch {
 
-				Touch::Touch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer) : Views::Node(touch, layer), pressed(false), initialPosition(touch.getPosition()) {
+				Touch::Touch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer) : Views::Node(touch, layer), pressed(false), initialPosition(touch.getInitialPosition()) {
 					assert(&touch);
 					assert(&layer);
 

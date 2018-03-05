@@ -21,7 +21,7 @@ namespace NinjaNoMeiyo {
 						aspect.visit(*this);
 					}
 
-					void ModelStopper::setState(States::State &state) {
+					void ModelStopper::setState(States::State &state, Interaction interactionType) {
 						state.stop(this->sense);
 					}
 				}

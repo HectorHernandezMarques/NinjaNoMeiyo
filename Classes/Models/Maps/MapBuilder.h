@@ -14,6 +14,7 @@ namespace NinjaNoMeiyo {
 			public:
 				static MapBuilder& getInstance();
 				virtual ~MapBuilder();
+				cocos2d::Size getBoxSize();
 
 				Map get(std::string path);
 

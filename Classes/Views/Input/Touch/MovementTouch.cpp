@@ -58,10 +58,9 @@ namespace NinjaNoMeiyo {
 							if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP)
 							{
 								this->mForcingUntouch.lock();
-
-								//commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, this->sense));
 								this->setPosition(this->initialPosition);
-								this->setPressed(false);
+
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::RIGHT));
 							}
 							// |o| | |
 							// | | | |
@@ -69,10 +68,9 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_JUMP)
 							{
 								this->mForcingUntouch.lock();
-
-								//commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, -this->sense));
 								this->setPosition(this->initialPosition);
-								this->setPressed(false);
+
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::LEFT));
 							}
 							// | |o| |
 							// | | | |
@@ -80,10 +78,9 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP_2)
 							{
 								this->mForcingUntouch.lock();
-
-								//commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, 0.0));
 								this->setPosition(this->initialPosition);
-								this->setPressed(false);
+
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::MIDDLE));
 							}
 
 						}

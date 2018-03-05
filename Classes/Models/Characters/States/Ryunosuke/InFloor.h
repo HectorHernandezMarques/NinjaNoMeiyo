@@ -25,9 +25,12 @@ namespace NinjaNoMeiyo {
 						cocos2d::Action* moveAnimation(Controllers::Sense sense);
 						void stop(Controllers::Sense sense);
 						cocos2d::Action* stopAnimation(Controllers::Sense sense);
+						void jump(Controllers::Sense sense);
+						cocos2d::Action* jumpAnimation(Controllers::Sense sense);
 
 						void moveAnimationFunction(Controllers::Sense sense);
 						void stopAnimationFunction(Controllers::Sense sense);
+						void jumpAnimationFunction(Controllers::Sense sense);
 
 					protected:
 

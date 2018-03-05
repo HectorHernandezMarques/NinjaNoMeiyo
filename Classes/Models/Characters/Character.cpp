@@ -37,12 +37,12 @@ namespace NinjaNoMeiyo {
 				return this->stateHandler.handle(this->nodesInContact)->getState();
 			}
 
-			void Character::notifyCurrentStateIfChanged() {
+			void Character::notifyCurrentStateIfChanged(Interaction interactionType) {
 				States::StateHandlers::StateResult& stateResult = *this->stateHandler.handle(this->nodesInContact);
 
 				if (stateResult.getStateIndex() != this->currentStateIndex) {
 					this->currentStateIndex = stateResult.getStateIndex();
-					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState()));
+					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState(), interactionType));
 				}
 			}
 		}

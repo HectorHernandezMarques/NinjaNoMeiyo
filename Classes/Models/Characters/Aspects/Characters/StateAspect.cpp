@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 			namespace Aspects {
 				namespace Characters {
 
-					StateAspect::StateAspect(States::State &state) : state(state) {
+					StateAspect::StateAspect(States::State &state, Interaction interactionType) : state(state), interactionType(interactionType) {
 					}
 
                     StateAspect::~StateAspect() {
@@ -15,7 +15,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void StateAspect::visit(CharacterVisitor &characterVisitor) {
-						characterVisitor.setState(this->state);
+						characterVisitor.setState(this->state, this->interactionType);
 					}
 				}
 			}

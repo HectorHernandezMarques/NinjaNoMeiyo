@@ -24,7 +24,7 @@ namespace NinjaNoMeiyo {
 						aspect.visit(*this);
 					}
 
-					void AnimationMover::setState(States::State &state) {
+					void AnimationMover::setState(States::State &state, Interaction interactionType) {
 						this->characterMutex.lock();
 							this->character->stopAction(this->animationAction);
 							this->animationAction = state.moveAnimation(this->sense);

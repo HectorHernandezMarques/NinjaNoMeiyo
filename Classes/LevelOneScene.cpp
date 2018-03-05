@@ -53,13 +53,8 @@ bool LevelOneScene::init()
 	auto followTheSprite = Follow::create(&nodeView->getNodeSprite());
 	this->runAction(followTheSprite);
 
-	cocos2d::Sequence *sequence = cocos2d::Sequence::create(cocos2d::DelayTime::create(3.0), cocos2d::CallFunc::create(CC_CALLBACK_0(LevelOneScene::x, this, 0)), nullptr);
-	this->runAction(sequence);
-
 	controller = new NinjaNoMeiyo::Views::Input::Touch::Controller(*this, *(NinjaNoMeiyo::Models::Characters::Ryunosuke*)this->node, visibleSize);
 
-	//schedule(schedule_selector(LevelOneScene::x), 2.0f);
-	schedule(schedule_selector(LevelOneScene::y), 3.0f);
 	return true;
 }
 

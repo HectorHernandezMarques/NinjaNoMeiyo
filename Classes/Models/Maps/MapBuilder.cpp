@@ -16,8 +16,11 @@ namespace NinjaNoMeiyo {
 			MapBuilder::MapBuilder() : boxSize(cocos2d::Sprite::create(BOX_SIZE_IMAGE_SAMPLE)->getContentSize()) {
 			}
 
-			MapBuilder::~MapBuilder()
-			{
+			MapBuilder::~MapBuilder() {
+			}
+
+			cocos2d::Size MapBuilder::getBoxSize() {
+				return this->boxSize;
 			}
 
 			Map MapBuilder::get(std::string path) {

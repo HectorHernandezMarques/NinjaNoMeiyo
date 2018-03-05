@@ -4,6 +4,7 @@
 #include "./StateHandler.h"
 #include "../../Character.h"
 #include "../../States/Ryunosuke/UnknownState.h"
+#include "../../../Maps/MapBuilder.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -21,6 +22,14 @@ namespace NinjaNoMeiyo {
 
                     protected:
                         Character &character;
+
+						bool isOverEdgeRightFloor(cocos2d::Node *node);
+						bool isOverEdgeLeftFloor(cocos2d::Node *node);
+						bool isOverEdgeRightWall(cocos2d::Node *node);
+						bool isOverEdgeLeftWall(cocos2d::Node *node);
+
+					private:
+						cocos2d::Size boxSize;
 
 					};
 				}

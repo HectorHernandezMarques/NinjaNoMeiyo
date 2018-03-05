@@ -60,7 +60,7 @@ namespace NinjaNoMeiyo {
 					}
 					else {
 						this->nodesInContact.insert(std::make_pair<int, cocos2d::Node*>(static_cast<int>(collisionResult->getBitmask()), &collisionResult->getNode()));
-						this->notifyCurrentStateIfChanged();
+						this->notifyCurrentStateIfChanged(Interaction::COLLISION);
 					}
 				}
 
@@ -80,7 +80,7 @@ namespace NinjaNoMeiyo {
 					for (auto it = this->nodesInContact.begin(); it != this->nodesInContact.end(); ) {
 						if (it->second == nodeToErase) {
 							it = this->nodesInContact.erase(it);
-                            this->notifyCurrentStateIfChanged();
+                            this->notifyCurrentStateIfChanged(Interaction::SEPARATION);
 						}
 						else {
 							it++;

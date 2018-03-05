@@ -21,8 +21,10 @@ namespace NinjaNoMeiyo {
 						aspect.visit(*this);
 					}
 
-					void ModelJumper::setState(States::State &state) {
-						state.jump(this->sense);
+					void ModelJumper::setState(States::State &state, Interaction interactionType) {
+						if (interactionType == Interaction::COLLISION) {
+							state.stop(this->sense);
+						}
 					}
 				}
 			}

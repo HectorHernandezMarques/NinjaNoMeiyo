@@ -30,7 +30,9 @@ namespace NinjaNoMeiyo {
 			void stopAction(cocos2d::Action *action);
 			void addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener);
 
+			cocos2d::Vec2 getInitialPosition();
 			cocos2d::Vec2 getPosition();
+			cocos2d::Size getContentSize();
 			cocos2d::Vec2 getAnchorPoint();
 			std::string getTexture();
 			float getRotation();

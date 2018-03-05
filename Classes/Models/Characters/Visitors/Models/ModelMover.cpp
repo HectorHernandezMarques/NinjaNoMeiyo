@@ -14,7 +14,6 @@ namespace NinjaNoMeiyo {
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
 						CharacterVisitor::visit(ryunosuke);
-						CCLOG("MM%d", static_cast<int>(sense));
 						ryunosuke.getCurrentState().move(this->sense);
 					}
 
@@ -22,7 +21,7 @@ namespace NinjaNoMeiyo {
 						aspect.visit(*this);
 					}
 
-					void ModelMover::setState(States::State &state) {
+					void ModelMover::setState(States::State &state, Interaction interactionType) {
 						state.move(this->sense);
 					}
 				}

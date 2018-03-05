@@ -23,8 +23,44 @@ namespace NinjaNoMeiyo {
 							bool result = false;
 							auto itLeftObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::LEFT_OBSTACLE));
 							auto itFloorNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::FLOOR));
-							if (itLeftObstacleNodes.first != itLeftObstacleNodes.second && itFloorNodes.first != itFloorNodes.second) {
-								result = true;
+							auto itEdgeFloorLeftNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_FLOOR_LEFT));
+							auto itEdgeLeftObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_LEFT_OBSTACLE));
+							if (itFloorNodes.first != itFloorNodes.second) {
+								if (itLeftObstacleNodes.first != itLeftObstacleNodes.second) {
+									result = true;
+								}
+								else if (itEdgeLeftObstacleNodes.first != itEdgeLeftObstacleNodes.second) {
+									if ((std::next(itEdgeLeftObstacleNodes.first)) == itEdgeLeftObstacleNodes.second) {
+										if (!this->isOverEdgeLeftWall(itEdgeLeftObstacleNodes.first->second)) {
+											result = true;
+										}
+									}
+									else {
+										result = true;
+									}
+								}
+							}
+							else if (itEdgeFloorLeftNodes.first != itEdgeFloorLeftNodes.second) {
+								if ((std::next(itEdgeFloorLeftNodes.first)) == itEdgeFloorLeftNodes.second) {
+									if (this->isOverEdgeRightFloor(itEdgeFloorLeftNodes.first->second)) {
+										if (itLeftObstacleNodes.first != itLeftObstacleNodes.second) {
+											result = true;
+										}
+										else if (itEdgeLeftObstacleNodes.first != itEdgeLeftObstacleNodes.second) {
+											if ((std::next(itEdgeLeftObstacleNodes.first)) == itEdgeLeftObstacleNodes.second) {
+												if (!this->isOverEdgeLeftWall(itEdgeLeftObstacleNodes.first->second)) {
+													result = true;
+												}
+											}
+											else {
+												result = true;
+											}
+										}
+									}
+								}
+								else if (itLeftObstacleNodes.first != itLeftObstacleNodes.second || itEdgeLeftObstacleNodes.first != itEdgeLeftObstacleNodes.second) {
+									result = true;
+								}
 							}
 
 							return result;

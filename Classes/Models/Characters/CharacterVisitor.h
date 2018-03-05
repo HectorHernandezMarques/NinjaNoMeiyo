@@ -15,8 +15,7 @@ namespace NinjaNoMeiyo {
 
 				virtual void visit(Ryunosuke &ryunosuke);
 				virtual void unvisit(Ryunosuke &ryunosuke);
-				virtual void setState(States::State &state) = 0;
-				cocos2d::Action* getAction();
+				virtual void setState(States::State &state, Interaction interactionType) = 0;
 
 			};
 		}

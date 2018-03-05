@@ -9,7 +9,7 @@ namespace NinjaNoMeiyo {
 			assert(&layer);
 			
 			node.attach(*this);
-			this->nodeSprite.setPosition(node.getPosition());
+			this->nodeSprite.setPosition(node.getInitialPosition());
 			this->nodeSprite.setAnchorPoint(node.getAnchorPoint());
 			if (node.hasPhysic()) {
 				this->nodeSprite.setPhysicsBody(&node.getPhysicBody());
@@ -46,6 +46,14 @@ namespace NinjaNoMeiyo {
 		
 		void Node::setPhysic(cocos2d::PhysicsBody &physicBody) {
 			this->nodeSprite.setPhysicsBody(&physicBody);
+		}
+
+		cocos2d::Vec2 Node::getCurrentPosition() {
+			return this->nodeSprite.getPosition();
+		}
+
+		cocos2d::Size Node::getContentSize() {
+			return this->nodeSprite.getContentSize();
 		}
 
 		void Node::runAction(cocos2d::Action *action) {

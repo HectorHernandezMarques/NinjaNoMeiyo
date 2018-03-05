@@ -3,6 +3,7 @@
 
 #include "./Aspect.h"
 #include "../../States/State.h"
+#include "../../Interaction.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -12,7 +13,7 @@ namespace NinjaNoMeiyo {
 
 					class StateAspect : virtual public Aspect {
 					public:
-						StateAspect(States::State &state);
+						StateAspect(States::State &state, Interaction interactionType);
 						virtual ~StateAspect();
 
 						void visit(CharacterVisitor &characterVisitor);
@@ -21,6 +22,7 @@ namespace NinjaNoMeiyo {
 
 					private:
 						States::State &state;
+						Interaction interactionType;
 
 					};
 				}

@@ -6,10 +6,10 @@ namespace NinjaNoMeiyo {
 			namespace States {
 				namespace StateHandlers {
 
-                    CharacterStateHandler::CharacterStateHandler(Character &character) : StateHandler(), character(character) {
+                    CharacterStateHandler::CharacterStateHandler(Character &character) : StateHandler(), character(character), boxSize(Maps::MapBuilder::getInstance().getBoxSize()) {
 					}
 
-                    CharacterStateHandler::CharacterStateHandler(Character &character, StateHandler &next) : StateHandler(next), character(character) {
+                    CharacterStateHandler::CharacterStateHandler(Character &character, StateHandler &next) : StateHandler(next), character(character), boxSize(Maps::MapBuilder::getInstance().getBoxSize()) {
 					}
 
                     CharacterStateHandler::~CharacterStateHandler() {
@@ -23,6 +23,23 @@ namespace NinjaNoMeiyo {
 							return new StateResult(*new States::Ryunosuke::UnknownState(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::UNKNOWN_STATE);
 						}
 					}
+
+					bool CharacterStateHandler::isOverEdgeRightFloor(cocos2d::Node *node) {
+						return fabs((this->character.getPosition().x + this->character.getContentSize().width) - (node->getPosition().x + this->boxSize.width / 2)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height));
+					}
+
+					bool CharacterStateHandler::isOverEdgeLeftFloor(cocos2d::Node *node) {
+						return fabs(this->character.getPosition().x - (node->getPosition().x - this->boxSize.width / 2)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height));
+					}
+
+					bool CharacterStateHandler::isOverEdgeRightWall(cocos2d::Node *node) {
+						return fabs((this->character.getPosition().x + this->character.getContentSize().width) - (node->getPosition().x + this->boxSize.width)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height / 2));
+					}
+
+					bool CharacterStateHandler::isOverEdgeLeftWall(cocos2d::Node *node) {
+						return fabs(this->character.getPosition().x - (node->getPosition().x - this->boxSize.width)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height / 2));
+					}
+
 				}
 			}
 		}

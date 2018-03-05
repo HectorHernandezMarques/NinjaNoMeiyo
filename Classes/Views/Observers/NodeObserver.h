@@ -19,6 +19,8 @@ namespace NinjaNoMeiyo {
 			class NodeObserver {
 			public:
 				virtual void update(Models::Aspects::Node::Aspect &aspect) = 0;
+				virtual cocos2d::Vec2 getCurrentPosition() = 0;
+				virtual cocos2d::Size getContentSize() = 0;
 			};
 		}
 	}

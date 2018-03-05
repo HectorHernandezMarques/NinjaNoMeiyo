@@ -43,8 +43,20 @@ namespace NinjaNoMeiyo {
 			this->notify(*(new Aspects::Node::AddEventListenerWithSceneGraphPriorityAspect(listener)));
 		}
 
-		cocos2d::Vec2 Node::getPosition() {
+		cocos2d::Vec2 Node::getInitialPosition() {
 			return this->position;
+		}
+
+		cocos2d::Vec2 Node::getPosition() {
+			assert(this->nodeObserver);
+
+			return this->nodeObserver->getCurrentPosition();
+		}
+
+		cocos2d::Size Node::getContentSize() {
+			assert(this->nodeObserver);
+
+			return this->nodeObserver->getContentSize();
 		}
 
 		cocos2d::Vec2 Node::getAnchorPoint() {

@@ -24,10 +24,12 @@ namespace NinjaNoMeiyo {
 						aspect.visit(*this);
 					}
 
-					void AnimationJumper::setState(States::State &state) {
+					void AnimationJumper::setState(States::State &state, Interaction interactionType) {
 						this->characterMutex.lock();
+						if (interactionType == Interaction::COLLISION) {
 							this->character->stopAction(this->animationAction);
-							this->animationAction = state.jumpAnimation(this->sense);
+							this->animationAction = state.stopAnimation(this->sense);
+						}
 						this->characterMutex.unlock();
 					}
 				}

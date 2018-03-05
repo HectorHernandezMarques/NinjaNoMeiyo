@@ -28,6 +28,8 @@ namespace NinjaNoMeiyo {
 			void setRotation(float rotation);
 			void setTexture(std::string texture);
 			void setPhysic(cocos2d::PhysicsBody &physicBody);
+			cocos2d::Vec2 getCurrentPosition();
+			cocos2d::Size getContentSize();
 			void runAction(cocos2d::Action *action);
 			void stopAction(cocos2d::Action *action);
 			void addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener);

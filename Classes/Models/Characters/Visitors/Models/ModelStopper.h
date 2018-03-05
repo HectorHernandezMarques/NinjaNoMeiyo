@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 
 						void visit(Ryunosuke &ryunosuke);
 						void update(Aspects::Characters::Aspect &aspect);
-						void setState(States::State &state);
+						void setState(States::State &state, Interaction interactionType);
 
 					protected:
 

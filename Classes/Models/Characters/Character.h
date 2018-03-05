@@ -7,6 +7,7 @@
 #include "./States/StateHandlers/StateIndex.h"
 #include "./States/StateHandlers/StateHandler.h"
 #include "./CollisionHandlers/CollisionHandler.h"
+#include "./Interaction.h"
 #include <unordered_set>
 
 namespace NinjaNoMeiyo {
@@ -40,7 +41,7 @@ namespace NinjaNoMeiyo {
                 CollisionHandlers::CollisionHandler &collisionHandler;
                 std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
 
-                void notifyCurrentStateIfChanged();
+                void notifyCurrentStateIfChanged(Interaction interactionType);
 
 			private:
 				std::unordered_set<Observers::CharacterObserver*> characterObservers;
