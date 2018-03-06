@@ -15,7 +15,8 @@ namespace NinjaNoMeiyo {
 					protected:
 						int animationIndex;
 						float xVelocityMovement;
-						float yVelocityJump;
+						float yVelocityJumpFloor;
+						float yVelocityJumpWall;
 
 					public:
 						State();

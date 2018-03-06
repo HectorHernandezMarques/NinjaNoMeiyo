@@ -7,7 +7,6 @@ namespace NinjaNoMeiyo {
 				namespace Ryunosuke {
 
 					InRightObstacle::InRightObstacle(Characters::Ryunosuke &ryunosuke) : State(), ryunosuke(ryunosuke) {
-						this->yVelocityJump = 950;
 					}
 
 					InRightObstacle::~InRightObstacle() {
@@ -44,11 +43,11 @@ namespace NinjaNoMeiyo {
 					void InRightObstacle::jump(Controllers::Sense sense) {
 						if (sense == Controllers::Sense::RIGHT) {
 							this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
-							this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->yVelocityJump));
+							this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->yVelocityJumpWall));
 						}
 						else {
 							this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
-							this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->yVelocityJump));
+							this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->yVelocityJumpWall));
 						}
 					}
 

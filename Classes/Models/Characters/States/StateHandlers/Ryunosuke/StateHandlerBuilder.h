@@ -5,6 +5,8 @@
 #include "./InFloorStateHandler.h"
 #include "./InRightObstacleStateHandler.h"
 #include "./InLeftObstacleStateHandler.h"
+#include "./InEdgeRightObstacleStateHandler.h"
+#include "./InEdgeLeftObstacleStateHandler.h"
 #include "./InFloorAndRightObstacleStateHandler.h"
 #include "./InFloorAndLeftObstacleStateHandler.h"
 #include "./InOilRightObstacleStateHandler.h"

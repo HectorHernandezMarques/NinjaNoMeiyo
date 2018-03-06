@@ -7,7 +7,6 @@ namespace NinjaNoMeiyo {
 				namespace Ryunosuke {
 
 					InFloor::InFloor(Characters::Ryunosuke &ryunosuke) : State(), ryunosuke(ryunosuke) {
-						this->yVelocityJump = 1400;
 					}
 
 					InFloor::~InFloor() {
@@ -37,7 +36,7 @@ namespace NinjaNoMeiyo {
 
 					void InFloor::jump(Controllers::Sense sense) {
 						this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
-						this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->yVelocityJump));
+						this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->yVelocityJumpFloor));
 					}
 
 					cocos2d::Action* InFloor::jumpAnimation(Controllers::Sense sense) {

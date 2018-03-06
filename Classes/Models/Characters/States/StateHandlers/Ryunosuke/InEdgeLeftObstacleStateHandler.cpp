@@ -21,20 +21,21 @@ namespace NinjaNoMeiyo {
 
 						bool InEdgeLeftObstacleStateHandler::canHandle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
 							bool result = false;
-							if (this->searchEdgeWall(nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_RIGHT_OBSTACLE)),
-														nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_FLOOR_RIGHT)))) {
-								result = true;
-							}
+							auto itEdgeLeftObstacleNodes = nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_LEFT_OBSTACLE));
 
+							if (itEdgeLeftObstacleNodes.first != itEdgeLeftObstacleNodes.second) {
+								if ((std::next(itEdgeLeftObstacleNodes.first)) == itEdgeLeftObstacleNodes.second) {
+									if (!this->isOverEdgeLeftWall(itEdgeLeftObstacleNodes.first->second)) {
+										result = true;
+									}
+								}
+							}
 							return result;
 						}
 
 						StateResult* InEdgeLeftObstacleStateHandler::handle(std::unordered_multimap<int, cocos2d::Node*> &nodesInContact) {
 							if (this->canHandle(nodesInContact)) {
-								cocos2d::Node *edgeWall = this->searchEdgeWall(nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_RIGHT_OBSTACLE)),
-									nodesInContact.equal_range(static_cast<int>(CollisionHandlers::Bitmasks::EDGE_FLOOR_RIGHT)));
-
-								return new StateResult(*new States::Ryunosuke::InOilLeftObstacle(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::IN_OIL_LEFT_OBSTACLE);
+								return new StateResult(*new States::Ryunosuke::InEdgeLeftObstacle(static_cast<Characters::Ryunosuke&>(this->character)), StateIndex::IN_EDGE_LEFT_OBSTACLE);
 							}
 							else {
 								return CharacterStateHandler::handle(nodesInContact);

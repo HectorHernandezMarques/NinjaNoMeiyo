@@ -58,7 +58,6 @@ namespace NinjaNoMeiyo {
 							if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP)
 							{
 								this->mForcingUntouch.lock();
-								this->setPosition(this->initialPosition);
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::RIGHT));
 							}
@@ -68,7 +67,6 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_JUMP)
 							{
 								this->mForcingUntouch.lock();
-								this->setPosition(this->initialPosition);
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::LEFT));
 							}
@@ -78,7 +76,6 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP_2)
 							{
 								this->mForcingUntouch.lock();
-								this->setPosition(this->initialPosition);
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::MIDDLE));
 							}
@@ -89,6 +86,7 @@ namespace NinjaNoMeiyo {
 
 				void MovementTouch::endMovement(cocos2d::Touch* touch, cocos2d::Event* event) {
 					this->setPressed(false);
+					this->setPosition(this->initialPosition);
 					this->mDoubleTouch.unlock();
 					this->mForcingUntouch.unlock();
 				}

@@ -11,6 +11,8 @@ namespace NinjaNoMeiyo {
 						StateHandlerBuilder::StateHandlerBuilder(Characters::Ryunosuke &ryunosuke) : stateHandler(new InAirStateHandler(ryunosuke)) {
 							this->stateHandler = new InOilLeftObstacleStateHandler(ryunosuke, *this->stateHandler);
 							this->stateHandler = new InOilRightObstacleStateHandler(ryunosuke, *this->stateHandler);
+                            this->stateHandler = new InEdgeLeftObstacleStateHandler(ryunosuke, *this->stateHandler);
+                            this->stateHandler = new InEdgeRightObstacleStateHandler(ryunosuke, *this->stateHandler);
                             this->stateHandler = new InFloorStateHandler(ryunosuke, *this->stateHandler);
 							this->stateHandler = new InLeftObstacleStateHandler(ryunosuke, *this->stateHandler);
 							this->stateHandler = new InRightObstacleStateHandler(ryunosuke, *this->stateHandler);

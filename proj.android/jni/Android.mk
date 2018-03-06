@@ -35,6 +35,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloor.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InRightObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InLeftObstacle.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InEdgeRightObstacle.cpp \
+                   ../../Classes/Models/Characters/States/Ryunosuke/InEdgeLeftObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloorAndRightObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloorAndLeftObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InOilRightObstacle.cpp \
@@ -48,6 +50,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InRightObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InLeftObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InEdgeObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InEdgeRightObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InEdgeLeftObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorAndRightObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorAndLeftObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InOilRightObstacleStateHandler.cpp \

@@ -2,7 +2,7 @@
 #define NINJANOMEIYO_MODELS_CHARACTERS_STATES_STATEHANDLERS_RYUNOSUKE_INEDGELEFTOBSTACLESTATEHANDLER_H
 
 #include "./InEdgeObstacleStateHandler.h"
-#include "../../Ryunosuke/InOilLeftObstacle.h"
+#include "../../Ryunosuke/InEdgeLeftObstacle.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
