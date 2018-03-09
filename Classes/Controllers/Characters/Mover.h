@@ -2,7 +2,7 @@
 #define NINJANOMEIYO_CONTROLLERS_CHARACTERS_MOVER_H
 
 #include "./CharacterCommand.h"
-#include "../Sense.h"
+#include "../../Models/Characters/Sense.h"
 #include "../../Models/Characters/Visitors/Models/ModelMover.h"
 #include "../../Models/Characters/Visitors/Animations/AnimationMover.h"
 
@@ -12,7 +12,7 @@ namespace NinjaNoMeiyo {
 
 			class Mover : public CharacterCommand {
 			public:
-				Mover(bool stoppable, Models::Characters::Character &character, Sense sense);
+				Mover(bool stoppable, Models::Characters::Character &character, Models::Characters::Sense sense);
 				virtual ~Mover();
 
 			};

@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					ModelMover::ModelMover(Controllers::Sense sense) : ModelVisitor(sense) {
+					ModelMover::ModelMover(Sense sense) : ModelVisitor(), sense(sense) {
 					}
 
 					ModelMover::~ModelMover() {
@@ -14,6 +14,9 @@ namespace NinjaNoMeiyo {
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
 						CharacterVisitor::visit(ryunosuke);
+                        if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
+                            ryunosuke.setSense(this->sense);
+                        }
 						ryunosuke.getCurrentState().move(this->sense);
 					}
 

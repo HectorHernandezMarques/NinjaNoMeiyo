@@ -11,11 +11,10 @@ namespace NinjaNoMeiyo {
 
 					class ModelVisitor : public CharacterVisitor {
 					public:
-						ModelVisitor(Controllers::Sense sense);
+						ModelVisitor();
 						virtual ~ModelVisitor();
 
 					protected:
-						Controllers::Sense sense;
 
 					private:
 

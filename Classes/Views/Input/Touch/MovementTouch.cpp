@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 		namespace Input {
 			namespace Touch {
 
-				MovementTouch::MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Controllers::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer) :
+				MovementTouch::MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer) :
 						Touch(touch, layer), sense(sense), ryunosuke(ryunosuke), commandDealer(commandDealer) {
 
 				}
@@ -21,7 +21,7 @@ namespace NinjaNoMeiyo {
 				}
 				
 				void MovementTouch::unpress() {
-					commandDealer.executeCommand(*new Controllers::Characters::Stopper(true, this->ryunosuke, this->sense));
+					commandDealer.executeCommand(*new Controllers::Characters::Stopper(true, this->ryunosuke));
 				}
 
 				bool MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event) {
@@ -59,7 +59,7 @@ namespace NinjaNoMeiyo {
 							{
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::RIGHT));
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
 							}
 							// |o| | |
 							// | | | |
@@ -68,7 +68,7 @@ namespace NinjaNoMeiyo {
 							{
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::LEFT));
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::LEFT));
 							}
 							// | |o| |
 							// | | | |
@@ -77,7 +77,7 @@ namespace NinjaNoMeiyo {
 							{
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Controllers::Sense::MIDDLE));
+								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::MIDDLE));
 							}
 
 						}

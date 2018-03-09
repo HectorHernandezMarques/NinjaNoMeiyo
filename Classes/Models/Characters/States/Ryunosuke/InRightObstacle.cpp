@@ -12,8 +12,8 @@ namespace NinjaNoMeiyo {
 					InRightObstacle::~InRightObstacle() {
 					}
 
-					void InRightObstacle::move(Controllers::Sense sense) {
-						if (sense == Controllers::Sense::RIGHT) {
+					void InRightObstacle::move(Sense sense) {
+						if (sense == Sense::RIGHT) {
 							this->ryunosuke.setVelocityLimit(RYUNOSUKE_WALL_SPEED);
 							this->ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 						}
@@ -23,25 +23,25 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InRightObstacle::moveAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InRightObstacle::moveAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InRightObstacle::moveAnimationFunction, this, sense)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InRightObstacle::stop(Controllers::Sense sense) {
+					void InRightObstacle::stop(Sense sense) {
 						this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 						this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->ryunosuke.getVelocity().y));
 					}
 
-					cocos2d::Action* InRightObstacle::stopAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InRightObstacle::stopAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InRightObstacle::stopAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InRightObstacle::jump(Controllers::Sense sense) {
-						if (sense == Controllers::Sense::RIGHT) {
+					void InRightObstacle::jump(Sense sense) {
+						if (sense == Sense::RIGHT) {
 							this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 							this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->yVelocityJumpWall));
 						}
@@ -51,15 +51,15 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InRightObstacle::jumpAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InRightObstacle::jumpAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InRightObstacle::jumpAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InRightObstacle::moveAnimationFunction(Controllers::Sense sense) {
+					void InRightObstacle::moveAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeClimb");
 							textureName.append(this->to_string(this->animationIndex++%CLIMB_TEXTURES_NUMBER));
 							textureName.append("D.png");
@@ -72,9 +72,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setTexture(textureName);
 					}
 
-					void InRightObstacle::stopAnimationFunction(Controllers::Sense sense) {
+					void InRightObstacle::stopAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeStop");
 							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
 							textureName.append("D.png");
@@ -87,9 +87,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setTexture(textureName);
 					}
 
-					void InRightObstacle::jumpAnimationFunction(Controllers::Sense sense) {
+					void InRightObstacle::jumpAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeStop");
 							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
 							textureName.append("D.png");

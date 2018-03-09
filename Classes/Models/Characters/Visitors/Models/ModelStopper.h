@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class ModelStopper : public ModelVisitor {
 					public:
-						ModelStopper(Controllers::Sense sense);
+						ModelStopper();
 						virtual ~ModelStopper();
 
 						void visit(Ryunosuke &ryunosuke);

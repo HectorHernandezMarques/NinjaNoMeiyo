@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class AnimationVisitor : public CharacterVisitor {
 					public:
-						AnimationVisitor(Controllers::Sense sense);
+						AnimationVisitor();
 						virtual ~AnimationVisitor();
 
 						virtual void unvisit(Ryunosuke &ryunosuke);
@@ -19,9 +19,7 @@ namespace NinjaNoMeiyo {
 
 					protected:
 						std::mutex characterMutex;
-						Character *character;
 						cocos2d::Action *animationAction;
-						Controllers::Sense sense;
 
 					private:
 

@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class ModelJumper : public ModelVisitor {
 					public:
-						ModelJumper(Controllers::Sense sense);
+						ModelJumper(Sense sense);
 						virtual ~ModelJumper();
 
 						void visit(Ryunosuke &ryunosuke);
@@ -21,6 +21,7 @@ namespace NinjaNoMeiyo {
 					protected:
 
 					private:
+						Sense sense;
 
 					};
 				}

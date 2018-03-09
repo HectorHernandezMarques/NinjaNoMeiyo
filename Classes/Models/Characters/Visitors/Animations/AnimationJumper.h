@@ -11,17 +11,19 @@ namespace NinjaNoMeiyo {
 
 					class AnimationJumper : public AnimationVisitor {
 					public:
-						AnimationJumper(Controllers::Sense sense);
+						AnimationJumper(Sense sense);
 						virtual ~AnimationJumper();
 
 						void visit(Ryunosuke &ryunosuke);
 						void update(Aspects::Characters::Aspect &aspect);
-						void setState(States::State &state, Interaction interactionTypee);
+						void setState(States::State &state, Interaction interactionType);
 
 					protected:
 
 					private:
 						float xVelocity;
+						Sense sense;
+
 					};
 				}
 			}

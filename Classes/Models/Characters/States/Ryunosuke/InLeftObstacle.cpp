@@ -12,8 +12,8 @@ namespace NinjaNoMeiyo {
 					InLeftObstacle::~InLeftObstacle() {
 					}
 
-					void InLeftObstacle::move(Controllers::Sense sense) {
-						if (sense == Controllers::Sense::RIGHT) {
+					void InLeftObstacle::move(Sense sense) {
+						if (sense == Sense::RIGHT) {
 							this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 							this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->ryunosuke.getVelocity().y));
 						}
@@ -23,25 +23,25 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InLeftObstacle::moveAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InLeftObstacle::moveAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InLeftObstacle::moveAnimationFunction, this, sense)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InLeftObstacle::stop(Controllers::Sense sense) {
+					void InLeftObstacle::stop(Sense sense) {
 						this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 						this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->ryunosuke.getVelocity().y));
 					}
 
-					cocos2d::Action* InLeftObstacle::stopAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InLeftObstacle::stopAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InLeftObstacle::stopAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InLeftObstacle::jump(Controllers::Sense sense) {
-						if (sense == Controllers::Sense::RIGHT) {
+					void InLeftObstacle::jump(Sense sense) {
+						if (sense == Sense::RIGHT) {
 							this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
 							this->ryunosuke.setVelocity(cocos2d::Vec2(static_cast<int>(sense) * this->xVelocityMovement, this->yVelocityJumpWall));
 						}
@@ -51,15 +51,15 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InLeftObstacle::jumpAnimation(Controllers::Sense sense) {
+					cocos2d::Action* InLeftObstacle::jumpAnimation(Sense sense) {
 						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InLeftObstacle::jumpAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
 						this->ryunosuke.runAction(action);
 						return action;
 					}
 
-					void InLeftObstacle::moveAnimationFunction(Controllers::Sense sense) {
+					void InLeftObstacle::moveAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeMove");
 							textureName.append(this->to_string(this->animationIndex++%MOVE_TEXTURES_NUMBER));
 							textureName.append("D.png");
@@ -72,9 +72,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setTexture(textureName);
 					}
 
-					void InLeftObstacle::stopAnimationFunction(Controllers::Sense sense) {
+					void InLeftObstacle::stopAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeStop");
 							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
 							textureName.append("D.png");
@@ -87,9 +87,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setTexture(textureName);
 					}
 
-					void InLeftObstacle::jumpAnimationFunction(Controllers::Sense sense) {
+					void InLeftObstacle::jumpAnimationFunction(Sense sense) {
 						std::string textureName;
-						if (sense == Controllers::Sense::RIGHT) {
+						if (sense == Sense::RIGHT) {
 							textureName.append("RyunosukeStop");
 							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
 							textureName.append("D.png");

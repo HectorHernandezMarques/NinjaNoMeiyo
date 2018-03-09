@@ -7,7 +7,7 @@
 #define TOUCH_LEFT_JUMP 30
 
 #include "./Touch.h"
-#include "../../../Controllers/Sense.h"
+#include "../../../Models/Characters/Sense.h"
 #include "../../../Controllers/Characters/Stopper.h"
 #include "../../../Controllers/Characters/Mover.h"
 #include "../../../Controllers/Characters/Jumper.h"
@@ -20,7 +20,7 @@ namespace NinjaNoMeiyo {
 
 				class MovementTouch : public Touch {
 				public:
-					MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Controllers::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer);
+					MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer);
 					virtual ~MovementTouch();
 
 					void press();
@@ -38,7 +38,7 @@ namespace NinjaNoMeiyo {
 
 					Models::Characters::Ryunosuke& ryunosuke;
 					Controllers::Characters::CommandDealer& commandDealer;
-					Controllers::Sense sense;
+					Models::Characters::Sense sense;
 
 				};
 			}

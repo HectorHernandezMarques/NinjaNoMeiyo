@@ -7,6 +7,7 @@ namespace NinjaNoMeiyo {
 			Character::Character(CollisionHandlers::CollisionHandler &collisionHandler, States::StateHandlers::StateHandler &stateHandler, cocos2d::Vec2 position,
                                  cocos2d::Vec2 anchorPoint, std::string texture, float rotation, Physics::Physic *physic) :
 					Node(position, anchorPoint, texture, rotation, physic),
+                    sense(Sense::RIGHT),
                     collisionHandler(collisionHandler),
 					stateHandler(stateHandler) {
 
@@ -35,6 +36,14 @@ namespace NinjaNoMeiyo {
 
 			States::State& Character::getCurrentState() {
 				return this->stateHandler.handle(this->nodesInContact)->getState();
+			}
+
+			Sense Character::getSense() {
+				return this->sense;
+			}
+
+			void Character::setSense(Sense sense) {
+				this->sense = sense;
 			}
 
 			void Character::notifyCurrentStateIfChanged(Interaction interactionType) {

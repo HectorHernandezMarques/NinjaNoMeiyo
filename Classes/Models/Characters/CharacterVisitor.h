@@ -17,6 +17,9 @@ namespace NinjaNoMeiyo {
 				virtual void unvisit(Ryunosuke &ryunosuke);
 				virtual void setState(States::State &state, Interaction interactionType) = 0;
 
+			protected:
+				Character *character;
+
 			};
 		}
 	}

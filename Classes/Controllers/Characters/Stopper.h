@@ -2,7 +2,6 @@
 #define NINJANOMEIYO_CONTROLLERS_CHARACTERS_STOPPER_H
 
 #include "./CharacterCommand.h"
-#include "../Sense.h"
 #include "../../Models/Characters/Visitors/Models/ModelStopper.h"
 #include "../../Models/Characters/Visitors/Animations/AnimationStopper.h"
 
@@ -12,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 			class Stopper : public CharacterCommand {
 			public:
-				Stopper(bool stoppable, Models::Characters::Character &character, Sense sense);
+				Stopper(bool stoppable, Models::Characters::Character &character);
 				virtual ~Stopper();
 
 			};

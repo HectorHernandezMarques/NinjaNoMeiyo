@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class ModelMover : public ModelVisitor {
 					public:
-						ModelMover(Controllers::Sense sense);
+						ModelMover(Sense sense);
 						virtual ~ModelMover();
 
 						void visit(Ryunosuke &ryunosuke);
@@ -21,6 +21,7 @@ namespace NinjaNoMeiyo {
 					protected:
 
 					private:
+						Sense sense;
 
 					};
 				}

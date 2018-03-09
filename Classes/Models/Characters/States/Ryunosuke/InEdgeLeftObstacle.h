@@ -26,16 +26,16 @@ namespace NinjaNoMeiyo {
 						InEdgeLeftObstacle(Characters::Ryunosuke &ryunosuke);
 						virtual ~InEdgeLeftObstacle();
 
-						void move(Controllers::Sense sense);
-						cocos2d::Action* moveAnimation(Controllers::Sense sense);
-						void stop(Controllers::Sense sense);
-						cocos2d::Action* stopAnimation(Controllers::Sense sense);
-						void jump(Controllers::Sense sense);
-						cocos2d::Action* jumpAnimation(Controllers::Sense sense);
+						void move(Sense sense);
+						cocos2d::Action* moveAnimation(Sense sense);
+						void stop(Sense sense);
+						cocos2d::Action* stopAnimation(Sense sense);
+						void jump(Sense sense);
+						cocos2d::Action* jumpAnimation(Sense sense);
 
-						void moveAnimationFunction(Controllers::Sense sense);
-						void stopAnimationFunction(Controllers::Sense sense);
-						void jumpAnimationFunction(Controllers::Sense sense);
+						void moveAnimationFunction(Sense sense);
+						void stopAnimationFunction(Sense sense);
+						void jumpAnimationFunction(Sense sense);
 
 					protected:
 

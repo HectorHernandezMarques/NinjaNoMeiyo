@@ -2,6 +2,7 @@
 #define NINJANOMEIYO_MODELS_CHARACTERS_CHARACTER_H
 
 #include "../Node.h"
+#include "./Sense.h"
 #include "./Aspects/Characters/StateAspect.h"
 #include "./Observers/CharacterObserver.h"
 #include "./States/StateHandlers/StateIndex.h"
@@ -35,6 +36,8 @@ namespace NinjaNoMeiyo {
                 virtual void reject(CharacterVisitor &characterVisitor) = 0;
 
                 States::State& getCurrentState();
+				Sense getSense();
+				void setSense(Sense sense);
 
 			protected:
 				States::StateHandlers::StateIndex currentStateIndex;
@@ -42,6 +45,7 @@ namespace NinjaNoMeiyo {
                 std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
 
                 void notifyCurrentStateIfChanged(Interaction interactionType);
+				Sense sense;
 
 			private:
 				std::unordered_set<Observers::CharacterObserver*> characterObservers;

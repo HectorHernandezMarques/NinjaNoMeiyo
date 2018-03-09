@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class AnimationMover : public AnimationVisitor {
 					public:
-						AnimationMover(Controllers::Sense sense);
+						AnimationMover(Sense sense);
 						virtual ~AnimationMover();
 
 						void visit(Ryunosuke &ryunosuke);
@@ -22,6 +22,8 @@ namespace NinjaNoMeiyo {
 
 					private:
 						float xVelocity;
+						Sense sense;
+
 					};
 				}
 			}

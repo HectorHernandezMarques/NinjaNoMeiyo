@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Animations {
 
-					AnimationJumper::AnimationJumper(Controllers::Sense sense) : AnimationVisitor(sense) {
+					AnimationJumper::AnimationJumper(Sense sense) : AnimationVisitor(), sense(sense) {
 					}
 
 					AnimationJumper::~AnimationJumper() {
@@ -15,8 +15,12 @@ namespace NinjaNoMeiyo {
 					void AnimationJumper::visit(Ryunosuke &ryunosuke) {
 						this->characterMutex.lock();
 							CharacterVisitor::visit(ryunosuke);
-							this->character = &ryunosuke;
-							this->animationAction = ryunosuke.getCurrentState().jumpAnimation(this->sense);
+							if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
+								this->animationAction = ryunosuke.getCurrentState().jumpAnimation(this->sense);
+							}
+							else {
+								this->animationAction = ryunosuke.getCurrentState().jumpAnimation(this->character->getSense());
+							}
 						this->characterMutex.unlock();
 					}
 
@@ -28,7 +32,12 @@ namespace NinjaNoMeiyo {
 						this->characterMutex.lock();
 						if (interactionType == Interaction::COLLISION) {
 							this->character->stopAction(this->animationAction);
-							this->animationAction = state.stopAnimation(this->sense);
+							if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
+								this->animationAction = state.jumpAnimation(this->sense);
+							}
+							else {
+								this->animationAction = state.stopAnimation(this->character->getSense());
+							}
 						}
 						this->characterMutex.unlock();
 					}

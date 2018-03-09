@@ -11,7 +11,7 @@ namespace NinjaNoMeiyo {
 
 					class AnimationStopper : public AnimationVisitor {
 					public:
-						AnimationStopper(Controllers::Sense sense);
+						AnimationStopper();
 						virtual ~AnimationStopper();
 
 						void visit(Ryunosuke &ryunosuke);

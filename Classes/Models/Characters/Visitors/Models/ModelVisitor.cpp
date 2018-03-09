@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Models {
 
-					ModelVisitor::ModelVisitor(Controllers::Sense sense) : CharacterVisitor(), sense(sense) {
+					ModelVisitor::ModelVisitor() : CharacterVisitor() {
 					}
 
 					ModelVisitor::~ModelVisitor() {

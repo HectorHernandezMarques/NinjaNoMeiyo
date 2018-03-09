@@ -6,7 +6,7 @@ namespace NinjaNoMeiyo {
 			namespace Visitors {
 				namespace Animations {
 
-					AnimationStopper::AnimationStopper(Controllers::Sense sense) : AnimationVisitor(sense) {
+					AnimationStopper::AnimationStopper() : AnimationVisitor() {
 					}
 
 					AnimationStopper::~AnimationStopper() {
@@ -15,8 +15,7 @@ namespace NinjaNoMeiyo {
 					void AnimationStopper::visit(Ryunosuke &ryunosuke) {
 						this->characterMutex.lock();
 							CharacterVisitor::visit(ryunosuke);
-							this->character = &ryunosuke;
-							this->animationAction = ryunosuke.getCurrentState().stopAnimation(this->sense);
+							this->animationAction = ryunosuke.getCurrentState().stopAnimation(this->character->getSense());
 						this->characterMutex.unlock();
 					}
 
@@ -27,7 +26,7 @@ namespace NinjaNoMeiyo {
 					void AnimationStopper::setState(States::State &state, Interaction interactionType) {
 						this->characterMutex.lock();
 							this->character->stopAction(this->animationAction);
-							this->animationAction = state.stopAnimation(this->sense);
+							this->animationAction = state.stopAnimation(this->character->getSense());
 						this->characterMutex.unlock();
 					}
 				}
