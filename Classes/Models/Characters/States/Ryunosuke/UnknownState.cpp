@@ -39,6 +39,14 @@ namespace NinjaNoMeiyo {
 						return action;
 					}
 
+					void UnknownState::attack(Sense sense) {
+
+					}
+
+					cocos2d::Action* UnknownState::attackAnimation(Sense sense) {
+
+					}
+
 					void UnknownState::moveAnimationFunction(Sense sense) {
 					}
 

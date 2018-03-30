@@ -1,8 +1,6 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_STATE_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_STATES_RYUNOSUKE_STATE_H
 
-#include <sstream>
-#include "cocos2d.h"
 #include "../State.h"
 
 namespace NinjaNoMeiyo {

@@ -57,6 +57,14 @@ namespace NinjaNoMeiyo {
 						return action;
 					}
 
+					void InFloorAndLeftObstacle::attack(Sense sense) {
+
+					}
+
+					cocos2d::Action* InFloorAndLeftObstacle::attackAnimation(Sense sense) {
+
+					}
+
 					void InFloorAndLeftObstacle::moveAnimationFunction(Sense sense) {
 						std::string textureName;
 						if (sense == Sense::RIGHT) {

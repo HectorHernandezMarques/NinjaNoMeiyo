@@ -32,7 +32,7 @@ namespace NinjaNoMeiyo {
 								}
 								else if (itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
 									if ((std::next(itEdgeRightObstacleNodes.first)) == itEdgeRightObstacleNodes.second) {
-										if (!this->isOverEdgeLeftWall(itEdgeRightObstacleNodes.first->second)) {
+										if (!this->isOverEdgeRightWall(itEdgeRightObstacleNodes.first->second)) {
 											result = true;
 										}
 									}
@@ -49,7 +49,7 @@ namespace NinjaNoMeiyo {
 										}
 										else if (itEdgeRightObstacleNodes.first != itEdgeRightObstacleNodes.second) {
 											if ((std::next(itEdgeRightObstacleNodes.first)) == itEdgeRightObstacleNodes.second) {
-												if (!this->isOverEdgeLeftWall(itEdgeRightObstacleNodes.first->second)) {
+												if (!this->isOverEdgeRightWall(itEdgeRightObstacleNodes.first->second)) {
 													result = true;
 												}
 											}

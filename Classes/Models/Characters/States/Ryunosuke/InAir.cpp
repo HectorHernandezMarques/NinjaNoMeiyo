@@ -42,6 +42,14 @@ namespace NinjaNoMeiyo {
 						return action;
 					}
 
+					void InAir::attack(Sense sense) {
+
+					}
+
+					cocos2d::Action* InAir::attackAnimation(Sense sense) {
+
+					}
+
 					void InAir::moveAnimationFunction(Sense sense) {
 						std::string textureName;
 						if (sense == Sense::RIGHT) {

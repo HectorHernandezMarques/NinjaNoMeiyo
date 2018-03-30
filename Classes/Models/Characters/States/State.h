@@ -24,6 +24,8 @@ namespace NinjaNoMeiyo {
 						virtual cocos2d::Action* stopAnimation(Sense sense) = 0;
 						virtual void jump(Sense sense) = 0;
 						virtual cocos2d::Action* jumpAnimation(Sense sense) = 0;
+						virtual void attack(Sense sense) = 0;
+						virtual cocos2d::Action* attackAnimation(Sense sense) = 0;
 
 					};
 			}

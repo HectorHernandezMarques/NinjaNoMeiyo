@@ -50,13 +50,11 @@ namespace NinjaNoMeiyo {
 						// |o|o|o|
 						// | | | |
 						// | | | |
-						if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP)
-						{
+						if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP){
 							// | | |o|
 							// | | | |
 							// | | | |
-							if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP)
-							{
+							if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP){
 								this->mForcingUntouch.lock();
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
@@ -64,8 +62,7 @@ namespace NinjaNoMeiyo {
 							// |o| | |
 							// | | | |
 							// | | | |
-							else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_JUMP)
-							{
+							else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_JUMP){
 								this->mForcingUntouch.lock();
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::LEFT));
@@ -73,14 +70,28 @@ namespace NinjaNoMeiyo {
 							// | |o| |
 							// | | | |
 							// | | | |
-							else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP_2)
-							{
+							else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP_2){
 								this->mForcingUntouch.lock();
 
 								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::MIDDLE));
 							}
-
 						}
+                        // | | | |
+                        // | | |o|
+                        // | | | |
+                        else if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP){
+                            this->mForcingUntouch.lock();
+
+                            //commandDealer.executeCommand(*new Controllers::Characters::Attacker(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
+                        }
+                        // | | | |
+                        // |o| | |
+                        // | | | |
+                        else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP) {
+                            this->mForcingUntouch.lock();
+
+                            //commandDealer.executeCommand(*new Controllers::Characters::Attacker(true, this->ryunosuke, Models::Characters::Sense::LEFT));
+                        }
 					}
 				}
 

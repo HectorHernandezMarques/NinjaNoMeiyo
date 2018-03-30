@@ -42,13 +42,12 @@ bool LevelOneScene::init()
 
 	NinjaNoMeiyo::Models::Maps::Map map = NinjaNoMeiyo::Models::Maps::MapBuilder::getInstance().get("TileMaps/level1.tmx");
 	viewMap = new NinjaNoMeiyo::Views::Map(map, *this);
+    viewMap->spawn();
 
 	//auto escuchador = cocos2d::EventListenerPhysicsContact::create();
 	//escuchador->onContactBegin = CC_CALLBACK_1(LevelOneScene::onContactBegin, this);
 	//escuchador->onContactSeparate = CC_CALLBACK_1(LevelOneScene::onContactBegin, this);
 	//this->nodeView->getNodeSprite().getEventDispatcher()->addEventListenerWithSceneGraphPriority(escuchador, &nodeView->getNodeSprite());
-
-	viewMap->spawn();
 
 	auto followTheSprite = Follow::create(&nodeView->getNodeSprite());
 	this->runAction(followTheSprite);
