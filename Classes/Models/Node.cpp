@@ -94,6 +94,11 @@ namespace NinjaNoMeiyo {
 			this->notify(*(new Aspects::Node::PositionAspect(this->position)));
 		}
 
+		void Node::setAnchorPoint(cocos2d::Vec2 anchorPoint) {
+			this->anchorPoint = anchorPoint;
+			this->notify(*(new Aspects::Node::AnchorPointAspect(this->anchorPoint)));
+		}
+
 		void Node::setTexture(std::string texture) {
 			this->texture = texture;
 			this->notify(*(new Aspects::Node::TextureAspect(this->texture)));

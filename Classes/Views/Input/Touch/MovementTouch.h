@@ -5,12 +5,15 @@
 #define TOUCH_UPPER_JUMP_2 10
 #define TOUCH_RIGHT_JUMP 30
 #define TOUCH_LEFT_JUMP 30
+#define TOUCH_RIGHT_ATTACK 10
+#define TOUCH_LEFT_ATTACK 10
 
 #include "./Touch.h"
 #include "../../../Models/Characters/Sense.h"
 #include "../../../Controllers/Characters/Stopper.h"
 #include "../../../Controllers/Characters/Mover.h"
 #include "../../../Controllers/Characters/Jumper.h"
+#include "../../../Controllers/Characters/Attacker.h"
 #include "../../../Models/Characters/Ryunosuke.h"
 
 namespace NinjaNoMeiyo {

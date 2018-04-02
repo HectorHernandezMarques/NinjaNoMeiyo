@@ -9,8 +9,8 @@ namespace NinjaNoMeiyo {
 			assert(&layer);
 			
 			node.attach(*this);
-			this->nodeSprite.setPosition(node.getInitialPosition());
 			this->nodeSprite.setAnchorPoint(node.getAnchorPoint());
+			this->nodeSprite.setPosition(node.getInitialPosition());
 			if (node.hasPhysic()) {
 				this->nodeSprite.setPhysicsBody(&node.getPhysicBody());
 			}
@@ -34,6 +34,10 @@ namespace NinjaNoMeiyo {
 
 		void Node::setPosition(cocos2d::Vec2 position) {
 			this->nodeSprite.setPosition(position);
+		}
+
+		void Node::setAnchorPoint(cocos2d::Vec2 anchorPoint) {
+			this->nodeSprite.setAnchorPoint(anchorPoint);
 		}
 
 		void Node::setRotation(float rotation) {

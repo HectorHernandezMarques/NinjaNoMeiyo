@@ -8,6 +8,7 @@
 #include "./Aspects/Node/AddEventListenerWithSceneGraphPriorityAspect.h"
 #include "./Aspects/Node/PhysicAspect.h"
 #include "./Aspects/Node/PositionAspect.h"
+#include "./Aspects/Node/AnchorPointAspect.h"
 #include "./Aspects/Node/RotationAspect.h"
 #include "./Aspects/Node/RunActionAspect.h"
 #include "./Aspects/Node/StopActionAspect.h"
@@ -40,6 +41,7 @@ namespace NinjaNoMeiyo {
 			cocos2d::PhysicsBody& getPhysicBody();
 			cocos2d::Vec2 getVelocity();
 			void setPosition(cocos2d::Vec2 position);
+			void setAnchorPoint(cocos2d::Vec2 anchorPoint);
 			void setTexture(std::string texture);
 			void setRotation(float rotation);
 			void setPhysic(Physics::Physic &physic);

@@ -18,9 +18,8 @@ namespace NinjaNoMeiyo {
 					}
 
 					cocos2d::Action* InFloor::moveAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InFloor::moveAnimationFunction, this, sense)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+						Animations::MovingAnimation &animation = *new Animations::MovingAnimation(this->ryunosuke, sense);
+						return animation.animate();
 					}
 
 					void InFloor::stop(Sense sense) {
@@ -29,9 +28,8 @@ namespace NinjaNoMeiyo {
 					}
 
 					cocos2d::Action* InFloor::stopAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InFloor::stopAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+						Animations::StoppedAnimation &animation = *new Animations::StoppedAnimation(this->ryunosuke, sense);
+						return animation.animate();
 					}
 
 					void InFloor::jump(Sense sense) {
@@ -40,9 +38,8 @@ namespace NinjaNoMeiyo {
 					}
 
 					cocos2d::Action* InFloor::jumpAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InFloor::jumpAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+						Animations::JumpingAnimation &animation = *new Animations::JumpingAnimation(this->ryunosuke, sense);
+						return animation.animate();
 					}
 
 					void InFloor::attack(Sense sense) {
@@ -50,53 +47,10 @@ namespace NinjaNoMeiyo {
 					}
 
 					cocos2d::Action* InFloor::attackAnimation(Sense sense) {
-
+						Animations::AttackingAnimation &animation = *new Animations::AttackingAnimation(this->ryunosuke, sense);
+						return animation.animate();
 					}
 
-					void InFloor::moveAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeMove");
-							textureName.append(this->to_string(this->animationIndex++%MOVE_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeMove");
-							textureName.append(this->to_string(this->animationIndex++%MOVE_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
-
-					void InFloor::stopAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
-
-					void InFloor::jumpAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
 				}
 			}
 		}

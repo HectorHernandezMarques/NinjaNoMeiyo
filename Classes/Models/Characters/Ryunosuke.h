@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 
 			class Ryunosuke : public Character {
 			public:
-				Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO);
+				Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ANCHOR_MIDDLE);
 				virtual ~Ryunosuke();
 
 				void accept(CharacterVisitor &characterVisitor);

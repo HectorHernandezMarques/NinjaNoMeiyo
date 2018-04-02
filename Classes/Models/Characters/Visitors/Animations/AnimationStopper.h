@@ -21,7 +21,6 @@ namespace NinjaNoMeiyo {
 					protected:
 
 					private:
-						float xVelocity;
 					};
 				}
 			}

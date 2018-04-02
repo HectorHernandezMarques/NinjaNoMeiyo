@@ -22,9 +22,7 @@ namespace NinjaNoMeiyo {
 					}
 
 					void ModelAttacker::setState(States::State &state, Interaction interactionType) {
-						if (interactionType == Interaction::COLLISION) {
-							state.attack(this->sense);
-						}
+						state.stop(this->sense);
 					}
 				}
 			}

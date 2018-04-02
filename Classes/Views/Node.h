@@ -26,6 +26,7 @@ namespace NinjaNoMeiyo {
 
 			void setPosition(cocos2d::Vec2 position);
 			void setRotation(float rotation);
+			void setAnchorPoint(cocos2d::Vec2 anchorPoint);
 			void setTexture(std::string texture);
 			void setPhysic(cocos2d::PhysicsBody &physicBody);
 			cocos2d::Vec2 getCurrentPosition();

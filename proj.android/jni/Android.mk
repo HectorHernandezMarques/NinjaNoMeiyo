@@ -18,6 +18,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Aspects/Node/AddEventListenerWithSceneGraphPriorityAspect.cpp \
                    ../../Classes/Models/Aspects/Node/PhysicAspect.cpp \
                    ../../Classes/Models/Aspects/Node/PositionAspect.cpp \
+                   ../../Classes/Models/Aspects/Node/AnchorPointAspect.cpp \
                    ../../Classes/Models/Aspects/Node/RotationAspect.cpp \
                    ../../Classes/Models/Aspects/Node/TextureAspect.cpp \
                    ../../Classes/Models/Aspects/Node/RunActionAspect.cpp \
@@ -25,6 +26,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Character.cpp \
                    ../../Classes/Models/Characters/CharacterVisitor.cpp \
                    ../../Classes/Models/Characters/Ryunosuke.cpp \
+                   ../../Classes/Models/Characters/Animations/Animation.cpp \
+                   ../../Classes/Models/Characters/Animations/StoppedAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/MovingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/JumpingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/ClimbingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/AttackingAnimation.cpp \
                    ../../Classes/Models/Characters/Aspects/Characters/StateAspect.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/CollisionHandler.cpp \
                    ../../Classes/Models/Characters/CollisionHandlers/CollisionResult.cpp \
@@ -61,10 +68,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationJumper.cpp \
+                   ../../Classes/Models/Characters/Visitors/Animations/AnimationAttacker.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelStopper.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelJumper.cpp \
+                   ../../Classes/Models/Characters/Visitors/Models/ModelAttacker.cpp \
                    ../../Classes/Models/Input/Touch/Touch.cpp \
                    ../../Classes/Models/Physics/Physic.cpp \
                    ../../Classes/Models/Physics/PhysicEmpty.cpp \
@@ -87,6 +96,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Controllers/Characters/Stopper.cpp \
                    ../../Classes/Controllers/Characters/Mover.cpp \
                    ../../Classes/Controllers/Characters/Jumper.cpp \
+                   ../../Classes/Controllers/Characters/Attacker.cpp \
                    ../../Classes/Controllers/Command.cpp \
 				   
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

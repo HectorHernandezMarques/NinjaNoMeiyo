@@ -11,7 +11,8 @@ namespace NinjaNoMeiyo {
 			}
 
 			cocos2d::PhysicsBody& PhysicPolygon::init(int bitmask, std::list<cocos2d::Vec2> &points) {
-				cocos2d::Vec2 pointsArray[points.size()];
+				//cocos2d::Vec2 pointsArray[points.size()];
+				cocos2d::Vec2 *pointsArray = new cocos2d::Vec2[points.size()];
 				int i = 0;
 				for (auto point : points) {
 					pointsArray[i++] = point;

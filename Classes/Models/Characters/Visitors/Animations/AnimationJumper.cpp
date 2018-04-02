@@ -33,7 +33,7 @@ namespace NinjaNoMeiyo {
 						if (interactionType == Interaction::COLLISION) {
 							this->character->stopAction(this->animationAction);
 							if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
-								this->animationAction = state.jumpAnimation(this->sense);
+								this->animationAction = state.stopAnimation(this->sense);
 							}
 							else {
 								this->animationAction = state.stopAnimation(this->character->getSense());

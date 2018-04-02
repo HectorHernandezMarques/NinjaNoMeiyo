@@ -10,7 +10,7 @@ namespace NinjaNoMeiyo {
 			Ryunosuke::Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint) :
 				Character(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler(),
                           (new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler(),
-                          position, anchorPoint, INITIAL_RYUNOSUKE_TEXTURE, 0.0, new Physics::PhysicBox(
+                          position, anchorPoint, "RyunosukeAttack0D.png", 0.0, new Physics::PhysicBox(
                                 static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize()
                         )
                 ) {
