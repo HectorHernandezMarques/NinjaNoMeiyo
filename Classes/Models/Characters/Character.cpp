@@ -5,11 +5,13 @@ namespace NinjaNoMeiyo {
 		namespace Characters {
 
 			Character::Character(CollisionHandlers::CollisionHandler &collisionHandler, States::StateHandlers::StateHandler &stateHandler, cocos2d::Vec2 position,
-                                 cocos2d::Vec2 anchorPoint, std::string texture, float rotation, Physics::Physic *physic) :
+                                 cocos2d::Vec2 anchorPoint, std::string texture, float rotation, cocos2d::Size initialPhysicSize, Physics::Physic *physic) :
 					Node(position, anchorPoint, texture, rotation, physic),
                     sense(Sense::RIGHT),
                     collisionHandler(collisionHandler),
-					stateHandler(stateHandler) {
+					stateHandler(stateHandler),
+					initialPhysicSize(initialPhysicSize)
+				{
 
 				assert(&position);
 				assert(&anchorPoint);
@@ -40,6 +42,10 @@ namespace NinjaNoMeiyo {
 
 			Sense Character::getSense() {
 				return this->sense;
+			}
+
+			cocos2d::Size Character::getInitialPhysicSize() {
+				return this->initialPhysicSize;
 			}
 
 			void Character::setSense(Sense sense) {

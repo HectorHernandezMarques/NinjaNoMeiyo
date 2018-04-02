@@ -31,6 +31,11 @@ namespace NinjaNoMeiyo {
 					private:
 						cocos2d::Size boxSize;
 
+						float getXRightCorner();
+						float getYRightCorner();
+						float getXLeftCorner();
+						float getYLeftCorner();
+
 					};
 				}
 			}

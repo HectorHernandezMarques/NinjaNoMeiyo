@@ -25,8 +25,8 @@ namespace NinjaNoMeiyo {
 
 			class Character : public Node {
 			public:
-				Character(CollisionHandlers::CollisionHandler &collisionHandler, States::StateHandlers::StateHandler &stateHandler, cocos2d::Vec2 position,
-                          cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, Physics::Physic *physic = new Physics::PhysicEmpty());
+				Character(CollisionHandlers::CollisionHandler &collisionHandler, States::StateHandlers::StateHandler &stateHandler, cocos2d::Vec2 position, 
+					cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, cocos2d::Size initialPhysicSize = cocos2d::Size::ZERO, Physics::Physic *physic = new Physics::PhysicEmpty());
 				virtual ~Character();
 
 				void attach(Observers::CharacterObserver &characterObserver);
@@ -37,12 +37,14 @@ namespace NinjaNoMeiyo {
 
                 States::State& getCurrentState();
 				Sense getSense();
+				cocos2d::Size getInitialPhysicSize();
 				void setSense(Sense sense);
 
 			protected:
 				States::StateHandlers::StateIndex currentStateIndex;
                 CollisionHandlers::CollisionHandler &collisionHandler;
                 std::unordered_multimap<int, cocos2d::Node*> nodesInContact;
+				cocos2d::Size initialPhysicSize;
 
                 void notifyCurrentStateIfChanged(Interaction interactionType);
 				Sense sense;

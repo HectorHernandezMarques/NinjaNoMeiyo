@@ -25,19 +25,35 @@ namespace NinjaNoMeiyo {
 					}
 
 					bool CharacterStateHandler::isOverEdgeRightFloor(cocos2d::Node *node) {
-						return fabs((this->character.getPosition().x + this->character.getContentSize().width) - (node->getPosition().x + this->boxSize.width / 2)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height));
+						return fabs(this->getXRightCorner() - (node->getPosition().x + this->boxSize.width / 2)) < fabs(this->getYRightCorner() - (node->getPosition().y - this->boxSize.height));
 					}
 
 					bool CharacterStateHandler::isOverEdgeLeftFloor(cocos2d::Node *node) {
-						return fabs(this->character.getPosition().x - (node->getPosition().x - this->boxSize.width / 2)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height));
+						return fabs(this->getXLeftCorner() - (node->getPosition().x - this->boxSize.width / 2)) < fabs(this->getYLeftCorner() - (node->getPosition().y - this->boxSize.height));
 					}
 
 					bool CharacterStateHandler::isOverEdgeRightWall(cocos2d::Node *node) {
-						return fabs((this->character.getPosition().x + this->character.getContentSize().width) - (node->getPosition().x + this->boxSize.width)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height / 2));
+						return fabs(this->getXRightCorner() - (node->getPosition().x + this->boxSize.width)) < fabs(this->getYRightCorner() - (node->getPosition().y - this->boxSize.height / 2));
 					}
 
 					bool CharacterStateHandler::isOverEdgeLeftWall(cocos2d::Node *node) {
-						return fabs(this->character.getPosition().x - (node->getPosition().x - this->boxSize.width)) < fabs(this->character.getPosition().y - (node->getPosition().y - this->boxSize.height / 2));
+						return fabs(this->getXLeftCorner() - (node->getPosition().x - this->boxSize.width)) < fabs(this->getYLeftCorner() - (node->getPosition().y - this->boxSize.height / 2));
+					}
+
+					float CharacterStateHandler::getXRightCorner() {
+						return this->character.getPosition().x + (this->character.getInitialPhysicSize().width / 2.0);
+					}
+
+					float CharacterStateHandler::getYRightCorner() {
+						return this->character.getPosition().y - (this->character.getInitialPhysicSize().height / 2.0);
+					}
+
+					float CharacterStateHandler::getXLeftCorner() {
+						return this->character.getPosition().x - (this->character.getInitialPhysicSize().width / 2.0);
+					}
+
+					float CharacterStateHandler::getYLeftCorner() {
+						return this->character.getPosition().y - (this->character.getInitialPhysicSize().height / 2.0);
 					}
 
 				}

@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_CHARACTERS_RYUNOSUKE_H
 #define NINJANOMEIYO_MODELS_CHARACTERS_RYUNOSUKE_H
 
-#define INITIAL_RYUNOSUKE_TEXTURE "DefaultTexture.png"
+#define INITIAL_RYUNOSUKE_TEXTURE "RyunosukePhysic.png"
 
 #include "./Character.h"
 #include "../Physics/PhysicBox.h"
@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 
 			class Ryunosuke : public Character {
 			public:
-				Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ANCHOR_MIDDLE);
+				Ryunosuke(cocos2d::Vec2 position);
 				virtual ~Ryunosuke();
 
 				void accept(CharacterVisitor &characterVisitor);

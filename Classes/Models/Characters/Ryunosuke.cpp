@@ -7,16 +7,15 @@ namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 
-			Ryunosuke::Ryunosuke(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint) :
+			Ryunosuke::Ryunosuke(cocos2d::Vec2 position) :
 				Character(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler(),
                           (new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler(),
-                          position, anchorPoint, "RyunosukeAttack0D.png", 0.0, new Physics::PhysicBox(
+                          position, cocos2d::Vec2::ANCHOR_MIDDLE, "RyunosukeAttack0D.png", 0.0, cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize(), new Physics::PhysicBox(
                                 static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize()
                         )
                 ) {
 
 				assert(&position);
-				assert(&anchorPoint);
 
 				this->getPhysic().setRotationEnable(false);
 				this->getPhysic().setContactTestBitmask(true);
