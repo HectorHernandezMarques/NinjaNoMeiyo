@@ -15,6 +15,8 @@ namespace NinjaNoMeiyo {
 				Attacker(bool stoppable, Models::Characters::Character &character, Models::Characters::Sense sense);
 				virtual ~Attacker();
 
+				void execute();
+				void stop();
 			};
 		}
 	}

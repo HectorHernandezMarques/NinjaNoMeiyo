@@ -27,16 +27,20 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/CharacterVisitor.cpp \
                    ../../Classes/Models/Characters/Ryunosuke.cpp \
                    ../../Classes/Models/Characters/Animations/Animation.cpp \
+                   ../../Classes/Models/Characters/Animations/Aspects/Animation/AnimationFinishedAspect.cpp \
                    ../../Classes/Models/Characters/Animations/StoppedAnimation.cpp \
                    ../../Classes/Models/Characters/Animations/MovingAnimation.cpp \
                    ../../Classes/Models/Characters/Animations/JumpingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/JumpingOnWallAnimation.cpp \
                    ../../Classes/Models/Characters/Animations/ClimbingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/ClimbingOilAnimation.cpp \
                    ../../Classes/Models/Characters/Animations/AttackingAnimation.cpp \
+                   ../../Classes/Models/Characters/Animations/NoAnimation.cpp \
                    ../../Classes/Models/Characters/Aspects/Characters/StateAspect.cpp \
-                   ../../Classes/Models/Characters/CollisionHandlers/CollisionHandler.cpp \
-                   ../../Classes/Models/Characters/CollisionHandlers/CollisionResult.cpp \
-                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandler.cpp \
-                   ../../Classes/Models/Characters/CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
+                   ../../Classes/Models/CollisionHandlers/CollisionHandler.cpp \
+                   ../../Classes/Models/CollisionHandlers/CollisionResult.cpp \
+                   ../../Classes/Models/CollisionHandlers/Characters/Ryunosuke/ConcreteCollisionHandler.cpp \
+                   ../../Classes/Models/CollisionHandlers/Characters/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/UnknownState.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InAir.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloor.cpp \
@@ -69,6 +73,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationJumper.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationAttacker.cpp \
+                   ../../Classes/Models/Characters/Visitors/Animations/Aspects/AnimationVisitor/AnimationFinishedAspect.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Models/ModelStopper.cpp \
@@ -84,6 +89,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Maps/Texture.cpp \
                    ../../Classes/Models/Maps/Surface.cpp \
                    ../../Classes/Models/Maps/Limit.cpp \
+                   ../../Classes/Models/Environment/Damager.cpp \
                    ../../Classes/Views/Node.cpp \
                    ../../Classes/Views/Map.cpp \
                    ../../Classes/Views/Input/Touch/Touch.cpp \
@@ -98,6 +104,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Controllers/Characters/Jumper.cpp \
                    ../../Classes/Controllers/Characters/Attacker.cpp \
                    ../../Classes/Controllers/Command.cpp \
+                   ../../Classes/Controllers/Aspects/Command/CommandFinishedAspect.cpp \
 				   
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

@@ -15,30 +15,34 @@ namespace NinjaNoMeiyo {
 					void UnknownState::move(Sense sense) {
 					}
 
-					cocos2d::Action* UnknownState::moveAnimation(Sense sense) {
-						return nullptr;
+					Animations::Animation* UnknownState::moveAnimation(Sense sense) {
+						Animations::NoAnimation &animation = *new Animations::NoAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 
 					void UnknownState::stop(Sense sense) {
 					}
 
-					cocos2d::Action* UnknownState::stopAnimation(Sense sense) {
-						return nullptr;
+					Animations::Animation* UnknownState::stopAnimation(Sense sense) {
+						Animations::NoAnimation &animation = *new Animations::NoAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 
 					void UnknownState::jump(Sense sense) {
 					}
 
-					cocos2d::Action* UnknownState::jumpAnimation(Sense sense) {
-						return nullptr;
+					Animations::Animation* UnknownState::jumpAnimation(Sense sense) {
+						Animations::NoAnimation &animation = *new Animations::NoAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 
 					void UnknownState::attack(Sense sense) {
 
 					}
 
-					cocos2d::Action* UnknownState::attackAnimation(Sense sense) {
-						return nullptr;
+					Animations::Animation* UnknownState::attackAnimation(Sense sense) {
+						Animations::NoAnimation &animation = *new Animations::NoAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 				}
 			}

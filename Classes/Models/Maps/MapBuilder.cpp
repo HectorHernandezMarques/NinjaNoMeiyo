@@ -13,7 +13,7 @@ namespace NinjaNoMeiyo {
 				return *MapBuilder::instance;
 			}
 
-			MapBuilder::MapBuilder() : boxSize(cocos2d::Sprite::create(BOX_SIZE_IMAGE_SAMPLE)->getContentSize()) {
+			MapBuilder::MapBuilder() : boxSize(cocos2d::Sprite::create(BOX_SIZE_IMAGE_SAMPLE)->getContentSize()), tiledBoxSize(nullptr) {
 			}
 
 			MapBuilder::~MapBuilder() {
@@ -26,6 +26,7 @@ namespace NinjaNoMeiyo {
 			Map MapBuilder::get(std::string path) {
 				Map result;
 				this->setTiledBoxSize(path);
+				this->setBackgroundTo(result, path);
 				this->setTexturesTo(result, path);
 				this->setSurfacesTo(result, path);
 				this->setLimitsTo(result, path);
@@ -39,6 +40,25 @@ namespace NinjaNoMeiyo {
 				cocos2d::ValueMap properties;
 				this->tiledBoxSize = new cocos2d::Size(vectorObjects.begin()->asValueMap()["width"].asInt(), vectorObjects.begin()->asValueMap()["height"].asInt());
 			}
+
+			void MapBuilder::setBackgroundTo(Map &map, std::string path) {
+				assert(this->tiledBoxSize);
+
+				cocos2d::TMXTiledMap *tiledMap = cocos2d::TMXTiledMap::create(path);
+				cocos2d::ValueVector vectorObjects = tiledMap->getObjectGroup("Background")->getObjects();
+				cocos2d::ValueMap properties;
+				Texture *texture;
+
+				for (const auto& object : vectorObjects) {
+					properties = object.asValueMap();
+					texture = new Texture(this->getRelativeVec2(properties["x"].asFloat(), properties["y"].asFloat(), properties["height"].asFloat()),
+						cocos2d::Vec2::ZERO,
+						properties["type"].asString(),
+						properties["rotation"].asFloat());
+					map.add(texture);
+				}
+			}
+
 
 			void MapBuilder::setTexturesTo(Map &map, std::string path) {
 				assert(this->tiledBoxSize);

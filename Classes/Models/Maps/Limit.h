@@ -5,7 +5,7 @@
 #include "./MapElement.h"
 #include "../Node.h"
 #include "../Physics/PhysicPolygon.h"
-#include "../Characters/CollisionHandlers/Bitmasks.h"
+#include "../CollisionHandlers/Bitmasks.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {

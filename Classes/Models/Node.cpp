@@ -89,6 +89,10 @@ namespace NinjaNoMeiyo {
 			return this->physic->getVelocity();
 		}
 
+		cocos2d::Layer& Node::getLayer() {
+			return this->nodeObserver->getLayer();
+		}
+
 		void Node::setPosition(cocos2d::Vec2 position) {
 			this->position = position;
 			this->notify(*(new Aspects::Node::PositionAspect(this->position)));

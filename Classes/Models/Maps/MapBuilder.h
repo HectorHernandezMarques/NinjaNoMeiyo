@@ -26,6 +26,7 @@ namespace NinjaNoMeiyo {
 				cocos2d::Size boxSize;
 
 				void setTiledBoxSize(std::string path);
+				void setBackgroundTo(Map &map, std::string path);
 				void setTexturesTo(Map &map, std::string path);
 				void setSurfacesTo(Map &map, std::string path);
 				void setLimitsTo(Map &map, std::string path);

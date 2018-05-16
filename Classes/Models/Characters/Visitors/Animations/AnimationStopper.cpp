@@ -15,18 +15,23 @@ namespace NinjaNoMeiyo {
 					void AnimationStopper::visit(Ryunosuke &ryunosuke) {
 						this->characterMutex.lock();
 							CharacterVisitor::visit(ryunosuke);
-							this->animationAction = ryunosuke.getCurrentState().stopAnimation(this->character->getSense());
+							this->animation = ryunosuke.getCurrentState().stopAnimation(this->character->getSense());
+							this->animation->attach(*this);
+							this->animation->animate();
 						this->characterMutex.unlock();
 					}
 
-					void AnimationStopper::update(Aspects::Characters::Aspect &aspect) {
+					void AnimationStopper::update(Characters::Aspects::Characters::Aspect &aspect) {
 						aspect.visit(*this);
 					}
 
 					void AnimationStopper::setState(States::State &state, Interaction interactionType) {
 						this->characterMutex.lock();
-							this->character->stopAction(this->animationAction);
-							this->animationAction = state.stopAnimation(this->character->getSense());
+							this->animation->detach(*this);
+							this->animation->stopAnimation();
+							this->animation = state.stopAnimation(this->character->getSense());
+							this->animation->attach(*this);
+							this->animation->animate();
 						this->characterMutex.unlock();
 					}
 				}

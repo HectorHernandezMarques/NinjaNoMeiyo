@@ -40,6 +40,7 @@ namespace NinjaNoMeiyo {
 			Physics::Physic& getPhysic();
 			cocos2d::PhysicsBody& getPhysicBody();
 			cocos2d::Vec2 getVelocity();
+			cocos2d::Layer& getLayer();
 			void setPosition(cocos2d::Vec2 position);
 			void setAnchorPoint(cocos2d::Vec2 anchorPoint);
 			void setTexture(std::string texture);

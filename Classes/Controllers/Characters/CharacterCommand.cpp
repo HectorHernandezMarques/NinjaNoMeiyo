@@ -1,4 +1,5 @@
 #include "./CharacterCommand.h"
+#include "../../Models/Characters/Visitors/Animations/AnimationVisitor.h"
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
@@ -24,6 +25,10 @@ namespace NinjaNoMeiyo {
 
 				this->character.accept(*this->modelVisitor);
 				this->character.accept(*this->animationVisitor);
+			}
+
+			void CharacterCommand::update(Models::Characters::Visitors::Animations::Aspects::AnimationVisitor::Aspect &aspect) {
+				aspect.visit(*this);
 			}
 		}
 	}

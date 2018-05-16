@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 
 			Limit::Limit(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint, std::string texture, float rotation, std::list<cocos2d::Vec2> &points) :
 				Node(position, anchorPoint, texture, rotation, new Physics::PhysicPolygon(
-                        static_cast<int>(Characters::CollisionHandlers::Bitmasks::FIXED_OBSTACLE), points)
+                        static_cast<int>(CollisionHandlers::Bitmasks::FIXED_OBSTACLE), points)
 				) {
 
 				this->setDynamic(false);

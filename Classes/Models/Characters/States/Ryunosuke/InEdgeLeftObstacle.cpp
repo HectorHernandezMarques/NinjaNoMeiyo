@@ -23,10 +23,17 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InEdgeLeftObstacle::moveAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InEdgeLeftObstacle::moveAnimationFunction, this, sense)), cocos2d::DelayTime::create(MOVE_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+					Animations::Animation* InEdgeLeftObstacle::moveAnimation(Sense sense) {
+						Animations::Animation *result = nullptr;
+
+						if (sense == Sense::RIGHT) {
+							result = new Animations::MovingAnimation(this->ryunosuke, sense);
+						}
+						else {
+							result = new Animations::ClimbingOilAnimation(this->ryunosuke, sense);
+						}
+
+						return result;
 					}
 
 					void InEdgeLeftObstacle::stop(Sense sense) {
@@ -34,10 +41,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setVelocity(cocos2d::Vec2(0.0, this->ryunosuke.getVelocity().y));
 					}
 
-					cocos2d::Action* InEdgeLeftObstacle::stopAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InEdgeLeftObstacle::stopAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+					Animations::Animation* InEdgeLeftObstacle::stopAnimation(Sense sense) {
+						Animations::ClimbingOilAnimation &animation = *new Animations::ClimbingOilAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 
 					void InEdgeLeftObstacle::jump(Sense sense) {
@@ -51,64 +57,29 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InEdgeLeftObstacle::jumpAnimation(Sense sense) {
-						cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(InEdgeLeftObstacle::jumpAnimationFunction, this, sense)), cocos2d::DelayTime::create(STOP_ANIMATION_DELAY), nullptr));
-						this->ryunosuke.runAction(action);
-						return action;
+					Animations::Animation* InEdgeLeftObstacle::jumpAnimation(Sense sense) {
+						Animations::Animation *result = nullptr;
+
+						if (sense == Sense::RIGHT) {
+							result = new Animations::JumpingAnimation(this->ryunosuke, sense);
+						}
+						else {
+							result = new Animations::JumpingOnWallAnimation(this->ryunosuke, sense);
+						}
+
+						return result;
 					}
 
 					void InEdgeLeftObstacle::attack(Sense sense) {
-
+						this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+						this->ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 					}
 
-					cocos2d::Action* InEdgeLeftObstacle::attackAnimation(Sense sense) {
-
+					Animations::Animation* InEdgeLeftObstacle::attackAnimation(Sense sense) {
+						Animations::AttackingAnimation &animation = *new Animations::AttackingAnimation(this->ryunosuke, sense);
+						return &animation;
 					}
 
-					void InEdgeLeftObstacle::moveAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeMove");
-							textureName.append(this->to_string(this->animationIndex++%MOVE_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeClimb");
-							textureName.append(this->to_string(this->animationIndex++%CLIMB_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
-
-					void InEdgeLeftObstacle::stopAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
-
-					void InEdgeLeftObstacle::jumpAnimationFunction(Sense sense) {
-						std::string textureName;
-						if (sense == Sense::RIGHT) {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("D.png");
-						}
-						else {
-							textureName.append("RyunosukeStop");
-							textureName.append(this->to_string(this->animationIndex++%STOP_TEXTURES_NUMBER));
-							textureName.append("I.png");
-						}
-						this->ryunosuke.setTexture(textureName);
-					}
 				}
 			}
 		}

@@ -2,13 +2,14 @@
 #include "./CharacterVisitor.h"
 #include "./States/Ryunosuke/InFloor.h"
 #include "./States/StateHandlers/Ryunosuke/StateHandlerBuilder.h"
+#include "../CollisionHandlers/Characters/Ryunosuke/ConcreteCollisionHandlerBuilder.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
 		namespace Characters {
 
 			Ryunosuke::Ryunosuke(cocos2d::Vec2 position) :
-				Character(CollisionHandlers::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler(),
+				Character(CollisionHandlers::Characters::Ryunosuke::ConcreteCollisionHandlerBuilder::getInstance().getCollisionHandler(),
                           (new States::StateHandlers::Ryunosuke::StateHandlerBuilder(*this))->getStateHandler(),
                           position, cocos2d::Vec2::ANCHOR_MIDDLE, "RyunosukeAttack0D.png", 0.0, cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize(), new Physics::PhysicBox(
                                 static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), cocos2d::Sprite::create(INITIAL_RYUNOSUKE_TEXTURE)->getContentSize()

@@ -15,7 +15,7 @@ namespace NinjaNoMeiyo {
 						virtual ~AnimationStopper();
 
 						void visit(Ryunosuke &ryunosuke);
-						void update(Aspects::Characters::Aspect &aspect);
+						void update(Characters::Aspects::Characters::Aspect &aspect);
 						void setState(States::State &state, Interaction interactionType);
 
 					protected:

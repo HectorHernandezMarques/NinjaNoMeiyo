@@ -82,7 +82,7 @@ namespace NinjaNoMeiyo {
                         else if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_ATTACK){
                             this->mForcingUntouch.lock();
 
-                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
+                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(false, this->ryunosuke, Models::Characters::Sense::RIGHT));
                         }
                         // | | | |
                         // |o| | |
@@ -90,7 +90,7 @@ namespace NinjaNoMeiyo {
                         else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_ATTACK) {
                             this->mForcingUntouch.lock();
 
-                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(true, this->ryunosuke, Models::Characters::Sense::LEFT));
+                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(false, this->ryunosuke, Models::Characters::Sense::LEFT));
                         }
 					}
 				}

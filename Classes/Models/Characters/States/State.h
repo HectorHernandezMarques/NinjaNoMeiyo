@@ -4,6 +4,7 @@
 #include <sstream>
 #include "cocos2d.h"
 #include "../Sense.h"
+#include "../Animations/Animation.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -19,13 +20,13 @@ namespace NinjaNoMeiyo {
 						}
 
 						virtual void move(Sense sense) = 0;
-						virtual cocos2d::Action* moveAnimation(Sense sense) = 0;
+						virtual Animations::Animation* moveAnimation(Sense sense) = 0;
 						virtual void stop(Sense sense) = 0;
-						virtual cocos2d::Action* stopAnimation(Sense sense) = 0;
+						virtual Animations::Animation* stopAnimation(Sense sense) = 0;
 						virtual void jump(Sense sense) = 0;
-						virtual cocos2d::Action* jumpAnimation(Sense sense) = 0;
+						virtual Animations::Animation* jumpAnimation(Sense sense) = 0;
 						virtual void attack(Sense sense) = 0;
-						virtual cocos2d::Action* attackAnimation(Sense sense) = 0;
+						virtual Animations::Animation* attackAnimation(Sense sense) = 0;
 
 					};
 			}

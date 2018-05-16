@@ -3,7 +3,18 @@
 
 #include "../Command.h"
 #include "../../Models/Characters/Character.h"
-#include "../../Models/Characters/Visitors/Animations/AnimationVisitor.h"
+namespace NinjaNoMeiyo {
+	namespace Models {
+		namespace Characters {
+			namespace Visitors {
+				namespace Animations {
+
+					class AnimationVisitor;
+				}
+			}
+		}
+	}
+}
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
@@ -14,8 +25,9 @@ namespace NinjaNoMeiyo {
 				CharacterCommand(bool stoppable, Models::Characters::Character &character);
 				virtual ~CharacterCommand();
 
-				void execute();
-				void stop();
+				virtual void execute();
+				virtual void stop();
+				void update(Models::Characters::Visitors::Animations::Aspects::AnimationVisitor::Aspect &aspect);
 
 			protected:
 				Models::Characters::Character &character;

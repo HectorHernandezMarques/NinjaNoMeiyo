@@ -37,12 +37,12 @@ bool LevelOneScene::init()
 	Vec2 position((9)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().width, (35)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().height);
 	this->node = new NinjaNoMeiyo::Models::Characters::Ryunosuke(position);
 	this->nodeView = new NinjaNoMeiyo::Views::Node(*node, *this);
-	nodeView->spawn();
 	static_cast<NinjaNoMeiyo::Models::Characters::Ryunosuke*>(this->node)->setCollisionEventDispatchers();
 
 	NinjaNoMeiyo::Models::Maps::Map map = NinjaNoMeiyo::Models::Maps::MapBuilder::getInstance().get("TileMaps/level1.tmx");
 	viewMap = new NinjaNoMeiyo::Views::Map(map, *this);
     viewMap->spawn();
+	nodeView->spawn();
 
 	//auto escuchador = cocos2d::EventListenerPhysicsContact::create();
 	//escuchador->onContactBegin = CC_CALLBACK_1(LevelOneScene::onContactBegin, this);

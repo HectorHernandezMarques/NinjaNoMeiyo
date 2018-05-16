@@ -20,6 +20,7 @@ namespace NinjaNoMeiyo {
 			virtual ~Node();
 
 			void spawn();
+			void unspawn();
 			void update(Models::Aspects::Node::Aspect &aspect);
 
 			cocos2d::Sprite& getNodeSprite();
@@ -31,6 +32,7 @@ namespace NinjaNoMeiyo {
 			void setPhysic(cocos2d::PhysicsBody &physicBody);
 			cocos2d::Vec2 getCurrentPosition();
 			cocos2d::Size getContentSize();
+			cocos2d::Layer& getLayer();
 			void runAction(cocos2d::Action *action);
 			void stopAction(cocos2d::Action *action);
 			void addEventListenerWithSceneGraphPriority(cocos2d::EventListener *listener);

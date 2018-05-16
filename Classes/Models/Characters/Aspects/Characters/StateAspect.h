@@ -2,8 +2,8 @@
 #define NINJANOMEIYO_MODELS_CHARACTERS_ASPECTS_CHARACTERS_STATEASPECT_H
 
 #include "./Aspect.h"
-#include "../../States/State.h"
 #include "../../Interaction.h"
+#include "../../States/State.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {

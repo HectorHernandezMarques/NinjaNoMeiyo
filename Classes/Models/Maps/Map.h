@@ -1,7 +1,7 @@
 #ifndef NINJANOMEIYO_MODELS_MAPS_MAP_H
 #define NINJANOMEIYO_MODELS_MAPS_MAP_H
 
-#include <unordered_set>
+#include <list>
 #include "cocos2d.h"
 #include "./Surface.h"
 #include "./Limit.h"
@@ -21,14 +21,14 @@ namespace NinjaNoMeiyo {
 				void add(Surface *surface);
 				void add(Limit *limit);
 
-				std::unordered_set<MapElement*>::iterator begin();
-				std::unordered_set<MapElement*>::iterator end();
+				std::list<MapElement*>::iterator begin();
+				std::list<MapElement*>::iterator end();
 
 			private:
-				std::unordered_set<Texture*> textures;
-				std::unordered_set<Surface*> surfaces;
-				std::unordered_set<Limit*> limits;
-				std::unordered_set<MapElement*> elements;
+				std::list<Texture*> textures;
+				std::list<Surface*> surfaces;
+				std::list<Limit*> limits;
+				std::list<MapElement*> elements;
 
 			};
 		}

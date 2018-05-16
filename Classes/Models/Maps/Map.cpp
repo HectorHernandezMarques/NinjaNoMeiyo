@@ -12,25 +12,25 @@ namespace NinjaNoMeiyo {
 			}
 
 			void Map::add(Texture *texture) {
-				this->textures.insert(texture);
-				this->elements.insert(texture);
+				this->textures.push_back(texture);
+				this->elements.push_back(texture);
 			}
 
 			void Map::add(Surface *surface) {
-				this->surfaces.insert(surface);
-				this->elements.insert(surface);
+				this->surfaces.push_back(surface);
+				this->elements.push_back(surface);
 			}
 
 			void Map::add(Limit *limit) {
-				this->limits.insert(limit);
-				this->elements.insert(limit);
+				this->limits.push_back(limit);
+				this->elements.push_back(limit);
 			}
 
-			std::unordered_set<MapElement*>::iterator Map::begin() {
+			std::list<MapElement*>::iterator Map::begin() {
 				return this->elements.begin();
 			}
 
-			std::unordered_set<MapElement*>::iterator Map::end() {
+			std::list<MapElement*>::iterator Map::end() {
 				return this->elements.end();
 			}
 		}

@@ -11,7 +11,9 @@ namespace NinjaNoMeiyo {
 					STOPPED,
 					MOVING,
 					JUMPING,
+					JUMPING_ON_WALL,
 					CLIMBING,
+					CLIMBING_OIL,
 					ATTACKING
 				};
 			}

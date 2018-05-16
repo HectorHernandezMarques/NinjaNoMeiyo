@@ -8,7 +8,9 @@
 #include "../../Animations/StoppedAnimation.h"
 #include "../../Animations/MovingAnimation.h"
 #include "../../Animations/JumpingAnimation.h"
+#include "../../Animations/JumpingOnWallAnimation.h"
 #include "../../Animations/ClimbingAnimation.h"
+#include "../../Animations/ClimbingOilAnimation.h"
 #include "../../Animations/AttackingAnimation.h"
 
 namespace NinjaNoMeiyo {
@@ -23,17 +25,13 @@ namespace NinjaNoMeiyo {
 						virtual ~InRightObstacle();
 
 						void move(Sense sense);
-						cocos2d::Action* moveAnimation(Sense sense);
+						Animations::Animation* moveAnimation(Sense sense);
 						void stop(Sense sense);
-						cocos2d::Action* stopAnimation(Sense sense);
+						Animations::Animation* stopAnimation(Sense sense);
 						void jump(Sense sense);
-						cocos2d::Action* jumpAnimation(Sense sense);
+						Animations::Animation* jumpAnimation(Sense sense);
 						void attack(Sense sense);
-						cocos2d::Action* attackAnimation(Sense sense);
-
-						void moveAnimationFunction(Sense sense);
-						void stopAnimationFunction(Sense sense);
-						void jumpAnimationFunction(Sense sense);
+						Animations::Animation* attackAnimation(Sense sense);
 
 					protected:
 

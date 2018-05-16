@@ -16,28 +16,33 @@ namespace NinjaNoMeiyo {
 						this->characterMutex.lock();
 							CharacterVisitor::visit(ryunosuke);
 							if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
-								this->animationAction = ryunosuke.getCurrentState().jumpAnimation(this->sense);
+								this->animation = ryunosuke.getCurrentState().jumpAnimation(this->sense);
 							}
 							else {
-								this->animationAction = ryunosuke.getCurrentState().jumpAnimation(this->character->getSense());
+								this->animation = ryunosuke.getCurrentState().jumpAnimation(this->character->getSense());
 							}
+							this->animation->attach(*this);
+							this->animation->animate();
 						this->characterMutex.unlock();
 					}
 
-					void AnimationJumper::update(Aspects::Characters::Aspect &aspect) {
+					void AnimationJumper::update(Characters::Aspects::Characters::Aspect &aspect) {
 						aspect.visit(*this);
 					}
 
 					void AnimationJumper::setState(States::State &state, Interaction interactionType) {
 						this->characterMutex.lock();
 						if (interactionType == Interaction::COLLISION) {
-							this->character->stopAction(this->animationAction);
+							this->animation->detach(*this);
+							this->animation->stopAnimation();
 							if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
-								this->animationAction = state.stopAnimation(this->sense);
+								this->animation = state.stopAnimation(this->sense);
 							}
 							else {
-								this->animationAction = state.stopAnimation(this->character->getSense());
+								this->animation = state.stopAnimation(this->character->getSense());
 							}
+							this->animation->attach(*this);
+							this->animation->animate();
 						}
 						this->characterMutex.unlock();
 					}

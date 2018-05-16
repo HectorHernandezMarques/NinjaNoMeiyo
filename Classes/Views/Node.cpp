@@ -21,7 +21,11 @@ namespace NinjaNoMeiyo {
 		}
 
 		void Node::spawn() {
-			this->layer.addChild(&nodeSprite);
+			this->layer.addChild(&this->nodeSprite);
+		}
+
+		void Node::unspawn() {
+			this->layer.removeChild(&this->nodeSprite);
 		}
 
 		void Node::update(Models::Aspects::Node::Aspect &aspect) {
@@ -58,6 +62,10 @@ namespace NinjaNoMeiyo {
 
 		cocos2d::Size Node::getContentSize() {
 			return this->nodeSprite.getContentSize();
+		}
+
+		cocos2d::Layer& Node::getLayer() {
+			return this->layer;
 		}
 
 		void Node::runAction(cocos2d::Action *action) {

@@ -7,7 +7,7 @@
 #include "./Observers/CharacterObserver.h"
 #include "./States/StateHandlers/StateIndex.h"
 #include "./States/StateHandlers/StateHandler.h"
-#include "./CollisionHandlers/CollisionHandler.h"
+#include "../CollisionHandlers/CollisionHandler.h"
 #include "./Interaction.h"
 #include <unordered_set>
 

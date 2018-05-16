@@ -6,8 +6,7 @@
 #include "./Character.h"
 #include "../Physics/PhysicBox.h"
 #include "./States/Ryunosuke/State.h"
-#include "./CollisionHandlers/Bitmasks.h"
-#include "./CollisionHandlers/Ryunosuke/ConcreteCollisionHandlerBuilder.h"
+#include "../CollisionHandlers/Bitmasks.h"
 #include <map>
 
 namespace NinjaNoMeiyo {

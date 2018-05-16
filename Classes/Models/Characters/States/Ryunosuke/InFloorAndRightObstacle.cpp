@@ -23,9 +23,9 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InFloorAndRightObstacle::moveAnimation(Sense sense) {
+					Animations::Animation* InFloorAndRightObstacle::moveAnimation(Sense sense) {
 						Animations::MovingAnimation &animation = *new Animations::MovingAnimation(this->ryunosuke, sense);
-						return animation.animate();
+						return &animation;
 					}
 
 					void InFloorAndRightObstacle::stop(Sense sense) {
@@ -33,9 +33,9 @@ namespace NinjaNoMeiyo {
 						this->ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 					}
 
-					cocos2d::Action* InFloorAndRightObstacle::stopAnimation(Sense sense) {
+					Animations::Animation* InFloorAndRightObstacle::stopAnimation(Sense sense) {
 						Animations::StoppedAnimation &animation = *new Animations::StoppedAnimation(this->ryunosuke, sense);
-						return animation.animate();
+						return &animation;
 					}
 
 					void InFloorAndRightObstacle::jump(Sense sense) {
@@ -49,18 +49,19 @@ namespace NinjaNoMeiyo {
 						}
 					}
 
-					cocos2d::Action* InFloorAndRightObstacle::jumpAnimation(Sense sense) {
+					Animations::Animation* InFloorAndRightObstacle::jumpAnimation(Sense sense) {
 						Animations::JumpingAnimation &animation = *new Animations::JumpingAnimation(this->ryunosuke, sense);
-						return animation.animate();
+						return &animation;
 					}
 
 					void InFloorAndRightObstacle::attack(Sense sense) {
-
+						this->ryunosuke.setVelocityLimit(cocos2d::PHYSICS_INFINITY);
+						this->ryunosuke.setVelocity(cocos2d::Vec2::ZERO);
 					}
 
-					cocos2d::Action* InFloorAndRightObstacle::attackAnimation(Sense sense) {
+					Animations::Animation* InFloorAndRightObstacle::attackAnimation(Sense sense) {
 						Animations::AttackingAnimation &animation = *new Animations::AttackingAnimation(this->ryunosuke, sense);
-						return animation.animate();
+						return &animation;
 					}
 				}
 			}

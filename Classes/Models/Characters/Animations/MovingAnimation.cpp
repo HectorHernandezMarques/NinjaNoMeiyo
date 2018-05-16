@@ -1,4 +1,5 @@
 #include "./MovingAnimation.h"
+#include "../Character.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -6,15 +7,13 @@ namespace NinjaNoMeiyo {
 			namespace Animations {
 
 				MovingAnimation::MovingAnimation(Character &character, Sense sense) : Animation(character, sense, 3, 0.15, AnimationIndex::MOVING) {
+					this->animationAction = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(Animations::MovingAnimation::animationFunction, this)),
+																										cocos2d::DelayTime::create(this->animationDelay),
+																										nullptr));
 				}
 
 				MovingAnimation::~MovingAnimation() {
-				}
 
-				cocos2d::Action* MovingAnimation::animate() {
-					cocos2d::Action *action = cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::CallFunc::create(CC_CALLBACK_0(Animations::MovingAnimation::animationFunction, this)), cocos2d::DelayTime::create(this->animationDelay), nullptr));
-					this->character.runAction(action);
-					return action;
 				}
 
 				void MovingAnimation::animationFunction() {
