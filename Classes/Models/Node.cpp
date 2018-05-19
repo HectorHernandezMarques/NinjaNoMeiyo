@@ -13,7 +13,7 @@ namespace NinjaNoMeiyo {
 
 		}
 
-		void Node::attach(Views::Observers::NodeObserver& nodeObserver) {
+		void Node::attach(Models::Observers::NodeObserver& nodeObserver) {
 			this->nodeObserver = &nodeObserver;
 		}
 

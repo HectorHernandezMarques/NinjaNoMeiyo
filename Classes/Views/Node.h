@@ -3,7 +3,7 @@
 
 #include <string>
 #include "cocos2d.h"
-#include "./Observers/NodeObserver.h"
+#include "../Models/Observers/NodeObserver.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -14,7 +14,7 @@ namespace NinjaNoMeiyo {
 namespace NinjaNoMeiyo {
 	namespace Views {
 
-		class Node : virtual public Observers::NodeObserver {
+		class Node : virtual public Models::Observers::NodeObserver {
 		public:
 			Node(Models::Node &node, cocos2d::Layer &layer);
 			virtual ~Node();

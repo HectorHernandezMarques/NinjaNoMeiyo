@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_set>
 #include "cocos2d.h"
-#include "../Views/Observers/NodeObserver.h"
+#include "./Observers/NodeObserver.h"
 #include "./Aspects/Node/AddEventListenerWithSceneGraphPriorityAspect.h"
 #include "./Aspects/Node/PhysicAspect.h"
 #include "./Aspects/Node/PositionAspect.h"
@@ -24,7 +24,7 @@ namespace NinjaNoMeiyo {
 			Node(cocos2d::Vec2 position, cocos2d::Vec2 anchorPoint = cocos2d::Vec2::ZERO, std::string texture = "", float rotation = 0.0, Physics::Physic *physic = new Physics::PhysicEmpty());
 			virtual ~Node();
 
-			void attach(Views::Observers::NodeObserver &nodeObserver);
+			void attach(Models::Observers::NodeObserver &nodeObserver);
 			void notify(Aspects::Node::Aspect &aspect);
 			bool hasPhysic();
 			void runAction(cocos2d::Action *action);
@@ -60,7 +60,7 @@ namespace NinjaNoMeiyo {
 			cocos2d::Vec2 anchorPoint;
 			std::string texture;
 			float rotation;
-			Views::Observers::NodeObserver *nodeObserver;
+			Models::Observers::NodeObserver *nodeObserver;
 			Physics::Physic *physic;
 		};
 	}
