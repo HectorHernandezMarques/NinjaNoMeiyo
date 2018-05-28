@@ -2,7 +2,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			Stopper::Stopper(bool stoppable, Models::Characters::Character &character) : CharacterCommand(stoppable, character) {
 

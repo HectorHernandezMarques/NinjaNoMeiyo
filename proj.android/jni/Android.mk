@@ -97,12 +97,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Views/Input/Touch/Controller.cpp \
                    ../../Classes/Views/Input/Touch/Aspects/Aspect.cpp \
                    ../../Classes/Views/Input/Touch/Aspects/PressAspect.cpp \
-                   ../../Classes/Controllers/Characters/CommandDealer.cpp \
-                   ../../Classes/Controllers/Characters/CharacterCommand.cpp \
-                   ../../Classes/Controllers/Characters/Stopper.cpp \
-                   ../../Classes/Controllers/Characters/Mover.cpp \
-                   ../../Classes/Controllers/Characters/Jumper.cpp \
-                   ../../Classes/Controllers/Characters/Attacker.cpp \
+                   ../../Classes/Controllers/Character/CommandDealer.cpp \
+                   ../../Classes/Controllers/Character/CharacterCommand.cpp \
+                   ../../Classes/Controllers/Character/Stopper.cpp \
+                   ../../Classes/Controllers/Character/Mover.cpp \
+                   ../../Classes/Controllers/Character/Jumper.cpp \
+                   ../../Classes/Controllers/Character/Attacker.cpp \
                    ../../Classes/Controllers/Command.cpp \
                    ../../Classes/Controllers/Aspects/Command/CommandFinishedAspect.cpp \
 				   

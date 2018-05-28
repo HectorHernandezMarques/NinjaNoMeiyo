@@ -1,5 +1,5 @@
-#ifndef NINJANOMEIYO_CONTROLLERS_CHARACTERS_ATTACKER_H
-#define NINJANOMEIYO_CONTROLLERS_CHARACTERS_ATTACKER_H
+#ifndef NINJANOMEIYO_CONTROLLERS_CHARACTER_ATTACKER_H
+#define NINJANOMEIYO_CONTROLLERS_CHARACTER_ATTACKER_H
 
 #include "./CharacterCommand.h"
 #include "../../Models/Characters/Sense.h"
@@ -8,7 +8,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			class Attacker : public CharacterCommand {
 			public:

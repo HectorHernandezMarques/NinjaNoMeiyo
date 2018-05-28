@@ -3,7 +3,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 			enum Error {
 				NON_STOPPABLE_COMMAND_BEING_EXECUTED,
 				NO_ERROR

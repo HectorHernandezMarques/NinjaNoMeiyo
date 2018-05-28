@@ -1,5 +1,5 @@
 #include "./CommandFinishedAspect.h"
-#include "../../Characters/CommandDealer.h"
+#include "../../Character/CommandDealer.h"
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
@@ -13,7 +13,7 @@ namespace NinjaNoMeiyo {
 
 				}
 
-				void CommandFinishedAspect::visit(Characters::CommandDealer &commandDealer) {
+				void CommandFinishedAspect::visit(Character::CommandDealer &commandDealer) {
 					commandDealer.executeNextCommand();
 				}
 			}

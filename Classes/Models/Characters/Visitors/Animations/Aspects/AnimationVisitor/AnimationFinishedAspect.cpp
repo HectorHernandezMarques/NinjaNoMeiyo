@@ -1,5 +1,5 @@
 #include "./AnimationFinishedAspect.h"
-#include "../../../../../../Controllers/Characters/CharacterCommand.h"
+#include "../../../../../../Controllers/Character/CharacterCommand.h"
 
 namespace NinjaNoMeiyo {
 	namespace Models {
@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 
 							}
 
-							void AnimationFinishedAspect::visit(Controllers::Characters::CharacterCommand &characterCommand) {
+							void AnimationFinishedAspect::visit(Controllers::Character::CharacterCommand &characterCommand) {
 								characterCommand.notifyCommandFinished();
 							}
 						}

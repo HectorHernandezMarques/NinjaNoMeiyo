@@ -3,7 +3,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			CommandDealer::CommandDealer() : currentCommand(nullptr), nextCommand(nullptr) {
 			}

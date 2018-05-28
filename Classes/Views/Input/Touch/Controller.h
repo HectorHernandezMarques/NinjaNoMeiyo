@@ -3,7 +3,7 @@
 
 #include "../../../Models/Characters/Ryunosuke.h"
 #include "./TouchObserver.h"
-#include "../../../Controllers/Characters/CommandDealer.h"
+#include "../../../Controllers/Character/CommandDealer.h"
 
 namespace NinjaNoMeiyo {
 	namespace Views {
@@ -33,7 +33,7 @@ namespace NinjaNoMeiyo {
 				private:
 					Models::Characters::Ryunosuke& ryunosuke;
 					cocos2d::Layer &layer;
-					Controllers::Characters::CommandDealer ryunosukeCommandDealer;
+					Controllers::Character::CommandDealer ryunosukeCommandDealer;
 
 					NinjaNoMeiyo::Views::Input::Touch::MovementTouch *leftTouchView;
 					NinjaNoMeiyo::Views::Input::Touch::MovementTouch *rightTouchView;

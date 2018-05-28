@@ -4,7 +4,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			Attacker::Attacker(bool stoppable, Models::Characters::Character &character, Models::Characters::Sense sense) : CharacterCommand(stoppable, character) {
 

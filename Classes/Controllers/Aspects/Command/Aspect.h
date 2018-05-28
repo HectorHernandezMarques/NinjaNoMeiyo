@@ -5,7 +5,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			class CommandDealer;
 		}
@@ -19,7 +19,7 @@ namespace NinjaNoMeiyo {
 
 				class Aspect {
 				public:
-					virtual void visit(Characters::CommandDealer &commandDealer) = 0;
+					virtual void visit(Character::CommandDealer &commandDealer) = 0;
 
 				protected:
 

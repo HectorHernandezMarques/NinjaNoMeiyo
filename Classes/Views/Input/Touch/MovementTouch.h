@@ -10,10 +10,10 @@
 
 #include "./Touch.h"
 #include "../../../Models/Characters/Sense.h"
-#include "../../../Controllers/Characters/Stopper.h"
-#include "../../../Controllers/Characters/Mover.h"
-#include "../../../Controllers/Characters/Jumper.h"
-#include "../../../Controllers/Characters/Attacker.h"
+#include "../../../Controllers/Character/Stopper.h"
+#include "../../../Controllers/Character/Mover.h"
+#include "../../../Controllers/Character/Jumper.h"
+#include "../../../Controllers/Character/Attacker.h"
 #include "../../../Models/Characters/Ryunosuke.h"
 
 namespace NinjaNoMeiyo {
@@ -23,7 +23,7 @@ namespace NinjaNoMeiyo {
 
 				class MovementTouch : public Touch {
 				public:
-					MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer);
+					MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Character::CommandDealer &commandDealer);
 					virtual ~MovementTouch();
 
 					void press();
@@ -40,7 +40,7 @@ namespace NinjaNoMeiyo {
 					/*we want to force the user to stop to touch the screen once he has made a gesture*/
 
 					Models::Characters::Ryunosuke& ryunosuke;
-					Controllers::Characters::CommandDealer& commandDealer;
+					Controllers::Character::CommandDealer& commandDealer;
 					Models::Characters::Sense sense;
 
 				};

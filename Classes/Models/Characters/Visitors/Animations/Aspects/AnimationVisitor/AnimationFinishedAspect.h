@@ -17,7 +17,7 @@ namespace NinjaNoMeiyo {
 								AnimationFinishedAspect();
 								virtual ~AnimationFinishedAspect();
 
-								void visit(Controllers::Characters::CharacterCommand &characterCommand);
+								void visit(Controllers::Character::CharacterCommand &characterCommand);
 
 							protected:
 

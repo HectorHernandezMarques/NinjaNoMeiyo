@@ -1,5 +1,5 @@
-#ifndef NINJANOMEIYO_CONTROLLERS_CHARACTERS_COMMANDDEALER_H
-#define NINJANOMEIYO_CONTROLLERS_CHARACTERS_COMMANDDEALER_H
+#ifndef NINJANOMEIYO_CONTROLLERS_CHARACTER_COMMANDDEALER_H
+#define NINJANOMEIYO_CONTROLLERS_CHARACTER_COMMANDDEALER_H
 
 #include "../Observers/CommandObserver.h"
 #include "./Error.h"
@@ -7,7 +7,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			class CharacterCommand;
 		}
@@ -16,7 +16,7 @@ namespace NinjaNoMeiyo {
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			class CommandDealer : virtual public Observers::CommandObserver {
 			public:

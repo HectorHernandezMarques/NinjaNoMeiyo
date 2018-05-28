@@ -13,7 +13,7 @@ namespace NinjaNoMeiyo {
 					CommandFinishedAspect();
 					virtual ~CommandFinishedAspect();
 
-					void visit(Characters::CommandDealer &commandDealer);
+					void visit(Character::CommandDealer &commandDealer);
 
 				protected:
 

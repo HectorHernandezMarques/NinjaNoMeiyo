@@ -7,7 +7,7 @@ namespace NinjaNoMeiyo {
 		namespace Input {
 			namespace Touch {
 
-				MovementTouch::MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Characters::CommandDealer &commandDealer) :
+				MovementTouch::MovementTouch(Models::Input::Touch::Touch &touch, cocos2d::Layer &layer, Models::Characters::Sense sense, Models::Characters::Ryunosuke& ryunosuke, Controllers::Character::CommandDealer &commandDealer) :
 						Touch(touch, layer), sense(sense), ryunosuke(ryunosuke), commandDealer(commandDealer) {
 
 				}
@@ -17,11 +17,11 @@ namespace NinjaNoMeiyo {
 				}
 
 				void MovementTouch::press() {
-					commandDealer.executeCommand(*new Controllers::Characters::Mover(true, this->ryunosuke, this->sense));
+					this->commandDealer.executeCommand(*new Controllers::Character::Mover(true, this->ryunosuke, this->sense));
 				}
 				
 				void MovementTouch::unpress() {
-					commandDealer.executeCommand(*new Controllers::Characters::Stopper(true, this->ryunosuke));
+					this->commandDealer.executeCommand(*new Controllers::Character::Stopper(true, this->ryunosuke));
 				}
 
 				bool MovementTouch::getInitialTouchValues(cocos2d::Touch* touch, cocos2d::Event* event) {
@@ -57,7 +57,7 @@ namespace NinjaNoMeiyo {
 							if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_JUMP){
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
+								this->commandDealer.executeCommand(*new Controllers::Character::Jumper(true, this->ryunosuke, Models::Characters::Sense::RIGHT));
 							}
 							// |o| | |
 							// | | | |
@@ -65,7 +65,7 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_JUMP){
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::LEFT));
+								this->commandDealer.executeCommand(*new Controllers::Character::Jumper(true, this->ryunosuke, Models::Characters::Sense::LEFT));
 							}
 							// | |o| |
 							// | | | |
@@ -73,7 +73,7 @@ namespace NinjaNoMeiyo {
 							else if (this->nodeSprite.getPositionY() > this->initialTouchPosition.y + this->layer.getContentSize().height / TOUCH_UPPER_JUMP_2){
 								this->mForcingUntouch.lock();
 
-								commandDealer.executeCommand(*new Controllers::Characters::Jumper(true, this->ryunosuke, Models::Characters::Sense::MIDDLE));
+								this->commandDealer.executeCommand(*new Controllers::Character::Jumper(true, this->ryunosuke, Models::Characters::Sense::MIDDLE));
 							}
 						}
                         // | | | |
@@ -82,7 +82,7 @@ namespace NinjaNoMeiyo {
                         else if (this->nodeSprite.getPositionX() > this->initialTouchPosition.x + this->layer.getContentSize().height / TOUCH_RIGHT_ATTACK){
                             this->mForcingUntouch.lock();
 
-                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(false, this->ryunosuke, Models::Characters::Sense::RIGHT));
+                            this->commandDealer.executeCommand(*new Controllers::Character::Attacker(false, this->ryunosuke, Models::Characters::Sense::RIGHT));
                         }
                         // | | | |
                         // |o| | |
@@ -90,7 +90,7 @@ namespace NinjaNoMeiyo {
                         else if (this->nodeSprite.getPositionX() < this->initialTouchPosition.x - this->layer.getContentSize().height / TOUCH_LEFT_ATTACK) {
                             this->mForcingUntouch.lock();
 
-                            commandDealer.executeCommand(*new Controllers::Characters::Attacker(false, this->ryunosuke, Models::Characters::Sense::LEFT));
+                            this->commandDealer.executeCommand(*new Controllers::Character::Attacker(false, this->ryunosuke, Models::Characters::Sense::LEFT));
                         }
 					}
 				}

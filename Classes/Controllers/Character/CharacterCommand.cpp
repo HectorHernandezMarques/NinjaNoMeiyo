@@ -3,7 +3,7 @@
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
-		namespace Characters {
+		namespace Character {
 
 			CharacterCommand::CharacterCommand(bool stoppable, Models::Characters::Character &character) : Command(stoppable), character(character), modelVisitor(nullptr), animationVisitor(nullptr) {
 			}
