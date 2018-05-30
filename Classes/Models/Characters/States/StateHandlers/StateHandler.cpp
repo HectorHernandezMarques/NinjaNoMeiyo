@@ -20,7 +20,7 @@ namespace NinjaNoMeiyo {
 							return this->next->handle(nodesInContact);
 						}
 						else {
-							nullptr;
+							return nullptr;
 						}
 					}
 

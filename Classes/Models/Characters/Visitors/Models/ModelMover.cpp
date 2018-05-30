@@ -14,9 +14,9 @@ namespace NinjaNoMeiyo {
 
 					void ModelMover::visit(Ryunosuke &ryunosuke) {
 						CharacterVisitor::visit(ryunosuke);
-                        if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
-                            ryunosuke.setSense(this->sense);
-                        }
+						if(this->sense == Sense::RIGHT || this->sense == Sense::LEFT) {
+							ryunosuke.setSense(this->sense);
+						}
 						ryunosuke.getCurrentState().move(this->sense);
 					}
 
