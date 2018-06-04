@@ -7,7 +7,7 @@ Scene* LevelOneScene::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
-	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	//scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 'layer' is an autorelease object
 	auto layer = LevelOneScene::create();
@@ -35,24 +35,30 @@ bool LevelOneScene::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 
 	Vec2 position((9)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().width, (35)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().height);
-	this->node = new NinjaNoMeiyo::Models::Characters::Ryunosuke(position);
-	this->nodeView = new NinjaNoMeiyo::Views::Node(*node, *this);
-	static_cast<NinjaNoMeiyo::Models::Characters::Ryunosuke*>(this->node)->setCollisionEventDispatchers();
+	this->ryunosuke = new NinjaNoMeiyo::Models::Characters::Ryunosuke(position);
+	this->ryunosukeView = new NinjaNoMeiyo::Views::Node(*this->ryunosuke, *this);
+	this->ryunosuke->setCollisionEventDispatchers();
+
+	this->enemy = new NinjaNoMeiyo::Models::Characters::Enemies::Enemy(position + Vec2((30)*cocos2d::Sprite::create("BoxSample.png")->getContentSize().width, 0.0));
+	this->enemyView = new NinjaNoMeiyo::Views::Node(*this->enemy, *this);
+	this->enemy->setCollisionEventDispatchers();
 
 	NinjaNoMeiyo::Models::Maps::Map map = NinjaNoMeiyo::Models::Maps::MapBuilder::getInstance().get("TileMaps/level1.tmx");
-	viewMap = new NinjaNoMeiyo::Views::Map(map, *this);
-    viewMap->spawn();
-	nodeView->spawn();
+	this->viewMap = new NinjaNoMeiyo::Views::Map(map, *this);
+
+	this->viewMap->spawn();
+	this->ryunosukeView->spawn();
+	this->enemyView->spawn();
 
 	//auto escuchador = cocos2d::EventListenerPhysicsContact::create();
 	//escuchador->onContactBegin = CC_CALLBACK_1(LevelOneScene::onContactBegin, this);
 	//escuchador->onContactSeparate = CC_CALLBACK_1(LevelOneScene::onContactBegin, this);
 	//this->nodeView->getNodeSprite().getEventDispatcher()->addEventListenerWithSceneGraphPriority(escuchador, &nodeView->getNodeSprite());
 
-	auto followTheSprite = Follow::create(&nodeView->getNodeSprite());
+	auto followTheSprite = Follow::create(&this->ryunosukeView->getNodeSprite());
 	this->runAction(followTheSprite);
 
-	controller = new NinjaNoMeiyo::Views::Input::Touch::Controller(*this, *(NinjaNoMeiyo::Models::Characters::Ryunosuke*)this->node, visibleSize);
+	controller = new NinjaNoMeiyo::Views::Input::Touch::Controller(*this, *this->ryunosuke, visibleSize);
 
 	return true;
 }

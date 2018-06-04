@@ -24,6 +24,7 @@ namespace NinjaNoMeiyo {
 			}
 
 			Ryunosuke::~Ryunosuke() {
+
 			}
 
 			void Ryunosuke::accept(CharacterVisitor &characterVisitor) {
@@ -45,7 +46,10 @@ namespace NinjaNoMeiyo {
 				cocos2d::PhysicsBody *a = contact.getShapeA()->getBody();
 				cocos2d::PhysicsBody *b = contact.getShapeB()->getBody();
 
-				bool result = false;
+				
+				if (a->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::FIXED_OBSTACLE) || b->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::FIXED_OBSTACLE)) {
+					return true;
+				}
 
 				if (a->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE) || b->getCollisionBitmask() == static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE)) {
 					CollisionHandlers::CollisionResult *collisionResult = this->collisionHandler.handle(
@@ -55,16 +59,13 @@ namespace NinjaNoMeiyo {
 							)
 					);
 
-					if (collisionResult->getBitmask() == CollisionHandlers::Bitmasks::FIXED_OBSTACLE) {
-						result = true;
-					}
-					else {
+					if (collisionResult->getBitmask() != CollisionHandlers::Bitmasks::FIXED_OBSTACLE) {
 						this->nodesInContact.insert(std::make_pair<int, cocos2d::Node*>(static_cast<int>(collisionResult->getBitmask()), &collisionResult->getNode()));
 						this->notifyCurrentStateIfChanged(Interaction::COLLISION);
 					}
 				}
 
-				return result;
+				return false;
 			}
 
 			void Ryunosuke::onContactSeparate(cocos2d::PhysicsContact &contact) {

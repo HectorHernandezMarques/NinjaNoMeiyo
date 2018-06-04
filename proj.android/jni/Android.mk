@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Character.cpp \
                    ../../Classes/Models/Characters/CharacterVisitor.cpp \
                    ../../Classes/Models/Characters/Ryunosuke.cpp \
+                   ../../Classes/Models/Characters/Enemies/Enemy.cpp \
                    ../../Classes/Models/Characters/Animations/Animation.cpp \
                    ../../Classes/Models/Characters/Animations/Aspects/Animation/AnimationFinishedAspect.cpp \
                    ../../Classes/Models/Characters/Animations/StoppedAnimation.cpp \
@@ -39,8 +40,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/Aspects/Characters/StateAspect.cpp \
                    ../../Classes/Models/CollisionHandlers/CollisionHandler.cpp \
                    ../../Classes/Models/CollisionHandlers/CollisionResult.cpp \
-                   ../../Classes/Models/CollisionHandlers/Characters/Ryunosuke/ConcreteCollisionHandler.cpp \
+                   ../../Classes/Models/CollisionHandlers/ConcreteCollisionHandler.cpp \
                    ../../Classes/Models/CollisionHandlers/Characters/Ryunosuke/ConcreteCollisionHandlerBuilder.cpp \
+                   ../../Classes/Models/CollisionHandlers/Characters/Enemies/Enemy/ConcreteCollisionHandlerBuilder.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/UnknownState.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InAir.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InFloor.cpp \
@@ -53,6 +55,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InOilRightObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/InOilLeftObstacle.cpp \
                    ../../Classes/Models/Characters/States/Ryunosuke/State.cpp \
+                   ../../Classes/Models/Characters/States/Enemies/Enemy/State.cpp \
+                   ../../Classes/Models/Characters/States/Enemies/Enemy/UnknownState.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/CharacterStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/StateResult.cpp \
@@ -68,6 +72,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InFloorAndLeftObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InOilRightObstacleStateHandler.cpp \
                    ../../Classes/Models/Characters/States/StateHandlers/Ryunosuke/InOilLeftObstacleStateHandler.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Enemies/Enemy/StateHandlerBuilder.cpp \
+                   ../../Classes/Models/Characters/States/StateHandlers/Enemies/Enemy/EnemyStateHandler.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationVisitor.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationMover.cpp \
                    ../../Classes/Models/Characters/Visitors/Animations/AnimationStopper.cpp \

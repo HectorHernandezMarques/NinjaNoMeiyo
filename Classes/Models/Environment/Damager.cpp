@@ -6,12 +6,14 @@ namespace NinjaNoMeiyo {
 
 			Damager::Damager(cocos2d::Vec2 position, cocos2d::Size initialPhysicSize) :
 					Node(position, cocos2d::Vec2::ANCHOR_MIDDLE, "", 0.0, new Physics::PhysicBox(
-						static_cast<int>(CollisionHandlers::Bitmasks::RYUNOSUKE), initialPhysicSize)),
+						static_cast<int>(CollisionHandlers::Bitmasks::DAMAGER), initialPhysicSize)),
 					initialPhysicSize(initialPhysicSize)
 				{
 				assert(&position);
 
 				this->getPhysic().setRotationEnable(false);
+				this->getPhysic().setContactTestBitmask(true);
+				this->getPhysic().setDynamic(false);
 			}
 
 			Damager::~Damager() {

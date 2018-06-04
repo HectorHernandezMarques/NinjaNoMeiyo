@@ -5,6 +5,7 @@
 #include "../../Models/Characters/Sense.h"
 #include "../../Models/Characters/Visitors/Models/ModelAttacker.h"
 #include "../../Models/Characters/Visitors/Animations/AnimationAttacker.h"
+#include "../../Models/Environment/Damager.h"
 
 namespace NinjaNoMeiyo {
 	namespace Controllers {
@@ -17,6 +18,11 @@ namespace NinjaNoMeiyo {
 
 				void execute();
 				void stop();
+
+			private:
+				Models::Environment::Damager *damager;
+				Views::Node *damagerView;
+				
 			};
 		}
 	}

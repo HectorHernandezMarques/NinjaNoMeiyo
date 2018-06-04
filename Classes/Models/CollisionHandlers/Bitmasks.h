@@ -47,10 +47,13 @@ namespace NinjaNoMeiyo {
 				OIL_FLOAT_EDGE_LEFT_OBSTACLE = 30,
 				OIL_FLOAT_EDGE_FLOOR_LEFT = 31,
 
+				DAMAGER = 32,
+
 				AIR = 0,
-				RYUNOSUKE = 129,
+				RYUNOSUKE = 131,
 
 				FIXED_OBSTACLE = 130,
+				ENEMY = 129,
 				UNKNOWN_BITMASK = 88
 			};
 		}

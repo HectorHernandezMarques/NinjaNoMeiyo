@@ -1,5 +1,4 @@
 #include "./Attacker.h"
-#include "../../Models/Environment/Damager.h"
 #include "../Aspects/Command/CommandFinishedAspect.h"
 
 namespace NinjaNoMeiyo {
@@ -17,15 +16,16 @@ namespace NinjaNoMeiyo {
 
 			void Attacker::execute() {
 				this->animationVisitor->attach(this);
-				//Models::Environment::Damager &xd = *new Models::Environment::Damager(this->character.getPosition() + cocos2d::Vec2(this->character.getInitialPhysicSize().width / 2, 0), this->character.getInitialPhysicSize());
-				//Views::Node &xdV = *new Views::Node(xd, this->character.getLayer());
-				//xdV.spawn();
+				this->damager = new Models::Environment::Damager(this->character.getPosition() + cocos2d::Vec2(this->character.getInitialPhysicSize().width / 2, 0), this->character.getInitialPhysicSize());
+				this->damagerView = new Views::Node(*this->damager, this->character.getLayer());
+				this->damagerView->spawn();
 
 				CharacterCommand::execute();
 			}
 
 			void Attacker::stop() {
 				this->animationVisitor->detach(this);
+				this->damagerView->unspawn();
 
 				CharacterCommand::stop();
 			}

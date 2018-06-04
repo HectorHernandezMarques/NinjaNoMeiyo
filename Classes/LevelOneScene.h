@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "./Models/Node.h"
 #include "./Models/Characters/Ryunosuke.h"
+#include "./Models/Characters/Enemies/Enemy.h"
 #include "./Models/Input/Touch/Touch.h"
 #include "./Models/Physics/PhysicBox.h"
 #include "./Models/Maps/MapBuilder.h"
@@ -32,8 +33,10 @@ private:
 
     cocos2d::PhysicsWorld *sceneWorld;
 
-	NinjaNoMeiyo::Models::Node *node;
-	NinjaNoMeiyo::Views::Node *nodeView;
+	NinjaNoMeiyo::Models::Characters::Ryunosuke *ryunosuke;
+	NinjaNoMeiyo::Models::Characters::Enemies::Enemy *enemy;
+	NinjaNoMeiyo::Views::Node *ryunosukeView;
+	NinjaNoMeiyo::Views::Node *enemyView;
 	NinjaNoMeiyo::Views::Map *viewMap;
 	NinjaNoMeiyo::Views::Input::Touch::Controller *controller;
 	//void createWorld(std::string path, cocos2d::Size boxSize);

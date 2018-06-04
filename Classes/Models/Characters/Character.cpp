@@ -60,6 +60,7 @@ namespace NinjaNoMeiyo {
 					this->notify(*new Aspects::Characters::StateAspect(stateResult.getState(), interactionType));
 				}
 			}
+
 		}
 	}
 }
